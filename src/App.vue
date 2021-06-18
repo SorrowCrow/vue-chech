@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Cover />
+    <AboutBlock />
+    <BookBlock />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Cover from "./components/Cover.vue";
+import AboutBlock from "./components/AboutBlock.vue";
+import BookBlock from "./components/BookBlock.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: "App",
+    components: {
+        Cover,
+        AboutBlock,
+        BookBlock,
+    },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+body {
+    font-family: $default-font;
+    margin: 0;
+    height: 10000px;
+    --calendarGrid: 67px 0 67px 67px 67px 67px;
+}
+
+.pointer {
+    cursor: pointer;
 }
 </style>

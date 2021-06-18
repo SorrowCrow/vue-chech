@@ -9,6 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "jquery": "^3.6.0",
+    "jqueryui": "^1.11.1",
+    "sass": "^1.35.0",
+    "sass-loader": "^10.1.0",
+    "slick-carousel": "^1.8.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {

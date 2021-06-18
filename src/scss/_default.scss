@@ -1,0 +1,9 @@
+.block {
+    padding: 0px 40px;
+    font-size: 15px;
+    &__grid {
+        display: grid;
+        grid-template-columns: auto;
+        grid-column-gap: 100px;
+    }
+}
