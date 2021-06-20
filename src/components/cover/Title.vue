@@ -1,10 +1,11 @@
 <template>
     <div class="contain">
+        <Slider />
         <div class="background">
             <img src="../../assets/background(1).jpg" />
             <div class="background-bg"></div>
         </div>
-        <div class="title">
+        <div id="sliderInit" class="title">
             <div class="title-privatni">Tvůj privátní</div>
             <div class="title-wellness">Wellness</div>
             <svg>
@@ -17,10 +18,13 @@
 
 <script>
 import Menu from "./Menu.vue";
+import Slider from "./Slider.vue";
+
 export default {
     name: "Background",
     components: {
         Menu,
+        Slider,
     },
 };
 </script>
@@ -30,13 +34,13 @@ export default {
     position: relative;
     margin: 0 auto;
     width: 100%;
-    max-width: 1440px;
     .background {
         position: relative;
         width: 100%;
         img {
             width: 100%;
             filter: blur(7px);
+            max-height: 750px;
         }
         &-bg {
             top: 0;
@@ -44,7 +48,7 @@ export default {
             width: 100%;
             height: 100%;
             background: #472173;
-            opacity: 0.7;
+            opacity: 0.5;
             mix-blend-mode: multiply;
         }
     }
@@ -55,9 +59,12 @@ export default {
         width: 970px;
         top: calc(50% - 366px / 2);
         left: calc(50% - 970px / 2);
+        &:hover {
+            cursor: pointer;
+        }
         &-privatni {
             position: relative;
-            width: 395px;
+            width: 405px;
             font-family: "Indie Flower", cursive;
             font-size: 80px;
             line-height: 117px;

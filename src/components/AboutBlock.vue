@@ -1,12 +1,19 @@
 <template>
-    <div class="contain" id="about">
+    <div class="contain mx-auto" id="about">
         <div class="title-container">
-            <div class="title">O nás</div>
-            <div class="sub-title">
-                Sauna is located in noiseless part of Prague, only a 15-minute
-                drive from the historical city centre. It offers free Wi-Fi,
-                free parking and English breakfast. All rooms provide satellite
-                TV, a bathroom and a seating area.
+            <div>
+                <div class="title">O nás</div>
+                <div class="sub-title">
+                    Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free
+                    Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.
+                </div>
+            </div>
+            <div class="magGlassDisplay">
+                <div class="MagnifyingGlass">
+                    <svg>
+                        <use xlink:href="#magnifyingGlass" />
+                    </svg>
+                </div>
             </div>
         </div>
         <div class="services mx-auto">
@@ -46,24 +53,21 @@ export default {
 
 <style lang="scss" scoped>
 .contain {
-    color: #2b3a77;
     padding-top: 65px;
-    margin: 0 auto;
     padding-bottom: 36px;
+    color: #2b3a77;
     max-width: 1170px;
-    font-family: Playfair Display;
     .title-container {
         padding-left: 100px;
         background-image: url("../assets/pic.jpg");
         background-position: top right;
         background-repeat: no-repeat;
+        display: grid;
+        grid-template-columns: auto auto;
         .title {
-            position: relative;
             width: max-content;
             padding-top: 53px;
-            font-size: 80px;
             line-height: 107px;
-            font-family: "Playfair Display", serif;
         }
         .sub-title {
             display: flex;
@@ -75,11 +79,38 @@ export default {
             margin-top: 58px;
             max-width: 570px;
             height: 350px;
-            font-size: 25px;
-            line-height: 150%;
             background: #f5f2ef;
             border-radius: 150px 300px 300px 0px;
             z-index: 10;
+        }
+        .magGlassDisplay {
+            display: flex;
+            .MagnifyingGlass {
+                position: relative;
+                align-self: flex-end;
+                display: grid;
+                @include wh(100px, 100px);
+                background: #ffffff;
+                border-radius: 50%;
+                z-index: 100;
+                transition: 0.2s;
+                bottom: 30px;
+                left: 70px;
+                svg {
+                    margin: auto;
+                    width: 50px;
+                    height: 50px;
+                    stroke: #2b3a77;
+                }
+                &:hover {
+                    width: 110px;
+                    height: 110px;
+                    cursor: pointer;
+                    svg {
+                        stroke: #ff7a00;
+                    }
+                }
+            }
         }
     }
     .services {
@@ -93,9 +124,9 @@ export default {
             @include wh(230px, 197px);
             display: grid;
             justify-content: center;
+            text-align: center;
             font-size: 30px;
             line-height: 40px;
-            text-align: center;
             svg {
                 padding-bottom: 35px;
             }

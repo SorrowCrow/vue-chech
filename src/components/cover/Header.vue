@@ -12,7 +12,7 @@
                     <svg>
                         <use xlink:href="#clock" />
                     </svg>
-                    <div>08:00--22:20</div>
+                    <div>08:00—22:00</div>
                 </div>
                 <div class="header__contacts-item">
                     <svg>

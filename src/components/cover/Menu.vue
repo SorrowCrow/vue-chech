@@ -2,7 +2,7 @@
     <div class="menu mx-auto">
         <div class="menu__main">
             <div id="aboutButton">O nás</div>
-            <div>Rezervace</div>
+            <div id="rezervaceButton">Rezervace</div>
             <div>Dárkové poukazy</div>
             <div>Reference</div>
         </div>
@@ -17,15 +17,21 @@
 import $ from "jquery";
 
 $(document).ready(function () {
-    $(function () {
-        $("#aboutButton").click(function () {
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $("#about").offset().top,
-                },
-                500
-            );
-        });
+    $("#aboutButton").click(function () {
+        $([document.documentElement, document.body]).animate(
+            {
+                scrollTop: $("#about").offset().top,
+            },
+            500
+        );
+    });
+    $("#rezervaceButton").click(function () {
+        $([document.documentElement, document.body]).animate(
+            {
+                scrollTop: $("#book").offset().top,
+            },
+            500
+        );
     });
 });
 
@@ -48,7 +54,7 @@ export default {
         display: flex;
         justify-content: space-between;
         width: 617px;
-        div:hover{
+        div:hover {
             cursor: pointer;
         }
     }
