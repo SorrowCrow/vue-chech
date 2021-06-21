@@ -10,20 +10,17 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.min.js";
 import $ from "jquery";
-let showTitle = false;
+
 $(document).ready(function () {
     $("#sliderInit").on("click", function () {
-        if (!showTitle) {
-            console.log("asdasd");
-            $("#sliderInit").addClass("hiddenForSlide", 1000);
-            $(".background").addClass("hiddenForSlide", 1000);
-            $(".block__slider").removeClass("hiddenForSlide", 1000);
-            showTitle = true;
+        if ($("#sliderInit").hasClass("hiddenForSlide")) {
+            $("#sliderInit").removeClass("hiddenForSlide", 500);
+            $(".background").removeClass("hiddenForSlide", 500);
+            $(".block__slider").addClass("hiddenForSlide", 500);
         } else {
-            $("#sliderInit").removeClass("hiddenForSlide", 1000);
-            $(".background").removeClass("hiddenForSlide", 1000);
-            $(".block__slider").addClass("hiddenForSlide", 1000);
-            showTitle = false;
+            $("#sliderInit").addClass("hiddenForSlide", 500);
+            $(".background").addClass("hiddenForSlide", 500);
+            $(".block__slider").removeClass("hiddenForSlide", 500);
         }
     });
     $(".block__slider").slick({

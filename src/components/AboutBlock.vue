@@ -46,6 +46,22 @@
 </template>
 
 <script>
+import $ from "jquery";
+$(document).ready(function () {
+    $(".MagnifyingGlass").on("click", function () {
+        console.log("asdasd");
+        $([document.documentElement, document.body]).animate(
+            {
+                scrollTop: $("#cover").offset().top,
+            },
+            500
+        );
+        $("#sliderInit").addClass("hiddenForSlide", 1000);
+        $(".background").addClass("hiddenForSlide", 1000);
+        $(".block__slider").removeClass("hiddenForSlide", 1000);
+    });
+});
+
 export default {
     name: "AboutBlock",
 };

@@ -1,5 +1,5 @@
 <template>
-    <div class="contain">
+    <div class="contain" id="cover">
         <Slider />
         <div class="background">
             <img src="../../assets/background(1).jpg" />
