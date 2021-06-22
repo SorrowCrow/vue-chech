@@ -2,11 +2,11 @@
     <div class="cat">
         <div class="cat__header">
             <div class="month">
-                <svg class="leftArrow" @click="getMonthDecrease(), (componentKey = !componentKey)">
+                <svg class="leftArrow" @click="getMonthDecrease()">
                     <use xlink:href="#calendarArrow" />
                 </svg>
                 <div class="month-name">{{ months[month] }}</div>
-                <svg @click="getMonthIncrease(), (componentKey = !componentKey)">
+                <svg @click="getMonthIncrease()">
                     <use xlink:href="#calendarArrow" />
                 </svg>
             </div>
@@ -21,13 +21,17 @@
             </div>
         </div>
         <ChooseHoursMenu :key="componentKey" />
-        <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />>
+
+        <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />
     </div>
 </template>
 
 <script>
 import ChooseHoursMenu from "./chooseHoursMenu.vue";
 import CalendarDays from "./calendarDays.vue";
+
+import $ from "jquery";
+import "jqueryui";
 
 export default {
     name: "Calendar",
@@ -43,18 +47,70 @@ export default {
             year: new Date().getFullYear(),
             yearLoop: 0,
             componentKey: 0,
+
+            secondDate: 0,
+
+            row: 1,
         };
     },
     methods: {
+        insertMenu(row) {
+            this.row = row;
+            var menuId = 0;
+            if (this.secondDate < 37) {
+                for (let i = this.secondDate; i % 7 != 0; i++) {
+                    menuId = i;
+                }
+            } else {
+                for (let i = this.secondDate - 36; i % 7 != 0; i++) {
+                    menuId = i;
+                }
+            }
+            if (menuId == 0) {
+                menuId = this.secondDate;
+            } else {
+                menuId++;
+            }
+            menuId = menuId / 7;
+            $(".choose").insertAfter(`.${row}row`);
+            $(".choose").removeClass("hidden", 250);
+        },
+        insertSelect(txt) {
+            var menuId = 0;
+            if (this.secondDate < 37) {
+                for (let i = this.secondDate; i % 7 != 0; i++) {
+                    menuId = i;
+                }
+            } else {
+                for (let i = this.secondDate - 36; i % 7 != 0; i++) {
+                    menuId = i;
+                }
+            }
+            if (menuId == 0) {
+                menuId = this.secondDate;
+            } else {
+                menuId++;
+            }
+            menuId = menuId / 7;
+            $(".opened").insertAfter(`.${this.row}row`);
+            $(".pa").text(txt + " Hodina");
+            $(".opened").removeClass("hidden", 250);
+        },
+        removeSelect() {
+            $(".opened").addClass("hidden", 250);
+        },
+        removeMenu() {
+            $(".choose").addClass("hidden", 250);
+        },
         getMonthDecrease() {
             if (this.month == this.currentMonth && this.yearLoop == 0) {
-                return this.month;
+                return;
             } else if (this.month == 0 && this.yearLoop == 1) {
                 this.month = 11;
                 this.yearLoop = 0;
-                return this.month;
+                return this.month, (this.componentKey = !this.componentKey);
             } else {
-                return this.month--;
+                return this.month--, (this.componentKey = !this.componentKey);
             }
         },
         getMonthIncrease() {
@@ -63,9 +119,9 @@ export default {
             } else if (this.month == 11 && this.yearLoop == 0) {
                 this.month = 0;
                 this.yearLoop = 1;
-                return this.month;
+                return this.month, (this.componentKey = !this.componentKey);
             } else {
-                return this.month++;
+                return this.month++, (this.componentKey = !this.componentKey);
             }
         },
     },
@@ -77,7 +133,6 @@ export default {
     border-radius: 30px;
     width: 470px;
     height: fit-content;
-    background: white;
     overflow: hidden;
     .cat__header {
         background: #25223e;

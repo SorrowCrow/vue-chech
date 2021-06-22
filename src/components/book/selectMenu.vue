@@ -1,8 +1,8 @@
 <template>
     <div class="hidden opened">
         <div class="opened__inner">
-            <div class="opened__inner-select">
-                <p class="pa">2 Hodina</p>
+            <div class="opened__inner-select" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
+                <p class="pa">1 Hodina</p>
                 <svg><use xlink:href="#openedArrow" /></svg>
             </div>
             <div v-if="halfBool">
@@ -48,6 +48,12 @@ export default {
         halfBool: Boolean,
         numb: Number,
         threeHoursBool: Boolean,
+    },
+    mounted: function () {
+        if (this.$parent.canBeVisible) {
+            this.$parent.$parent.removeMenu();
+            this.$parent.$parent.insertSelect(this.indexHour);
+        }
     },
     data() {
         return {

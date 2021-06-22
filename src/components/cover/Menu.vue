@@ -3,8 +3,8 @@
         <div class="menu__main">
             <div id="aboutButton">O nás</div>
             <div id="rezervaceButton">Rezervace</div>
-            <div>Dárkové poukazy</div>
-            <div>Reference</div>
+            <div id="giftCardsButton">Dárkové poukazy</div>
+            <div id="referenceButton">Reference</div>
         </div>
         <div class="menu__social">
             <a href="https://facebook.com" target="_blank">Facebook</a>
@@ -30,7 +30,23 @@ $(document).ready(function () {
             {
                 scrollTop: $("#book").offset().top,
             },
-            500
+            750
+        );
+    });
+    $("#giftCardsButton").click(function () {
+        $([document.documentElement, document.body]).animate(
+            {
+                scrollTop: $("#giftCards").offset().top,
+            },
+            1000
+        );
+    });
+    $("#referenceButton").click(function () {
+        $([document.documentElement, document.body]).animate(
+            {
+                scrollTop: $("#reference").offset().top,
+            },
+            1000
         );
     });
 });

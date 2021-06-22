@@ -1,11 +1,11 @@
 <template>
-    <div class="contain mx-auto" id="about">
+    <div class="contain mx-auto">
         <div class="title-container">
             <div>
-                <div class="title">O nás</div>
+                <div class="title" id="about">O nás</div>
                 <div class="sub-title">
-                    Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free
-                    Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.
+                    Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and
+                    English breakfast. All rooms provide satellite TV, a bathroom and a seating area.
                 </div>
             </div>
             <div class="magGlassDisplay">
@@ -111,7 +111,7 @@ export default {
                 z-index: 100;
                 transition: 0.2s;
                 bottom: 30px;
-                left: 70px;
+                right: -70px;
                 svg {
                     margin: auto;
                     width: 50px;
@@ -135,7 +135,9 @@ export default {
         justify-content: space-between;
         width: 1010px;
         padding-top: 80px;
-        font-family: "Playfair Display", serif;
+        padding-bottom: 86px;
+
+        font-family: $playfair-font;
         &__item {
             @include wh(230px, 197px);
             display: grid;

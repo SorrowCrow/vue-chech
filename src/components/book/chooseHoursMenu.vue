@@ -1,13 +1,29 @@
 <template>
     <div class="hidden choose">
         <div class="hours">
-            <span class="hoursButton" @click="(indexHour = 1), (halfBool = false), (threeHoursBool = false)">1 Hodina</span>
-            <span class="hoursButton" @click="(indexHour = 1.5), (halfBool = true), (threeHoursBool = false)">1.5 Hodina</span>
-            <span class="hoursButton" @click="(indexHour = 2), (halfBool = false), (threeHoursBool = false)">2 Hodina</span>
-            <span class="hoursButton" @click="(indexHour = 3), (halfBool = false), (threeHoursBool = true)">3 Hodina</span>
+            <span
+                class="hoursButton"
+                @click="(indexHour = 1), (halfBool = false), (threeHoursBool = false), (componentRefresh = !componentRefresh), (canBeVisible = true)"
+                >1 Hodina</span
+            >
+            <span
+                class="hoursButton"
+                @click="(indexHour = 1.5), (halfBool = true), (threeHoursBool = false), (componentRefresh = !componentRefresh), (canBeVisible = true)"
+                >1.5 Hodina</span
+            >
+            <span
+                class="hoursButton"
+                @click="(indexHour = 2), (halfBool = false), (threeHoursBool = false), (componentRefresh = !componentRefresh), (canBeVisible = true)"
+                >2 Hodina</span
+            >
+            <span
+                class="hoursButton"
+                @click="(indexHour = 3), (halfBool = false), (threeHoursBool = true), (componentRefresh = !componentRefresh), (canBeVisible = true)"
+                >3 Hodina</span
+            >
         </div>
     </div>
-    <SelectMenu :indexHour="indexHour" :halfBool="halfBool" :numb="14" :threeHoursBool="threeHoursBool" />
+    <SelectMenu :key="componentRefresh" :indexHour="indexHour" :halfBool="halfBool" :numb="14" :threeHoursBool="threeHoursBool" />
 </template>
 
 <script>
@@ -23,6 +39,9 @@ export default {
             indexHour: 1,
             halfBool: false,
             threeHoursBool: false,
+            componentRefresh: 0,
+
+            canBeVisible: false,
         };
     },
 };

@@ -2,12 +2,16 @@
     <Cover />
     <AboutBlock />
     <BookBlock />
+    <GiftCardsBlock />
+    <ReferenceBlock />
 </template>
 
 <script>
 import Cover from "./components/Cover.vue";
 import AboutBlock from "./components/AboutBlock.vue";
 import BookBlock from "./components/BookBlock.vue";
+import GiftCardsBlock from "./components/GiftCardsBlock.vue";
+import ReferenceBlock from "./components/ReferenceBlock.vue";
 
 export default {
     name: "App",
@@ -15,6 +19,8 @@ export default {
         Cover,
         AboutBlock,
         BookBlock,
+        GiftCardsBlock,
+        ReferenceBlock,
     },
 };
 </script>
@@ -27,7 +33,6 @@ export default {
 body {
     font-family: $default-font;
     margin: 0;
-    height: 3000px;
     cursor: default;
 }
 
@@ -59,7 +64,10 @@ body {
     overflow: hidden;
     transition-timing-function: linear, step-end;
 }
-.positionRelative{
+.positionRelative {
     position: relative;
+}
+.white {
+    background: white;
 }
 </style>

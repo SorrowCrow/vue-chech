@@ -59,8 +59,11 @@ export default {
         width: 970px;
         top: calc(50% - 366px / 2);
         left: calc(50% - 970px / 2);
+        color: white;
+        transition: 0.25s;
         &:hover {
             cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
         }
         &-privatni {
             position: relative;
@@ -77,7 +80,7 @@ export default {
             font-size: 250px;
             line-height: 294px;
             font-family: "Italiana", serif;
-            color: white;
+            color: inherit;
             z-index: 100;
         }
         svg {
