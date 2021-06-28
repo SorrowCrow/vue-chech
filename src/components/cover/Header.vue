@@ -1,13 +1,13 @@
 <template>
     <header class="header">
-        <div class="wrap mx-auto">
+        <div class="header__wrap mx-auto">
             <div class="header__logo">
-                <svg class="header__logo-icon">
+                <svg v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
                     <use xlink:href="#logo" />
                 </svg>
-                <div class="header__logo-text">Sauna Kbely</div>
+                <div class="header__logo-text" v-if="displayMenu">Sauna Kbely</div>
             </div>
-            <div class="header__contacts">
+            <div class="header__contacts" v-if="displayMenu">
                 <div class="header__contacts-item">
                     <svg>
                         <use xlink:href="#clock" />
@@ -18,15 +18,20 @@
                     <svg>
                         <use xlink:href="#location" />
                     </svg>
-                    <div>Krnska 350/26, Praha 19700</div>
+                    <a href="https://www.google.com/maps/place/Krnská+350,+197+00+Kbely,+Czechia/@50.1286805,14.5498908,19z" target="_blank"
+                        >Krnska 350/26, Praha 19700</a
+                    >
                 </div>
                 <div class="header__contacts-item">
                     <svg>
                         <use xlink:href="#phone" />
                     </svg>
-                    <div>+420 286 851 738</div>
+                    <a href="tel:+420 286 851 738">+420 286 851 738</a>
                 </div>
             </div>
+            <svg v-else class="header__menu">
+                <use xlink:href="#headerMenu" />
+            </svg>
         </div>
     </header>
 </template>
@@ -34,6 +39,11 @@
 <script>
 export default {
     name: "Header",
+    computed: {
+        displayMenu() {
+            return this.$mq === "lg" ? true : false;
+        },
+    },
 };
 </script>
 
@@ -43,20 +53,34 @@ export default {
     width: 100%;
     padding-top: 19px;
     z-index: 100;
-    .wrap {
+    &__menu {
+        width: 60px;
+        height: 60px;
+        padding-right: 30px;
+        fill: $secondary;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__wrap {
         max-width: 1440px;
-        color: white;
+        color: $white;
         display: flex;
         justify-content: space-between;
     }
     &__logo {
         padding-left: 75px;
         display: flex;
-        &-icon {
+        &-icon,
+        &-iconBig {
+            fill: $secondary;
             position: relative;
             float: left;
             padding-right: 20px;
             @include wh(40px, 48px);
+        }
+        &-iconBig {
+            @include wh(60px, 68px);
         }
         &-text {
             position: relative;
@@ -70,6 +94,10 @@ export default {
         justify-content: space-between;
         width: 884px;
         padding-right: 35px;
+        a {
+            color: $white;
+            text-decoration: none;
+        }
         div,
         svg {
             position: relative;
@@ -83,6 +111,7 @@ export default {
             padding-top: 2px;
             padding-right: 5px;
             @include wh(25px, 25px);
+            fill: $secondary;
         }
         &-item {
             display: flex;

@@ -11,36 +11,24 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.min.js";
 import $ from "jquery";
 
-$(document).ready(function () {
-    $("#sliderInit").on("click", function () {
-        if ($("#sliderInit").hasClass("hiddenForSlide")) {
-            $("#sliderInit").removeClass("hiddenForSlide", 500);
-            $(".background").removeClass("hiddenForSlide", 500);
-            $(".block__slider").addClass("hiddenForSlide", 500);
-        } else {
-            $("#sliderInit").addClass("hiddenForSlide", 500);
-            $(".background").addClass("hiddenForSlide", 500);
-            $(".block__slider").removeClass("hiddenForSlide", 500);
-        }
-    });
-    $(".block__slider").slick({
-        dots: false,
-        arrows: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        prevArrow: '<div class="slideBtn nextBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
-        nextArrow: '<div class="slideBtn prevBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
-        responsive: [
-            {
-                breakpoint: 768,
-            },
-        ],
-    });
-});
-
 export default {
     name: "Slider",
+    mounted: function () {
+        $(".block__slider").slick({
+            dots: false,
+            arrows: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            prevArrow: '<div class="slideBtn nextBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
+            nextArrow: '<div class="slideBtn prevBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                },
+            ],
+        });
+    },
 };
 </script>
 
@@ -59,7 +47,7 @@ export default {
     display: grid;
     @include wh(60px, 60px);
     position: absolute;
-    background: #ffffff;
+    background: $white;
     border-radius: 50%;
     bottom: 50%;
     z-index: 100;
@@ -68,14 +56,14 @@ export default {
         margin: auto;
         width: 36px;
         height: 36px;
-        fill: #c7b6da;
+        fill: $secondary;
     }
     &:hover {
         width: 70px;
         height: 70px;
         bottom: 49.5%;
         svg {
-            fill: #69498c;
+            fill: $primary;
             width: 36px;
             height: 36px;
         }
@@ -91,10 +79,5 @@ export default {
 .prevBtn {
     transform: rotate(180deg);
     right: 50px;
-}
-
-.slick-dots li.slick-active button::before {
-    color: $pink;
-    opacity: 1;
 }
 </style>

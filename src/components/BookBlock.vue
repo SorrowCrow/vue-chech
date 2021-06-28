@@ -4,8 +4,8 @@
     </svg>
     <div class="contain mx-auto">
         <div class="mx-auto max-content content">
-            <div class="title" id="book">Zarezervujete svoji návštěvu</div>
-            <div class="sub-title">Vyberte datum a délku návštěvy a my nabídneme vám volné termíny</div>
+            <div class="title mx-auto" id="book">Zarezervujete svoji návštěvu</div>
+            <div class="sub-title mx-auto">Vyberte datum a délku návštěvy a my nabídneme vám volné termíny</div>
             <div class="priceAndBook">
                 <Calendar />
                 <div class="pricelist">
@@ -59,50 +59,56 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .wave {
-//     width: 1440px;
-//     height: 22px;
-// }
 .containerWave {
-    position: absolute;
+    position: relative;
     width: 100%;
+    min-width: 680px;
     height: 22px;
-    fill: #2e2b4d;
+    fill: $deepdarkblue;
 }
 .contain {
-    margin-top: 21px;
-    padding-top: 100px;
     padding-bottom: 100px;
     max-width: 100%;
-    background: #2e2b4d;
-    color: #d4b8a6;
+    background: $deepdarkblue;
+    color: $beige;
+    overflow: hidden;
+    margin-top: -4px;
+    .content {
+        width: 100%;
+        max-width: 1170px;
+    }
     .title {
-        line-height: 107px;
-        width: 970px;
+        padding-top: 43px;
+        padding-left: 30px;
+        padding-right: 30px;
         letter-spacing: -0.03em;
+        width: fit-content;
     }
     .sub-title {
-        width: max-content;
         color: white;
-        max-width: 470px;
+        width: fit-content;
         padding-top: 30px;
         padding-bottom: 75px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
     .priceAndBook {
         display: grid;
-        grid-template-columns: auto auto;
-        grid-gap: 130px;
+        justify-content: center;
+        grid-template-columns: auto;
+        grid-gap: 24px;
         overflow: visible;
         height: min-content;
         .pricelist {
             max-width: fit-content;
-            max-width: 370px;
+            max-width: 315px;
             .beige {
                 color: inherit;
             }
             .sub-title {
                 display: grid;
                 width: 135px;
+                padding: 0;
                 padding-top: 16.25px;
                 padding-bottom: 16.25px;
             }
@@ -124,10 +130,57 @@ export default {
                 }
             }
             .note {
-                padding-top: 30px;
-                font-size: 15px;
+                padding-top: 24px;
+                font-size: 12px;
                 line-height: 140%;
                 color: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .containerWave {
+        width: 100%;
+        min-width: 680px;
+        height: 22px;
+        fill: $deepdarkblue;
+    }
+    .contain {
+        padding-bottom: 121px;
+        .title {
+            padding: 0;
+            padding-top: 100px;
+            line-height: 107px;
+            width: 970px;
+            letter-spacing: -0.03em;
+            margin: 0;
+        }
+        .sub-title {
+            padding: 0;
+            width: max-content;
+            color: white;
+            max-width: 470px;
+            padding-top: 30px;
+            padding-bottom: 75px;
+            margin: 0;
+        }
+        .priceAndBook {
+            display: grid;
+            justify-content: right;
+            grid-template-columns: auto auto;
+            grid-gap: 130px;
+            .pricelist {
+                width: fit-content;
+                max-width: 370px;
+                .sub-title {
+                    padding-top: 16.25px;
+                    padding-bottom: 16.25px;
+                }
+                .note {
+                    padding-top: 30px;
+                    font-size: 15px;
+                    color: rgba(255, 255, 255, 0.5);
+                }
             }
         }
     }

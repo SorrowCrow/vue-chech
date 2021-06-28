@@ -24,11 +24,13 @@
 
         <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />
     </div>
+    <Reservation :key="time" v-if="isReservation" :time="time" :date="date" />
 </template>
 
 <script>
 import ChooseHoursMenu from "./chooseHoursMenu.vue";
 import CalendarDays from "./calendarDays.vue";
+import Reservation from "../Reservation.vue";
 
 import $ from "jquery";
 import "jqueryui";
@@ -38,6 +40,7 @@ export default {
     components: {
         ChooseHoursMenu,
         CalendarDays,
+        Reservation,
     },
     data() {
         return {
@@ -51,6 +54,10 @@ export default {
             secondDate: 0,
 
             row: 1,
+
+            isReservation: false,
+            time: String,
+            date: String,
         };
     },
     methods: {
@@ -131,34 +138,36 @@ export default {
 <style lang="scss" scoped>
 .cat {
     border-radius: 30px;
-    width: 470px;
+    width: 315px;
     height: fit-content;
     overflow: hidden;
+    position: relative;
+    user-select: none;
+    font-size: 9px;
     .cat__header {
-        background: #25223e;
+        background: $darkdarkblue;
         width: 100%;
-        height: 100px;
         .month {
             width: 100%;
-            height: 70px;
+            height: 46px;
             display: flex;
             justify-content: center;
+            align-items: center;
             .leftArrow {
                 padding-top: 0;
-                padding-bottom: 8px;
                 transform: rotate(180deg);
             }
             svg {
-                padding-top: 8px;
-                @include wh(54px, 54px);
+                @include wh(36px, 36px);
+                stroke: $beige;
                 &:hover {
                     cursor: pointer;
                 }
             }
             .month-name {
-                width: 270px;
+                width: 180px;
                 font-family: Playfair Display;
-                font-size: 35px;
+                font-size: 23px;
                 line-height: 47px;
                 display: flex;
                 justify-content: center;
@@ -172,7 +181,7 @@ export default {
         .weekdays {
             display: flex;
             justify-content: space-between;
-            color: #d4b8a6;
+            color: $beige;
             div {
                 width: 67px;
                 height: 30px;
@@ -185,6 +194,70 @@ export default {
     }
     .grid-hiderows {
         grid-template-rows: var(--calendarGrid);
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .cat {
+        border-radius: 30px;
+        width: 470px;
+        height: fit-content;
+        overflow: hidden;
+        position: absolute;
+        user-select: none;
+        font-size: 20px;
+        .cat__header {
+            background: $darkdarkblue;
+            width: 100%;
+            height: 100px;
+            .month {
+                width: 100%;
+                height: 70px;
+                display: flex;
+                justify-content: center;
+                .leftArrow {
+                    padding-top: 0;
+                    padding-bottom: 8px;
+                    transform: rotate(180deg);
+                }
+                svg {
+                    padding-top: 8px;
+                    @include wh(54px, 54px);
+                    stroke: $beige;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                .month-name {
+                    width: 270px;
+                    font-family: Playfair Display;
+                    font-size: 35px;
+                    line-height: 47px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    letter-spacing: -0.03em;
+
+                    color: #f5f2ef;
+                }
+            }
+            .weekdays {
+                display: flex;
+                justify-content: space-between;
+                color: $beige;
+                div {
+                    width: 67px;
+                    height: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+            }
+        }
+        .grid-hiderows {
+            grid-template-rows: var(--calendarGrid);
+        }
     }
 }
 </style>

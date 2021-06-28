@@ -2,67 +2,30 @@
     <div class="white">
         <div class="1row">
             <div class="row">
-                <div
-                    class="nextMonthDates"
-                    v-for="index in firstDay - 1"
-                    :key="index"
-                    :id="36 + index"
-                    v-bind:class="[isSmallerThanToday(36 + index), index == firstDay - 1 ? 'dateOneTop' : '']"
-                    @click="dataMonthClick($event, ($parent.row = 1))"
-                >
+                <div class="nextMonthDates" v-for="index in firstDay - 1" :key="index" :id="36 + index" v-bind:class="[isSmallerThanToday(36 + index), index == firstDay - 1 ? 'dateOneTop' : '']" @click="dataMonthClick($event, ($parent.row = 1))">
                     {{ index + 1 + (lastMonthDays - firstDay) }}
                 </div>
-                <div
-                    v-for="index in 7 - (firstDay - 1)"
-                    :key="index"
-                    :id="index"
-                    v-bind:class="isSmallerThanToday(index)"
-                    @click="dataMonthClick($event, ($parent.row = 1))"
-                >
+                <div v-for="index in 7 - (firstDay - 1)" :key="index" :id="index" v-bind:class="isSmallerThanToday(index)" @click="dataMonthClick($event, ($parent.row = 1))">
                     {{ index }}
                 </div>
             </div>
         </div>
         <div v-for="index in fullweeks()" v-bind:class="(index + 1).toString() + 'row'" :key="index">
             <div class="row">
-                <div
-                    v-for="bindex in 7"
-                    :key="bindex"
-                    :id="bindex + 1 - firstDay + 7 * index"
-                    v-bind:class="[isSmallerThanToday(bindex + 1 - firstDay + 7 * index)]"
-                    @click="dataMonthClick($event, ($parent.row = index + 1))"
-                >
+                <div v-for="bindex in 7" :key="bindex" :id="bindex + 1 - firstDay + 7 * index" v-bind:class="[isSmallerThanToday(bindex + 1 - firstDay + 7 * index)]" @click="dataMonthClick($event, ($parent.row = index + 1))">
                     {{ bindex + 1 - firstDay + 7 * index }}
                 </div>
             </div>
         </div>
         <div v-bind:class="(fullweeks() + 2).toString() + 'row'" v-if="!endsOnSundayCheck()">
             <div class="row">
-                <div
-                    class="days-dates"
-                    v-for="index in lastDay"
-                    :key="index"
-                    :id="index + thisMonthDays - lastDay"
-                    @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))"
-                >
+                <div class="days-dates" v-for="index in lastDay" :key="index" :id="index + thisMonthDays - lastDay" @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))">
                     {{ index + thisMonthDays - lastDay }}
                 </div>
-                <div
-                    class="days-dates nextMonthDates dateOne"
-                    v-for="index in 1"
-                    :key="index"
-                    :id="thisMonthDays + 1"
-                    @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))"
-                >
+                <div class="days-dates nextMonthDates dateOne" v-for="index in 1" :key="index" :id="thisMonthDays + 1" @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))">
                     {{ index }}
                 </div>
-                <div
-                    class="days-dates nextMonthDates"
-                    v-for="index in 7 - lastDay - 1"
-                    :key="index"
-                    :id="index + thisMonthDays + 1"
-                    @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))"
-                >
+                <div class="days-dates nextMonthDates" v-for="index in 7 - lastDay - 1" :key="index" :id="index + thisMonthDays + 1" @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))">
                     {{ index + 1 }}
                 </div>
             </div>
@@ -92,6 +55,7 @@ export default {
             thisMonthDays: new Date(),
             secondDate: 0,
             dd: Number(String(new Date().getDate()).padStart(2, "0")),
+            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         };
     },
     created: function () {
@@ -148,6 +112,8 @@ export default {
                 $(element).addClass("secondDateCss");
 
                 this.$parent.secondDate = element.id;
+                this.$parent.date = element.id.toString() + " " + this.months[this.month] + " " + (this.year + this.yearLoop).toString();
+                console.log(this.$parent.date);
                 element.id = "secondDate";
                 this.$parent.removeSelect();
                 this.$parent.insertMenu(row);
@@ -217,34 +183,34 @@ export default {
 <style lang="scss" scoped>
 .row {
     display: grid;
-    grid-template-columns: repeat(7, 67px);
-    grid-auto-rows: 67px;
+    grid-template-columns: repeat(7, 45px);
+    grid-auto-rows: 45px;
     .days-dates,
     .daysGone {
-        @include wh(61px, 61px);
+        @include wh(45px, 45px);
         margin: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #2b3a77;
-        border-color: #2b3a77;
+        color: $deepblue;
+        border-color: $deepblue;
         border-radius: 50%;
         user-select: none;
-        font-size: 20px;
+        font-size: 13px;
         line-height: 150%;
         cursor: pointer;
     }
     .days-dates:hover {
         border: 2px solid;
-        width: 56px;
-        height: 56px;
+        width: 36px;
+        height: 36px;
     }
     .daysGone {
         color: rgba(0, 0, 0, 0.25);
     }
     .nextMonthDates {
         border-radius: 0px 0px 0px 0px;
-        background-color: #f5f2ef;
+        background-color: $medium-beige;
         color: rgba(0, 0, 0, 0.25);
         margin: auto;
         width: 100%;
@@ -268,17 +234,66 @@ export default {
         }
     }
     .firstDateCss {
-        border: 2px solid #ff7a00;
-        width: 52px;
-        height: 52px;
-        color: #ff7a00;
+        border: 2px solid $orange;
+        width: 36px;
+        height: 36px;
+        color: $orange;
     }
     .secondDateCss {
-        border: 2px solid #ff7a00;
-        width: 52px;
-        height: 52px;
-        background-color: #ff7a00;
+        border: 2px solid $orange;
+        width: 36px;
+        height: 36px;
+        background-color: $orange;
         color: white;
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .row {
+        grid-template-columns: repeat(7, 67px);
+        grid-auto-rows: 67px;
+        .days-dates,
+        .daysGone {
+            @include wh(61px, 61px);
+            font-size: 20px;
+            line-height: 150%;
+        }
+        .days-dates:hover {
+            width: 56px;
+            height: 56px;
+        }
+        .nextMonthDates {
+            border-radius: 0px 0px 0px 0px;
+            background-color: $medium-beige;
+            color: rgba(0, 0, 0, 0.25);
+            margin: auto;
+            width: 100%;
+            height: 100%;
+        }
+        .dateOne {
+            border-radius: 30px 0px 0px 0px;
+            &:hover {
+                border-radius: 30px 0px 0px 0px;
+            }
+        }
+        .dateOneTop {
+            border-radius: 0px 0px 30px 0px;
+            &:hover {
+                border-radius: 0px 0px 30px 0px;
+            }
+        }
+        .firstDateCss {
+            border: 2px solid $orange;
+            width: 52px;
+            height: 52px;
+            color: $orange;
+        }
+        .secondDateCss {
+            border: 2px solid $orange;
+            width: 52px;
+            height: 52px;
+            background-color: $orange;
+            color: white;
+        }
     }
 }
 </style>

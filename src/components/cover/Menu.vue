@@ -1,10 +1,10 @@
 <template>
-    <div class="menu mx-auto">
+    <div class="menu mx-auto" v-if="!isMd">
         <div class="menu__main">
-            <div id="aboutButton">O nás</div>
-            <div id="rezervaceButton">Rezervace</div>
-            <div id="giftCardsButton">Dárkové poukazy</div>
-            <div id="referenceButton">Reference</div>
+            <div id="aboutButton" @click="scroll('#about')">O nás</div>
+            <div id="rezervaceButton" @click="scroll('#book')">Rezervace</div>
+            <div id="giftCardsButton" @click="scrollslow('#giftCards')">Dárkové poukazy</div>
+            <div id="referenceButton" @click="scrollslow('#reference')">Reference</div>
         </div>
         <div class="menu__social">
             <a href="https://facebook.com" target="_blank">Facebook</a>
@@ -16,43 +16,31 @@
 <script>
 import $ from "jquery";
 
-$(document).ready(function () {
-    $("#aboutButton").click(function () {
-        $([document.documentElement, document.body]).animate(
-            {
-                scrollTop: $("#about").offset().top,
-            },
-            500
-        );
-    });
-    $("#rezervaceButton").click(function () {
-        $([document.documentElement, document.body]).animate(
-            {
-                scrollTop: $("#book").offset().top,
-            },
-            750
-        );
-    });
-    $("#giftCardsButton").click(function () {
-        $([document.documentElement, document.body]).animate(
-            {
-                scrollTop: $("#giftCards").offset().top,
-            },
-            1000
-        );
-    });
-    $("#referenceButton").click(function () {
-        $([document.documentElement, document.body]).animate(
-            {
-                scrollTop: $("#reference").offset().top,
-            },
-            1000
-        );
-    });
-});
-
 export default {
     name: "Menu",
+    methods: {
+        scroll(id) {
+            $([document.documentElement, document.body]).animate(
+                {
+                    scrollTop: $(id).offset().top,
+                },
+                500
+            );
+        },
+        scrollslow(id) {
+            $([document.documentElement, document.body]).animate(
+                {
+                    scrollTop: $(id).offset().top,
+                },
+                1000
+            );
+        },
+    },
+    computed: {
+        isMd() {
+            return this.$mq === "md" ? true : this.$mq === "sm" ? true : false;
+        },
+    },
 };
 </script>
 
@@ -64,7 +52,7 @@ export default {
     display: flex;
     justify-content: space-between;
     z-index: 100;
-    color: white;
+    color: $white;
     font-size: 25px;
     &__main {
         display: flex;
@@ -79,8 +67,8 @@ export default {
         justify-content: space-between;
         width: 269px;
         a {
-            text-decoration: none !important;
-            color: white;
+            text-decoration: none;
+            color: $white;
         }
     }
 }

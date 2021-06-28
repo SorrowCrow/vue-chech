@@ -1,6 +1,22 @@
-$primary: #26007c;
-$secondary: #7c7c7c;
-$pink: #ff6e6e;
-$background-gray: #f2f2f2;
+//color
+$white: white;
+$primary: #69498c;
+$secondary: #c7b6da;
+$deepblue: #2b3a77;
+$beige: #d4b8a6;
+$orange: #ff7a00;
+$medium-beige: #f5f2ef;
+$deepdarkblue: #2E2B4D;
+$darkdarkblue: #25223e;
+
+//fonts
 $default-font: "Work Sans", sans-serif;
 $playfair-font: "Playfair Display", serif;
+$indieFlower-font: "Indie Flower", "cursive";
+$italiana-font: "Italiana", serif;
+
+//Breakpoints
+//Make sure they are identical to the ones in main.js
+$header-breakpoint: 1285px;
+$md-breakpoint: 1070px;
+$background-breakpoint: 1056px;

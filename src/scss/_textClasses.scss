@@ -1,10 +1,20 @@
 .title {
-    width: max-content;
-    font-size: 80px;
-    font-family: "Playfair Display", serif;
+    font-size: 40px;
 }
 
 .sub-title {
-    font-size: 25px;
+    font-size: 15px;
     line-height: 150%;
+}
+
+@media only screen and (min-width: $md-breakpoint) {
+    .title {
+        width: max-content;
+        font-size: 80px;
+        font-family: "Playfair Display", serif;
+    }
+
+    .sub-title {
+        font-size: 25px;
+    }
 }

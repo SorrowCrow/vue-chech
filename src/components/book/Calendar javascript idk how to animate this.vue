@@ -292,7 +292,7 @@ export default {
         .weekdays {
             display: flex;
             justify-content: space-between;
-            color: #d4b8a6;
+            color: $beige;
             div {
                 width: 67px;
                 height: 30px;
@@ -319,8 +319,8 @@ export default {
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: #2b3a77;
-            border-color: #2b3a77;
+            color: $deepblue;
+            border-color: $deepblue;
             border-radius: 50%;
             user-select: none;
             font-size: 20px;
@@ -431,7 +431,7 @@ export default {
                     justify-content: space-between;
                     align-items: center;
                     height: 30px;
-                    color: #2b3a77;
+                    color: $deepblue;
                     .rezervaceButton {
                     }
                 }

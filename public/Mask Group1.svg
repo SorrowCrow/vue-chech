@@ -1,0 +1,31 @@
+<svg width="270" height="329" viewBox="0 0 270 329" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="270" height="329" fill="#232323"/>
+<g id="Home">
+<rect width="1440" height="4423" transform="translate(-135 -3151)" fill="white"/>
+<g id="gift">
+<g id="drop">
+<g id="Mask Group">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="270" height="329">
+<path id="Vector" d="M230.524 96.6234C256.577 122.977 270 158.103 270 192.446C270 226.789 256.577 262.716 230.524 289.07C204.47 315.423 169.744 329 135 329C100.256 329 65.5296 315.423 39.476 289.07C13.4225 262.716 0 226.789 0 192.446C0 158.103 13.4225 122.977 39.476 96.6234L135 0L230.524 96.6234Z" fill="#FF7A00"/>
+</mask>
+<g mask="url(#mask0)">
+<rect id="Rectangle 18" y="-21" width="270" height="370" rx="80" fill="#F2EEF5"/>
+<g id="1 Hodina">
+<text fill="#69498C" xml:space="preserve" style="white-space: pre" font-family="Playfair Display" font-size="30" letter-spacing="0em"><tspan x="86.1621" y="211.965">Hodina</tspan></text>
+<text fill="#69498C" xml:space="preserve" style="white-space: pre" font-family="Playfair Display" font-size="120" letter-spacing="0em"><tspan x="112.793" y="160.965">1&#10;</tspan></text>
+</g>
+<g id="Group 34">
+<mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="218" width="714" height="282">
+<path id="Intersect" d="M0 219.064L0 499.5H714V230.494C680.181 230.494 664.136 227.828 645.652 224.732L645.519 224.71C626.592 221.564 605.142 218 564.17 218C523.142 218 501.691 221.564 482.765 224.709L482.628 224.732C464.084 227.828 448.097 230.494 414.28 230.494C380.403 230.494 364.417 227.828 345.873 224.732C326.974 221.581 305.46 218 264.39 218C223.363 218 201.912 221.564 182.986 224.709L182.849 224.732C164.306 227.828 148.319 230.494 114.501 230.494C80.6538 230.494 64.667 227.833 46.0843 224.74L46.0338 224.732C33.4948 222.642 19.8052 220.362 0 219.064Z" fill="#69498C"/>
+</mask>
+<g mask="url(#mask1)">
+<path id="Intersect_2" d="M0 219.064L0 499.5H714V230.494C680.181 230.494 664.136 227.828 645.652 224.732L645.519 224.71C626.592 221.564 605.142 218 564.17 218C523.142 218 501.691 221.564 482.765 224.709L482.628 224.732C464.084 227.828 448.097 230.494 414.28 230.494C380.403 230.494 364.417 227.828 345.873 224.732C326.974 221.581 305.46 218 264.39 218C223.363 218 201.912 221.564 182.986 224.709L182.849 224.732C164.306 227.828 148.319 230.494 114.501 230.494C80.6538 230.494 64.667 227.833 46.0843 224.74L46.0338 224.732C33.4948 222.642 19.8052 220.362 0 219.064Z" fill="#69498C"/>
+</g>
+</g>
+<text id="799,- K&#196;&#141;" fill="#F5F2EF" xml:space="preserve" style="white-space: pre" font-family="Work Sans" font-size="20" letter-spacing="0em"><tspan x="95.1855" y="264.87">799,- K&#x10d;</tspan></text>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
