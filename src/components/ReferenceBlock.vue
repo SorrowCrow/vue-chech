@@ -50,34 +50,14 @@
 </template>
 
 <script>
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-// import "slick-carousel/slick/slick.min.js";
-// import $ from "jquery";
 import { tns } from "tiny-slider/src/tiny-slider.js";
 import "tiny-slider/dist/tiny-slider.css";
 
-// $(document).ready(function () {
-//     $(".footer__carousel").slick({
-//         dots: false,
-//         arrows: true,
-//         infinite: true,
-//         speed: 300,
-//         slidesToShow: 1,
-//         prevArrow: '<div class="footer__carousel-nextBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
-//         nextArrow: '<div class="footer__carousel-prevBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
-//         responsive: [
-//             {
-//                 breakpoint: 768,
-//             },
-//         ],
-//     });
-// });
 export default {
     name: "ReferenceBlock",
     methods: {
         carousel() {
-            let slider = tns({
+            tns({
                 container: ".footer__carousel",
                 items: 1,
                 slideBy: "page",
@@ -88,7 +68,6 @@ export default {
                 controlsContainer: ".buttons",
                 gutter: 100,
             });
-            console.log(slider);
         },
     },
     mounted: function () {
@@ -205,15 +184,11 @@ export default {
                 .footer__carousel {
                     &-nextBtn,
                     &-prevBtn {
-                        display: grid;
                         align-self: center;
                         @include wh(60px, 60px);
-                        background: $white;
                         border-radius: 50%;
-                        transition: 0.2s;
                         z-index: 1;
                         svg {
-                            margin: auto;
                             width: 36px;
                             height: 36px;
                             fill: $deepblue;
@@ -261,34 +236,8 @@ export default {
                 text-decoration: none;
             }
             &__number {
-                display: block;
-                width: max-content;
-                font-family: $playfair-font;
                 font-size: 100px;
                 line-height: 133px;
-                text-align: center;
-                letter-spacing: -0.03em;
-                padding-bottom: 41px;
-            }
-            .sub-title {
-                display: grid;
-                text-align: center;
-            }
-            &__links {
-                display: grid;
-                grid-template-columns: auto auto;
-                grid-column-gap: 20px;
-                width: min-content;
-                padding-top: 45px;
-                padding-bottom: 60px;
-                svg {
-                    width: 50px;
-                    height: 50px;
-                    fill: $deepblue;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
             }
         }
     }

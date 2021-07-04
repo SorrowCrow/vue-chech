@@ -86,7 +86,6 @@ export default {
         }
     }
     .title {
-        z-index: 50;
         position: absolute;
         margin: 0 auto;
         width: fit-content;
@@ -111,7 +110,6 @@ export default {
             line-height: 100px;
             font-family: $italiana-font;
             color: inherit;
-            z-index: 100;
             margin: 0 auto;
         }
         svg {
@@ -152,7 +150,6 @@ export default {
                 width: 100%;
                 font-size: 250px;
                 line-height: 294px;
-                z-index: 100;
             }
             svg {
                 position: absolute;

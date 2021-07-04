@@ -19,7 +19,7 @@
         </div>
         <div v-bind:class="(fullweeks() + 2).toString() + 'row'" v-if="!endsOnSundayCheck()">
             <div class="row">
-                <div class="days-dates" v-for="index in lastDay" :key="index" :id="index + thisMonthDays - lastDay" @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))">
+                <div class="days-dates" v-for="index in lastDay" :key="index" :id="index + thisMonthDays - lastDay" v-bind:class="[isSmallerThanToday(index + thisMonthDays - lastDay)]" @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))">
                     {{ index + thisMonthDays - lastDay }}
                 </div>
                 <div class="days-dates nextMonthDates dateOne" v-for="index in 1" :key="index" :id="thisMonthDays + 1" @click="dataMonthClick($event, ($parent.row = fullweeks() + 2))">
@@ -113,7 +113,7 @@ export default {
 
                 this.$parent.secondDate = element.id;
                 this.$parent.date = element.id.toString() + " " + this.months[this.month] + " " + (this.year + this.yearLoop).toString();
-                console.log(this.$parent.date);
+                // console.log(this.$parent.date);
                 element.id = "secondDate";
                 this.$parent.removeSelect();
                 this.$parent.insertMenu(row);

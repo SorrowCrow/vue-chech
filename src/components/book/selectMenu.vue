@@ -54,6 +54,13 @@ export default {
             this.$parent.$parent.removeMenu();
             this.$parent.$parent.insertSelect(this.indexHour);
         }
+        if (this.halfBool) {
+            this.$parent.$parent.hours = 15;
+        } else if (this.threeHoursBool) {
+            this.$parent.$parent.hours = 3;
+        } else {
+            this.$parent.$parent.hours = this.indexHour;
+        }
     },
     data() {
         return {
@@ -64,7 +71,6 @@ export default {
     methods: {
         timeframeClick: function (e) {
             const element = e.target;
-            console.log(element);
             const bloat = element.textContent.toString().split(" ");
             this.$parent.$parent.time = bloat[0];
         },
@@ -134,6 +140,7 @@ export default {
                 width: 24px;
                 height: 24px;
                 padding-right: 15px;
+                stroke: $white;
             }
             &:hover {
                 cursor: pointer;
@@ -182,6 +189,7 @@ export default {
         display: grid;
         border-radius: 30px;
         z-index: 10;
+        font-size: 20px;
         &__inner {
             margin: 25px;
             &-select {

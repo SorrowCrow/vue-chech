@@ -38,7 +38,6 @@ export default {
     top: 0;
     width: 100%;
     max-height: 750px;
-
     img {
         max-height: 750px;
     }
@@ -50,7 +49,7 @@ export default {
     background: $white;
     border-radius: 50%;
     bottom: 50%;
-    z-index: 100;
+    z-index: 2;
     transition: 0.2s;
     svg {
         margin: auto;

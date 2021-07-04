@@ -24,7 +24,7 @@
 
         <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />
     </div>
-    <Reservation :key="time" v-if="isReservation" :time="time" :date="date" />
+    <Reservation :key="time" v-if="isReservation" :time="time" :date="date" :hours="hours" />
 </template>
 
 <script>
@@ -58,6 +58,7 @@ export default {
             isReservation: false,
             time: String,
             date: String,
+            hours: Number,
         };
     },
     methods: {

@@ -138,6 +138,13 @@ export default {
         }
     }
 }
+@media only screen and (min-width: 740px) {
+    .contain{
+        .priceAndBook{
+            grid-template-columns: auto auto;
+        }
+    }
+}
 @media only screen and (min-width: $md-breakpoint) {
     .containerWave {
         width: 100%;
@@ -147,6 +154,9 @@ export default {
     }
     .contain {
         padding-bottom: 121px;
+        .content {
+            max-width: 970px;
+        }
         .title {
             padding: 0;
             padding-top: 100px;
@@ -168,7 +178,6 @@ export default {
             display: grid;
             justify-content: right;
             grid-template-columns: auto auto;
-            grid-gap: 130px;
             .pricelist {
                 width: fit-content;
                 max-width: 370px;

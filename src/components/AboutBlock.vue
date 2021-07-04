@@ -74,7 +74,6 @@ export default {
     padding-bottom: 65px;
     color: $deepblue;
     width: 100%;
-    overflow: hidden;
     .title-container {
         display: grid;
         grid-template-columns: auto;
@@ -187,14 +186,51 @@ export default {
         }
     }
 }
+@media only screen and (min-width: 850px) {
+    .contain {
+        // display: grid;
+        // justify-content: center;
+        // .title-container {
+        //     padding: 0;
+        //     max-width: 970px;
+        //     width: 100%;
+        //     .sub-title {
+        //         align-items: center;
+        //         z-index: 1;
+        //         max-width: 500px;
+        //     }
+        //     .background {
+        //         margin-top: -300px;
+        //         .MagnifyingGlass {
+        //             @include wh(100px, 100px);
+        //             bottom: 70px;
+        //             svg {
+        //                 width: 50px;
+        //                 height: 50px;
+        //             }
+        //             &:hover {
+        //                 width: 110px;
+        //                 height: 110px;
+        //             }
+        //         }
+        //     }
+        // }
+        .services {
+            display: flex;
+        }
+    }
+}
 @media only screen and (min-width: $md-breakpoint) {
     .contain {
         padding-top: 65px;
         padding-bottom: 36px;
         color: $deepblue;
-        max-width: 1170px;
+        max-width: 970px;
+        display: grid;
+        justify-content: center;
         .title-container {
-            padding-left: 100px;
+            padding: 0;
+            max-width: 970px;
             .sub-title {
                 align-items: center;
                 margin-left: -100px;
@@ -219,7 +255,6 @@ export default {
                     &:hover {
                         width: 110px;
                         height: 110px;
-                        
                     }
                 }
             }

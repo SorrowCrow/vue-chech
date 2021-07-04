@@ -1,10 +1,10 @@
 <template>
     <div class="contain mx-auto">
-        <div class="titleContainer mx-auto">
+        <div class="titleContainer">
             <div class="title" id="giftCards">Dárkové poukazy</div>
             <div class="sub-title">Spa Experience gift vouchers/e-vouchers will contain a monetary value or treatment service.</div>
         </div>
-        <div class="mx-auto dropletContainer">
+        <div class="dropletContainer">
             <div class="droplet">
                 <svg viewBox="0 0 71.437498 87.047919" class="test">
                     <g id="layer1" style="display: inline">
@@ -148,17 +148,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.txt {
-    font-family: $playfair-font;
-}
 .contain {
     padding-top: 68px;
     padding-right: 30px;
     padding-left: 30px;
     padding-bottom: 68px;
-    .titleContainer {
-        max-width: 970px;
-    }
+    display: grid;
+    justify-content: center;
     .dropletContainer {
         display: grid;
         grid-template-columns: auto auto;
@@ -167,6 +163,7 @@ export default {
         width: min-content;
         background: transparent;
         user-select: none;
+        margin: 0 auto;
         .droplet {
             width: 147px;
             height: 179px;
@@ -248,17 +245,26 @@ export default {
     max-width: 670px;
 }
 
-@media only screen and (min-width: $md-breakpoint) {
-    .txt {
-        font-family: $playfair-font;
-    }
+@media only screen and (min-width: 700px) {
     .contain {
-        padding-top: 100px;
-        padding-right: 135px;
-        padding-left: 135px;
-        padding-bottom: 135px;
         .dropletContainer {
             grid-template-columns: auto auto auto auto;
+        }
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .contain {
+        padding-top: 100px;
+        padding-bottom: 135px;
+        padding-left: 135px;
+        padding-right: 135px;
+        max-width: 970px;
+        justify-content: left;
+        .titleContainer {
+            width: fit-content;
+        }
+        .dropletContainer {
+            grid-template-columns: auto auto;
             grid-column-gap: 20px;
             .droplet {
                 width: 270px;
@@ -339,6 +345,14 @@ export default {
         padding-top: 30px;
         padding-bottom: 115px;
         max-width: 670px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .contain {
+        .dropletContainer {
+            margin-left: -100px;
+            grid-template-columns: auto auto auto auto;
+        }
     }
 }
 </style>

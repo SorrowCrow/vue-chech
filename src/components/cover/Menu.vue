@@ -1,10 +1,10 @@
 <template>
     <div class="menu mx-auto" v-if="!isMd">
         <div class="menu__main">
-            <div id="aboutButton" @click="scroll('#about')">O nás</div>
-            <div id="rezervaceButton" @click="scroll('#book')">Rezervace</div>
-            <div id="giftCardsButton" @click="scrollslow('#giftCards')">Dárkové poukazy</div>
-            <div id="referenceButton" @click="scrollslow('#reference')">Reference</div>
+            <div @click="scroll('#about')">O nás</div>
+            <div @click="scroll('#book')">Rezervace</div>
+            <div @click="scrollslow('#giftCards')">Dárkové poukazy</div>
+            <div @click="scrollslow('#reference')">Reference</div>
         </div>
         <div class="menu__social">
             <a href="https://facebook.com" target="_blank">Facebook</a>
@@ -51,7 +51,6 @@ export default {
     width: 970px;
     display: flex;
     justify-content: space-between;
-    z-index: 100;
     color: $white;
     font-size: 25px;
     &__main {
