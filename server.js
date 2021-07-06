@@ -1,4 +1,5 @@
 const express = require("express");
+const serveStatic = require("serve-static");
 const app = express();
 const mongoose = require("mongoose");
 const { PORT, mongoUri } = require("./config");
@@ -27,9 +28,9 @@ mongoose
 app.use("/api/reservationItems", reservationItemRoutes);
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/dist"));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+    app.use("/", serveStatic(path.join(__dirname, "/dist")));
+    app.get(/.*/, function (req, res) {
+        res.sendFile(path.join(__dirname, "/dist/index.html"));
     });
 }
 
