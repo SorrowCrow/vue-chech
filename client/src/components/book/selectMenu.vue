@@ -75,7 +75,7 @@ export default {
                 else if (hoursStart > Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2])) return false;
                 else if (hoursStart < Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2]) && hoursEnd > Number(this.$parent.$parent.reservedArray[i][0])) return false;
                 else if (hoursStart < Number(this.$parent.$parent.reservedArray[i][2]) && hoursEnd > Number(this.$parent.$parent.reservedArray[i][2])) return false;
-                else if (this.$parent.$parent.reservedArray[i][3] == "30" && hoursStart == Number(this.$parent.$parent.reservedArray[i][2])) return false;
+                else if (this.$parent.$parent.reservedArray[i][3] == "30" && hoursStart == Number(this.$parent.$parent.reservedArray[i][2]) && !this.halfBool) return false;
                 // console.log(hoursEnd);
             }
             return true;

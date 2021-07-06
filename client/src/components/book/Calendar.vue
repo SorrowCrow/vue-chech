@@ -68,12 +68,13 @@ export default {
     methods: {
         async insertMenu(row) {
             this.reservedArray = [];
-            this.response = await axios.get("api/bucketListItems/" + this.date);
+            this.response = await axios.get("api/reservationItems/" + this.date);
             // console.log(this.response.data);
             // this.reservedArray = this.response.data;
             for (let i = 0; i < Object.keys(this.response.data).length; i++) {
                 let time = this.response.data[i].time;
                 this.reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
+                console.log(this.reservedArray[i]);
             }
             // console.log(this.reservedArray);
             // for (var item in this.response.data) {

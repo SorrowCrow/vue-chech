@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const BucketListItemSchema = new Schema({
+const reservationItemSchema = new Schema({
     dateNow: {
         type: Date,
         default: Date.now,
@@ -47,6 +47,6 @@ const BucketListItemSchema = new Schema({
     },
 });
 
-const BucketListItem = model("bucketListItem", BucketListItemSchema);
+const reservationItem = model("reservationItem", reservationItemSchema);
 
-module.exports = BucketListItem;
+module.exports = reservationItem;

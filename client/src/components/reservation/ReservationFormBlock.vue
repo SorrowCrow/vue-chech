@@ -99,8 +99,8 @@ export default {
             this.$parent.formData.ozdoba = this.$parent.ozdoba;
             this.$parent.formData.prossecco = this.$parent.prossecco;
             this.$parent.formData.persons = this.$parent.persons;
-            console.log(this.$parent.formData);
-            await axios.post("api/bucketListItems/", this.$parent.formData);
+            // console.log(this.$parent.formData);
+            await axios.post("api/reservationItems/", this.$parent.formData);
             this.$parent.bodyDisplayAuto();
         },
         // async updateFirebase() {
