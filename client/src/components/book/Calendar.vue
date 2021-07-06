@@ -34,6 +34,7 @@ import Reservation from "../Reservation.vue";
 
 import $ from "jquery";
 import "jqueryui";
+import axios from "axios";
 
 export default {
     name: "Calendar",
@@ -57,12 +58,27 @@ export default {
 
             isReservation: false,
             time: String,
-            date: String,
+            date: "1",
             hours: Number,
+
+            response: null,
+            reservedArray: [[]],
         };
     },
     methods: {
-        insertMenu(row) {
+        async insertMenu(row) {
+            this.reservedArray = [];
+            this.response = await axios.get("api/bucketListItems/" + this.date);
+            // console.log(this.response.data);
+            // this.reservedArray = this.response.data;
+            for (let i = 0; i < Object.keys(this.response.data).length; i++) {
+                let time = this.response.data[i].time;
+                this.reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
+            }
+            // console.log(this.reservedArray);
+            // for (var item in this.response.data) {
+            //     console.log(item);
+            // }
             this.row = row;
             var menuId = 0;
             if (this.secondDate < 37) {

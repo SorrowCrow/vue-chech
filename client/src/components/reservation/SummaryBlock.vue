@@ -43,7 +43,7 @@
                 <label class="SummaryBlock__payingMethods-item">
                     <div class="SummaryBlock__payingMethods-method">
                         Bankovní převod
-                        <input type="radio" checked="checked" name="radio" form="form" />
+                        <input type="radio" checked="checked" name="radio" form="form"/>
                         <span class="checkmark"></span>
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Prevodem obvykle 2 dni</div>
@@ -71,7 +71,6 @@
 </template>
 
 <script>
-// import firebase from "firebase";
 
 export default {
     name: "SummaryBlock",
@@ -81,7 +80,6 @@ export default {
             ozdobaPrice: 350,
             prosseccoPrice: 290,
             misaPrice: 350,
-            // db: firebase.firestore().collection("pricing"),
         };
     },
     props: {
@@ -94,7 +92,6 @@ export default {
         hours: Number,
     },
     mounted: function () {
-        // console.log(this.db);
         if (this.hours == 1) {
             this.timePrice = 799;
         } else if (this.hours == 15) {
@@ -104,34 +101,6 @@ export default {
         } else if (this.hours == 3) {
             this.timePrice = 1899;
         }
-        // this.db
-        //     .doc("hours")
-        //     .get()
-        //     .then((doc) => {
-        //         if (doc.exists) {
-        //             console.log(`${this.hours}`);
-        //             this.timePrice = doc.get(`${this.hours}`);
-        //             console.log("Document data:", this.timePrice);
-        //         } else {
-        //             // doc.data() will be undefined in this case
-        //             console.log("No such document!");
-        //         }
-        //     });
-        // this.db
-        //     .doc("additional")
-        //     .get()
-        //     .then((doc) => {
-        //         if (doc.exists) {
-        //             this.ozdobaPrice = doc.get("ozdoba");
-        //             this.misaPrice = doc.get("misa");
-        //             this.prosseccoPrice = doc.get("prossecco");
-        //             console.log("Document data:", this.prosseccoPrice);
-        //         } else {
-        //             // doc.data() will be undefined in this case
-        //             console.log("No such document!");
-        //         }
-        //     });
-        // this.personsPriceCalc();
     },
 };
 </script>

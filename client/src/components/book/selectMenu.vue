@@ -9,29 +9,29 @@
                 {{ evenBoolSet() }}
                 <div class="opened__inner-timeframes">
                     <div v-for="index in evenNumbers" :key="index">
-                        <div class="timeframe" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()">
+                        <div :class="checktime(index + 7 + (index - 1) * 2, index + 8 + (index - 1) * 2) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()">
                             {{ index + 7 + (index - 1) * 2 }}:00-{{ index + 8 + (index - 1) * 2 }}:{{ counter * 3 }}0
                             <div class="rezervaceButton">Rezervace</div>
                         </div>
-                        <div class="timeframe" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()">
+                        <div :class="checktime(index + 6 + index * 2, index + 8 + index * 2) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()">
                             {{ index + 6 + index * 2 }}:{{ counter * 3 }}0-{{ index + 8 + index * 2 }}:00
                             <div class="rezervaceButton">Rezervace</div>
                         </div>
                     </div>
-                    <div class="timeframe" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()" v-if="evenBool">
+                    <div :class="checktime(6 + numb, 7 + numb) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()" v-if="evenBool">
                         {{ 6 + numb }}:00-{{ 7 + numb }}:{{ counter * 3 }}0
                         <div class="rezervaceButton">Rezervace</div>
                     </div>
                 </div>
             </div>
             <div class="opened__inner-timeframes" v-else-if="threeHoursBool">
-                <div class="timeframe" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()" v-for="index in evenNumbers" :key="index">
+                <div :class="checktime((index - 1) * 3 + 8, (index - 1) * 3 + 8 + indexHour) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()" v-for="index in evenNumbers" :key="index">
                     {{ (index - 1) * 3 + 8 }}:00-{{ (index - 1) * 3 + 8 + indexHour }}:00
                     <div class="rezervaceButton">Rezervace</div>
                 </div>
             </div>
             <div class="opened__inner-timeframes" v-else>
-                <div class="timeframe" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()" v-for="index in evenNumbers" :key="index">
+                <div :class="checktime(index + 8, index + 8 + indexHour) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event), ($parent.$parent.isReservation = true), $parent.$parent.removeSelect()" v-for="index in evenNumbers" :key="index">
                     {{ index + 8 }}:00-{{ index + 8 + indexHour }}:00
                     <div class="rezervaceButton">Rezervace</div>
                 </div>
@@ -49,7 +49,7 @@ export default {
         numb: Number,
         threeHoursBool: Boolean,
     },
-    mounted: function () {
+    mounted: async function () {
         if (this.$parent.canBeVisible) {
             this.$parent.$parent.removeMenu();
             this.$parent.$parent.insertSelect(this.indexHour);
@@ -69,6 +69,17 @@ export default {
         };
     },
     methods: {
+        checktime(hoursStart, hoursEnd) {
+            for (let i = 0; i < this.$parent.$parent.reservedArray.length; i++) {
+                if (hoursStart == this.$parent.$parent.reservedArray[i][0]) return false;
+                else if (hoursStart > Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2])) return false;
+                else if (hoursStart < Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2]) && hoursEnd > Number(this.$parent.$parent.reservedArray[i][0])) return false;
+                else if (hoursStart < Number(this.$parent.$parent.reservedArray[i][2]) && hoursEnd > Number(this.$parent.$parent.reservedArray[i][2])) return false;
+                else if (this.$parent.$parent.reservedArray[i][3] == "30" && hoursStart == Number(this.$parent.$parent.reservedArray[i][2])) return false;
+                // console.log(hoursEnd);
+            }
+            return true;
+        },
         timeframeClick: function (e) {
             const element = e.target;
             const bloat = element.textContent.toString().split(" ");
@@ -148,7 +159,8 @@ export default {
             }
         }
         &-timeframes {
-            .timeframe {
+            .timeframe,
+            .timeframeReserved {
                 padding-left: 35px;
                 padding-right: 15px;
                 display: flex;
@@ -163,18 +175,25 @@ export default {
                     cursor: pointer;
                     background: #eeebe8;
                 }
+                .rezervaceButton {
+                    display: grid;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    background: $orange;
+                    color: white;
+                    border-radius: 50px;
+                    width: 125px;
+                    height: 38px;
+                    pointer-events: none;
+                }
             }
-            .rezervaceButton {
-                display: grid;
-                align-items: center;
-                text-align: center;
-                justify-content: center;
-                background: $orange;
-                color: white;
-                border-radius: 50px;
-                width: 125px;
-                height: 38px;
-                pointer-events: none;
+            .timeframeReserved {
+                color: rgba(0, 0, 0, 0.25);
+                .rezervaceButton {
+                    background: rgba(0, 0, 0, 0.03);
+                    color: rgba(0, 0, 0, 0.3);
+                }
             }
         }
     }
@@ -233,18 +252,18 @@ export default {
                         cursor: pointer;
                         background: #eeebe8;
                     }
-                }
-                .rezervaceButton {
-                    display: grid;
-                    align-items: center;
-                    text-align: center;
-                    justify-content: center;
-                    background: $orange;
-                    color: white;
-                    border-radius: 50px;
-                    width: 125px;
-                    height: 38px;
-                    pointer-events: none;
+                    .rezervaceButton {
+                        display: grid;
+                        align-items: center;
+                        text-align: center;
+                        justify-content: center;
+                        background: $orange;
+                        color: white;
+                        border-radius: 50px;
+                        width: 125px;
+                        height: 38px;
+                        pointer-events: none;
+                    }
                 }
             }
         }

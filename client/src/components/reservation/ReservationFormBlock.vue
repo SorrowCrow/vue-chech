@@ -2,10 +2,10 @@
     <svg class="containerWave">
         <use href="#containerWave" />
     </svg>
-    <form class="reservationForm" id="form">
+    <form class="reservationForm" id="form" @submit.prevent="addItem">
         <div class="container">
             <div class="grid">
-                <input required type="text" name="firstname" placeholder="Jemno*" />
+                <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
                 <div class="reservationForm__select" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
                     <!-- <select class="reservationForm__select-inner" form="form">
                         <option value="1">
@@ -37,9 +37,10 @@
                         </div>
                     </div>
                 </div>
-                <input required type="text" name="phone" placeholder="Telefon*" />
-                <input required type="text" name="email" placeholder="E-mail" />
+                <input required type="tel" name="phone" placeholder="Telefon*" v-model="$parent.formData.phone" v-on:keypress="isNumber(event)" />
+                <input required type="email" name="email" placeholder="E-mail" v-model="$parent.formData.email" />
                 <textarea
+                    v-model="$parent.formData.message"
                     type="text"
                     name="message"
                     placeholder="Dalsi pozadavky
@@ -51,19 +52,41 @@ Treba jokou chcete hudbu..."
             <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
             <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
         </div>
-        <!-- <button  class="pointer">SEND</button> -->
     </form>
 </template>
 
 <script>
+// import { db } from "../../firebase";
 import AdditionalComponent from "./AdditionalComponent.vue";
+import axios from "axios";
 
 export default {
     name: "ReservationFormBlock",
     components: {
         AdditionalComponent,
     },
+    data() {
+        return {
+            state: "loading",
+            // firebaseData: null,
+            collectionPath: "reservations",
+        };
+    },
+    // firestore() {
+    //     return {
+    //         firebaseData: db.collection(this.collectionPath),
+    //     };
+    // },
     methods: {
+        isNumber: function (evt) {
+            evt = evt ? evt : window.event;
+            var charCode = evt.which ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+                evt.preventDefault();
+            } else {
+                return true;
+            }
+        },
         osobyClick() {
             if (document.getElementsByClassName("reservationForm__select-list")[0].style.display == "grid") {
                 document.getElementsByClassName("reservationForm__select-list")[0].style.display = "none";
@@ -71,6 +94,29 @@ export default {
                 document.getElementsByClassName("reservationForm__select-list")[0].style.display = "grid";
             }
         },
+        async addItem() {
+            this.$parent.formData.misa = this.$parent.misa;
+            this.$parent.formData.ozdoba = this.$parent.ozdoba;
+            this.$parent.formData.prossecco = this.$parent.prossecco;
+            this.$parent.formData.persons = this.$parent.persons;
+            console.log(this.$parent.formData);
+            await axios.post("api/bucketListItems/", this.$parent.formData);
+            this.$parent.bodyDisplayAuto();
+        },
+        // async updateFirebase() {
+        //     try {
+        //         this.$parent.formData.misa = this.$parent.misa;
+        //         this.$parent.formData.ozdoba = this.$parent.ozdoba;
+        //         this.$parent.formData.prossecco = this.$parent.prossecco;
+        //         this.$parent.formData.persons = this.$parent.persons;
+        //         await db.collection(this.collectionPath).add(this.$parent.formData);
+        //         this.state = "synced";
+        //         this.$parent.bodyDisplayAuto();
+        //     } catch (error) {
+        //         this.errorMessage = JSON.stringify(error);
+        //         this.state = "error";
+        //     }
+        // },
     },
 };
 </script>

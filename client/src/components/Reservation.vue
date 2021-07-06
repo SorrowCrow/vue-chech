@@ -3,7 +3,7 @@
         <div class="Reservation__overlay"></div>
         <div class="Reservation__wrapper">
             <div class="Reservation__reservationForm mx-auto">
-                <div class="Reservation__reservationForm-exit" @click="($parent.isReservation = false), bodyDisplayAuto()">
+                <div class="Reservation__reservationForm-exit" @click="bodyDisplayAuto()">
                     <svg viewBox="0 0 23 23">
                         <rect x="3.01471" y="0.893433" width="27" height="3" rx="1.5" transform="rotate(45 3.01471 0.893433)" />
                         <rect x="22.1066" y="3.01477" width="27" height="3" rx="1.5" transform="rotate(135 22.1066 3.01477)" />
@@ -37,6 +37,7 @@ export default {
             misa: false,
             prossecco: false,
             ozdoba: false,
+            formData: {},
         };
     },
     components: {
@@ -46,12 +47,14 @@ export default {
     },
     methods: {
         bodyDisplayAuto() {
+            this.$parent.isReservation = false;
             document.getElementsByTagName("body")[0].style.overflow = "auto";
-            console.log(this.misa, this.prossecco, this.ozdoba, this.persons);
         },
     },
     mounted: function () {
         document.getElementsByTagName("body")[0].style.overflow = "hidden";
+        this.formData.time = this.time;
+        this.formData.date = this.date;
     },
 };
 </script>
