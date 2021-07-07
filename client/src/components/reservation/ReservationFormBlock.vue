@@ -129,6 +129,7 @@ export default {
     height: 22px;
     fill: $backgroundgrey;
     margin-top: 30px;
+    opacity: 0;
 }
 .reservationForm {
     margin-top: -4px;
@@ -223,6 +224,9 @@ export default {
     }
 }
 @media only screen and (min-width: 1070px) {
+    .containerWave {
+        opacity: 1;
+    }
     .reservationForm {
         padding-top: 100px;
         padding-bottom: 88px;

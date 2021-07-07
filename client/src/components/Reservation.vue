@@ -53,7 +53,11 @@ export default {
     },
     mounted: function () {
         document.getElementsByTagName("body")[0].style.overflow = "hidden";
-        this.formData.time = this.time;
+        if (this.time.length == 10) {
+            this.formData.time = "0" + this.time;
+        } else {
+            this.formData.time = this.time;
+        }
         this.formData.date = this.date;
     },
 };
