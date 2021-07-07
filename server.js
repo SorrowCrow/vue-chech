@@ -7,15 +7,12 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const reservationItemRoutes = require("./routes/api/reservationItems");
 const path = require("path");
-
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 
 mongoose
     .connect(mongoUri, {
-        user: "jeff",
-        pass: "OaUoLFD542jTFFOb",
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
@@ -26,11 +23,9 @@ mongoose
 
 app.use("/api/reservationItems", reservationItemRoutes);
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(__dirname + "client/dist/public"));
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "client/dist/index.html"));
-    });
-}
+app.use(express.static("client/dist"));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+});
 
 app.listen(PORT, () => console.log(`Port: ${PORT}`));

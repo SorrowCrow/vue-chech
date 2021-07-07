@@ -16,6 +16,6 @@ module.exports = {
           `
             }
         }
-    },
-    publicPath: process.env.NODE_ENV === "production" ? "/vue-chech/" : "/"
+    }
+    // publicPath: process.env.NODE_ENV === "production" ? "/vue-chech/" : "/"
 };

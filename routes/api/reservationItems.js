@@ -5,7 +5,6 @@ const router = Router();
 
 router.get("/:date", async (req, res) => {
     const { date } = req.params;
-    // console.log(date);
     try {
         const reservationItems = await reservationItem.find({ date: date }, { time: 1, _id: 0 }).sort({ time: 1 });
         if (!reservationItems) throw new Error("No reservationItems");
