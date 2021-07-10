@@ -7,8 +7,8 @@
             <div @click="scroll('#reference')">Reference</div>
         </div>
         <div class="menu__social">
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
         </div>
     </div>
 </template>

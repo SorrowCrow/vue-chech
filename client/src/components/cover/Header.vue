@@ -18,7 +18,7 @@
                     <svg>
                         <use href="#location" />
                     </svg>
-                    <a href="https://www.google.com/maps/place/Krnská+350,+197+00+Kbely,+Czechia/@50.1286805,14.5498908,19z" target="_blank">Krnska 350/26, Praha 19700</a>
+                    <a href="https://www.google.com/maps/place/Krnská+350,+197+00+Kbely,+Czechia/@50.1286805,14.5498908,19z" target="_blank" rel="noopener">Krnska 350/26, Praha 19700</a>
                 </div>
                 <div class="header__contacts-item">
                     <svg>

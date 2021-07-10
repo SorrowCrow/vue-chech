@@ -1,8 +1,8 @@
 <template>
     <div class="slider__wrap">
         <div class="block__slider">
-            <img src="../../assets/background(1).jpg" />
-            <img src="../../assets/background(1).jpg" />
+            <img src="../../assets/background.webp" />
+            <img src="../../assets/background.webp" />
         </div>
         <div class="background"></div>
         <div class="block__sliderButtons">
@@ -64,7 +64,7 @@ export default {
     display: flex;
     justify-content: center;
     img {
-        width: auto;
+        width: auto !important;
         filter: blur(7px);
         height: 550px;
     }
@@ -116,7 +116,7 @@ export default {
     .block__slider img {
         height: auto;
         max-height: 750px;
-        width: 100%;
+        width: 100% !important;
     }
 }
 </style>

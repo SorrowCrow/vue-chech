@@ -85,8 +85,7 @@ export default {
         }
         .background {
             position: relative;
-            background: url("../assets/pic.png");
-            background-image: url("../assets/pic.png");
+            background-image: url("../assets/pic.webp");
             background-position: top right;
             background-repeat: no-repeat;
             background-size: contain;

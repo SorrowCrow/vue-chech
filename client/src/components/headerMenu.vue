@@ -23,12 +23,12 @@
             <a class="mx-auto headerMenu__email" href="mailto:sauna@marieluisa.cz">sauna@marieluisa.cz</a>
         </div>
         <div class="mx-auto headerMenu__links">
-            <a href="https://facebook.com" target="_blank">
+            <a href="https://facebook.com" target="_blank" rel="noopener">
                 <svg>
                     <use href="#facebook" />
                 </svg>
             </a>
-            <a href="https://instagram.com" target="_blank">
+            <a href="https://instagram.com" target="_blank" rel="noopener">
                 <svg>
                     <use href="#instagram" />
                 </svg>
