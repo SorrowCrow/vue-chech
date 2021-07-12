@@ -98,7 +98,8 @@ export default {
                 &-prevBtn {
                     display: grid;
                     top: 80px;
-                    @include wh(60px, 60px);
+                    width: 60px;
+                    height: 60px;
                     background: $white;
                     border-radius: 50%;
                     transition: 0.2s;
@@ -189,7 +190,6 @@ export default {
                     &-nextBtn,
                     &-prevBtn {
                         align-self: center;
-                        @include wh(60px, 60px);
                         border-radius: 50%;
                         z-index: 1;
                         &:hover {

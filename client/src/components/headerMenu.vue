@@ -14,8 +14,8 @@
         <div class="headerMenu__scrolls">
             <div @click="scroll('#about')">O nás</div>
             <div @click="scroll('#book')">Rezervace</div>
-            <div @click="scrollslow('#giftCards')">Dárkové poukazy</div>
-            <div @click="scrollslow('#reference')">Reference</div>
+            <div @click="scroll('#giftCards')">Dárkové poukazy</div>
+            <div @click="scroll('#reference')">Reference</div>
         </div>
         <a class="mx-auto headerMenu__number" href="tel:+420 286 851 738">+420 286 851 738</a>
         <div class="sub-title">
@@ -42,12 +42,14 @@ export default {
     name: "HeaderMenu",
     methods: {
         scroll(id) {
+            this.bodyDisplayAuto();
             window.scrollTo({
                 top: document.querySelector(id).offsetTop,
                 behavior: "smooth",
             });
         },
         bodyDisplayAuto() {
+            this.$parent.isMenu = false;
             document.getElementsByTagName("body")[0].style.overflow = "auto";
         },
     },

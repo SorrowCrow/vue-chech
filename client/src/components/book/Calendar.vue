@@ -20,7 +20,7 @@
                 <div>Sun</div>
             </div>
         </div>
-        <ChooseHoursMenu ref="chooseHours" :chooseHoursHidden="chooseHoursHidden" :key="componentKey" />
+        <ChooseHoursMenu ref="chooseHours" :secondDate="String(secondDate)" :chooseHoursHidden="chooseHoursHidden" :key="componentKey" :month="month" :currentMonth="currentMonth" :yearLoop="yearLoop" />
 
         <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />
     </div>
@@ -55,7 +55,7 @@ export default {
             yearLoop: 0,
             componentKey: 0,
 
-            secondDate: 0,
+            secondDate: "0",
 
             row: 1,
 
@@ -165,7 +165,8 @@ export default {
                 transform: rotate(180deg);
             }
             svg {
-                @include wh(36px, 36px);
+                width: 36px;
+                height: 36px;
                 stroke: $beige;
                 &:hover {
                     cursor: pointer;
@@ -232,7 +233,8 @@ export default {
                 }
                 svg {
                     padding-top: 8px;
-                    @include wh(54px, 54px);
+                    width: 54px;
+                    height: 54px;
                     stroke: $beige;
                     &:hover {
                         cursor: pointer;

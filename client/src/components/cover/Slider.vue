@@ -83,7 +83,8 @@ export default {
     &-prevBtn {
         position: relative;
         display: grid;
-        @include wh(60px, 60px);
+        width: 60px;
+        height: 60px;
         margin-left: 75px;
         background: $white;
         border-radius: 50%;

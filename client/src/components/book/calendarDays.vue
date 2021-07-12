@@ -194,7 +194,8 @@ export default {
     grid-auto-rows: 45px;
     .days-dates,
     .daysGone {
-        @include wh(45px, 45px);
+        width: 45px;
+        height: 45px;
         margin: auto;
         display: flex;
         justify-content: center;
@@ -260,7 +261,8 @@ export default {
         grid-auto-rows: 67px;
         .days-dates,
         .daysGone {
-            @include wh(61px, 61px);
+            width: 61px;
+            height: 61px;
             font-size: 20px;
             line-height: 150%;
         }

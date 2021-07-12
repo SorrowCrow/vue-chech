@@ -130,7 +130,6 @@ export default {
     .Reservation {
         &__reservationForm {
             position: relative;
-            z-index: 1;
             max-width: 1000px;
             margin-top: 100px;
             margin-bottom: 100px;

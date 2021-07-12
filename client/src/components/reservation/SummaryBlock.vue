@@ -10,7 +10,7 @@
                 <div class="SummaryBlock__costs-item">
                     <div>
                         <span>{{ date }}</span>
-                        <span> od {{ time }}</span>
+                        <span>, od {{ time }}</span>
                     </div>
                     <div>{{ timePrice }},– Kč</div>
                 </div>
@@ -43,7 +43,7 @@
                 <label class="SummaryBlock__payingMethods-item">
                     <div class="SummaryBlock__payingMethods-method">
                         Bankovní převod
-                        <input type="radio" checked="checked" name="radio" form="form"/>
+                        <input type="radio" checked="checked" name="radio" form="form" />
                         <span class="checkmark"></span>
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Prevodem obvykle 2 dni</div>
@@ -59,7 +59,7 @@
                 <label class="SummaryBlock__payingMethods-item">
                     <div class="SummaryBlock__payingMethods-item-method">
                         Platba Online
-                        <input type="radio" name="radio" form="form" />
+                        <input type="radio" name="radio" form="form" v-on:change="OnlinePaymentsBlockVisible = true" />
                         <span class="checkmark"></span>
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Kartou Online</div>
@@ -68,18 +68,24 @@
             <button type="submit" class="SummaryBlock__rezervovat" form="form">Rezervovat</button>
         </div>
     </div>
+    <!-- <OnlinePaymentsBlock :isVisible="OnlinePaymentsBlockVisible" /> -->
 </template>
 
 <script>
+// import OnlinePaymentsBlock from "./OnlinePaymentsBlock.vue";
 
 export default {
     name: "SummaryBlock",
+    // components: {
+    //     OnlinePaymentsBlock,
+    // },
     data() {
         return {
             timePrice: 0,
             ozdobaPrice: 350,
             prosseccoPrice: 290,
             misaPrice: 350,
+            OnlinePaymentsBlockVisible: false,
         };
     },
     props: {

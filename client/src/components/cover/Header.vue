@@ -98,10 +98,12 @@ export default {
             position: relative;
             float: left;
             padding-right: 20px;
-            @include wh(40px, 48px);
+            width: 40px;
+            height: 48px;
         }
         &-iconBig {
-            @include wh(60px, 68px);
+            width: 60px;
+            height: 68px;
         }
         &-text {
             position: relative;
@@ -131,7 +133,8 @@ export default {
             float: left;
             padding-top: 2px;
             padding-right: 5px;
-            @include wh(25px, 25px);
+            width: 25px;
+            height: 25px;
             fill: $secondary;
         }
         &-item {

@@ -4,7 +4,7 @@
             <div class="title" id="about">O nás</div>
             <div class="sub-title">Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.</div>
             <div class="background">
-                <div class="MagnifyingGlass" @click="isMd ? '' : magnifyingGlassClick()">
+                <div class="MagnifyingGlass" @click="magnifyingGlassClick()">
                     <svg>
                         <use href="#magnifyingGlass" />
                     </svg>
@@ -54,8 +54,10 @@ export default {
                 top: document.getElementById("cover").offsetTop,
                 behavior: "smooth",
             });
-            document.getElementById("sliderInit").classList.add("hiddenTitle");
-            document.getElementsByClassName("slider__wrap")[0].classList.add("unHiddenForSlide");
+            if (!this.isMd) {
+                document.getElementById("sliderInit").classList.add("hiddenTitle");
+                document.getElementsByClassName("slider__wrap")[0].classList.add("unHiddenForSlide");
+            }
         },
     },
 };
@@ -100,7 +102,8 @@ export default {
                 position: relative;
                 align-self: flex-end;
                 display: grid;
-                @include wh(66px, 66px);
+                width: 66px;
+                height: 66px;
                 background: $white;
                 border-radius: 50%;
                 transition: 0.2s;
@@ -132,7 +135,8 @@ export default {
 
         font-family: $playfair-font;
         &__item {
-            @include wh(148px, 150px);
+            width: 148px;
+            height: 150px;
             display: grid;
             justify-content: center;
             text-align: center;
@@ -186,7 +190,8 @@ export default {
             .background {
                 margin-top: -300px;
                 .MagnifyingGlass {
-                    @include wh(100px, 100px);
+                    width: 100px;
+                    height: 100px;
                     bottom: 70px;
                     svg {
                         width: 50px;
@@ -221,18 +226,6 @@ export default {
             }
             .background {
                 margin-top: -570px;
-                .MagnifyingGlass {
-                    @include wh(100px, 100px);
-                    bottom: 70px;
-                    svg {
-                        width: 50px;
-                        height: 50px;
-                    }
-                    &:hover {
-                        width: 110px;
-                        height: 110px;
-                    }
-                }
             }
         }
         .services {
@@ -244,7 +237,8 @@ export default {
             padding-bottom: 86px;
             font-family: $playfair-font;
             &__item {
-                @include wh(230px, 197px);
+                width: 230px;
+                height: 197px;
                 display: grid;
                 justify-content: center;
                 text-align: center;

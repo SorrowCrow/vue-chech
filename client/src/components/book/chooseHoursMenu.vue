@@ -7,7 +7,7 @@
             <span class="hoursButton" @click="setter(3, false, true)">3 Hodina</span>
         </div>
     </div>
-    <SelectMenu :key="componentRefresh" :indexHour="indexHour" :halfBool="halfBool" :workingHours="14" :threeHoursBool="threeHoursBool" />
+    <SelectMenu :key="componentRefresh" :secondDate="secondDate" :indexHour="indexHour" :halfBool="halfBool" :workingHours="14" :threeHoursBool="threeHoursBool" :month="month" :currentMonth="currentMonth" :yearLoop="yearLoop" />
 </template>
 <script>
 import SelectMenu from "./selectMenu.vue";
@@ -19,6 +19,13 @@ export default {
     },
     props: {
         chooseHoursHidden: Boolean,
+
+        month: Number,
+        currentMonth: Number,
+
+        yearLoop: Number,
+
+        secondDate: String,
     },
     data() {
         return {
