@@ -43,7 +43,7 @@
                 <label class="SummaryBlock__payingMethods-item">
                     <div class="SummaryBlock__payingMethods-method">
                         Bankovní převod
-                        <input type="radio" checked="checked" name="radio" form="form" />
+                        <input type="radio" checked="checked" name="radio" form="form" v-on:change="$parent.OnlinePayments = true" />
                         <span class="checkmark"></span>
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Prevodem obvykle 2 dni</div>
@@ -51,7 +51,7 @@
                 <label class="SummaryBlock__payingMethods-item">
                     <div class="SummaryBlock__payingMethods-method">
                         Hotové
-                        <input type="radio" name="radio" form="form" />
+                        <input type="radio" name="radio" form="form" v-on:change="$parent.OnlinePayments = false" />
                         <span class="checkmark"></span>
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Hotove nebo kartou pri prichodu</div>
@@ -59,16 +59,17 @@
                 <label class="SummaryBlock__payingMethods-item">
                     <div class="SummaryBlock__payingMethods-item-method">
                         Platba Online
-                        <input type="radio" name="radio" form="form" v-on:change="OnlinePaymentsBlockVisible = true" />
+                        <input type="radio" name="radio" form="form" v-on:change="$parent.OnlinePayments = true" />
                         <span class="checkmark"></span>
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Kartou Online</div>
                 </label>
+                <div id="stripe-card" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
             </div>
             <button type="submit" class="SummaryBlock__rezervovat" form="form">Rezervovat</button>
         </div>
     </div>
-    <!-- <OnlinePaymentsBlock :isVisible="OnlinePaymentsBlockVisible" /> -->
+    <!-- <OnlinePaymentsBlock v-if="OnlinePaymentsBlockVisible" /> -->
 </template>
 
 <script>
@@ -79,15 +80,6 @@ export default {
     // components: {
     //     OnlinePaymentsBlock,
     // },
-    data() {
-        return {
-            timePrice: 0,
-            ozdobaPrice: 350,
-            prosseccoPrice: 290,
-            misaPrice: 350,
-            OnlinePaymentsBlockVisible: false,
-        };
-    },
     props: {
         time: String,
         date: String,
@@ -97,7 +89,15 @@ export default {
         misa: Boolean,
         hours: Number,
     },
-    mounted: function () {
+    data() {
+        return {
+            timePrice: 0,
+            ozdobaPrice: 350,
+            prosseccoPrice: 290,
+            misaPrice: 350,
+        };
+    },
+    mounted() {
         if (this.hours == 1) {
             this.timePrice = 799;
         } else if (this.hours == 15) {
@@ -112,6 +112,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cardShow,
+.cardHide {
+    overflow: hidden;
+}
+.cardShow {
+    transition: 0.5s;
+    height: 26.4px;
+}
+.cardHide {
+    transition: 0.5s;
+    height: 0px;
+}
 .containerWave {
     position: relative;
     width: 100%;

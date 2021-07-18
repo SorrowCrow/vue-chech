@@ -3,11 +3,11 @@
         <svg class="containerWave">
             <use href="#containerWave" />
         </svg>
-        <form class="reservationForm" id="form" @submit.prevent="addItem">
+        <form class="reservationForm" id="form" @submit.prevent="handleSubmit">
             <div class="container">
                 <div class="grid">
                     <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
-                    <div class="reservationForm__select" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
+                    <div class="reservationForm__select">
                         <!-- <select class="reservationForm__select-inner" form="form">
                         <option value="1">
                             1 Osoby
@@ -70,9 +70,97 @@ export default {
         return {
             state: "loading",
             collectionPath: "reservations",
+
+            stripe: "",
+            cardElement: null,
+            loading: true,
+            elements: null,
+            stripe_pubKey: "pk_test_51JC9K9BJ2QoFP7mPuFYpU6P3MSU7T2ytOURjiAAu9ZuG2JeRuKUi9tU8HV9Eh4BGuCSxsDnpxrQ02fvADiY1dDpD00i37yMksj",
         };
     },
+    props: {
+        OnlinePayments: Boolean,
+    },
+    async mounted() {
+        const style = {
+            style: {
+                base: {
+                    iconColor: "#000",
+                    color: "#000",
+                    fontFamily: "Work Sans, sans-serif",
+                    fontSize: "22px",
+                    fontSmoothing: "antialiased",
+                    ":-webkit-autofill": {
+                        color: "#fce883",
+                    },
+                    "::placeholder": {
+                        color: "green",
+                    },
+                },
+                invalid: {
+                    iconColor: "#FFC7EE",
+                    color: "red",
+                },
+            },
+        };
+        // eslint-disable-next-line
+        this.stripe = Stripe(this.stripe_pubKey);
+
+        this.elements = this.stripe.elements();
+        const element = this.elements.create("card", style);
+        await element.mount("#stripe-card");
+        this.loading = false;
+    },
     methods: {
+        async handleSubmit() {
+            this.$parent.formData.misa = this.$parent.misa;
+            this.$parent.formData.ozdoba = this.$parent.ozdoba;
+            this.$parent.formData.prossecco = this.$parent.prossecco;
+            this.$parent.formData.persons = this.$parent.persons;
+            if (this.OnlinePayments) {
+                if (this.loading) return;
+                this.loading = true;
+
+                const name = this.$parent.formData.name;
+                const email = this.$parent.formData.email;
+
+                const billingDetails = {
+                    name,
+                    email,
+                };
+
+                this.cardElement = this.elements.getElement("card");
+
+                try {
+                    const response = await fetch("http://localhost:8080/api/stripe", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(this.$parent.formData),
+                    });
+                    const { secret } = await response.json();
+                    console.log("secret", secret);
+                    const paymentMethodReq = await this.stripe.createPaymentMethod({
+                        type: "card",
+                        card: this.cardElement,
+                        billing_details: billingDetails,
+                    });
+
+                    const { error } = await this.stripe.confirmCardPayment(secret, {
+                        payment_method: paymentMethodReq.paymentMethod.id,
+                    });
+
+                    if (error) return;
+                    this.loading = false;
+                    this.addItem();
+                } catch (error) {
+                    console.log("error: ", error);
+                }
+            } else {
+                this.addItem();
+            }
+        },
         isNumber: function (evt) {
             evt = evt ? evt : window.event;
             var charCode = evt.which ? evt.which : evt.keyCode;
@@ -90,10 +178,6 @@ export default {
             }
         },
         async addItem() {
-            this.$parent.formData.misa = this.$parent.misa;
-            this.$parent.formData.ozdoba = this.$parent.ozdoba;
-            this.$parent.formData.prossecco = this.$parent.prossecco;
-            this.$parent.formData.persons = this.$parent.persons;
             await axios.post("api/reservationItems/", this.$parent.formData);
             this.$parent.bodyDisplayAuto();
         },

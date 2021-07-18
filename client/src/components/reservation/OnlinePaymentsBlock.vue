@@ -1,45 +1,31 @@
 <template>
-    <div v-if="isVisible" class="OnlinePaymentsBlock">
+    <div class="OnlinePaymentsBlock">
         <div class="OnlinePaymentsBlock__overlay"></div>
         <div class="OnlinePaymentsBlock__wrapper">
             <div class="OnlinePaymentsBlock__payments">
-                <stripe-checkout ref="checkoutRef" mode="payment" :pk="publishableKey" :line-items="lineItems" :success-url="successURL" :cancel-url="cancelURL" @loading="(v) => (loading = v)" />
-                <button @click="submit">Pay now!</button>
+                <form action="" @submit.prevent="redirect">
+                    <label>
+                        Card
+                        <div id="card-element"></div>
+                    </label>
+                    <button @click="submit">Pay now!</button>
+                </form>
+                <!-- <stripe-checkout ref="checkoutRef" mode="payment" :pk="publishableKey" :line-items="lineItems" :success-url="successURL" :cancel-url="cancelURL" @loading="(v) => (loading = v)" /> -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { StripeCheckout } from "@vue-stripe/vue-stripe";
 export default {
     name: "OnlinePaymentsBlock",
-    components: {
-        StripeCheckout,
-    },
-    props: {
-        isVisible: Boolean,
-    },
     data() {
-        this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
         return {
-            loading: false,
-            lineItems: [
-                {
-                    price: "some-price-id", // The id of the one-time price you created in your Stripe dashboard
-                    quantity: 1,
-                },
-            ],
-            successURL: "your-success-url",
-            cancelURL: "your-cancel-url",
         };
     },
-    methods: {
-        submit() {
-            // You will be redirected to Stripe's secure checkout page
-            this.$refs.checkoutRef.redirectToCheckout();
-        },
+    async mounted() {
     },
+    
 };
 </script>
 

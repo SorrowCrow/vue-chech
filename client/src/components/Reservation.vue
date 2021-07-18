@@ -11,8 +11,8 @@
                 </div>
                 <ReservationHeaderBlock :time="time" :date="date" />
                 <div class="Reservation__reservationForm-wrapper">
-                    <ReservationFormBlock />
-                    <SummaryBlock :key="persons" :time="time" :date="date" :persons="persons" :ozdoba="ozdoba" :prossecco="prossecco" :misa="misa" :hours="hours" />
+                    <ReservationFormBlock :OnlinePayments="OnlinePayments" />
+                    <SummaryBlock :time="time" :date="date" :persons="persons" :ozdoba="ozdoba" :prossecco="prossecco" :misa="misa" :hours="hours" />
                 </div>
             </div>
         </div>
@@ -38,6 +38,8 @@ export default {
             prossecco: false,
             ozdoba: false,
             formData: {},
+
+            OnlinePayments: true,
         };
     },
     components: {
