@@ -55,16 +55,19 @@ Treba jokou chcete hudbu..."
             </div>
         </form>
     </div>
+    <OnlinePaymentsBlock v-if="loading" />
 </template>
 
 <script>
 import AdditionalComponent from "./AdditionalComponent.vue";
+import OnlinePaymentsBlock from "./OnlinePaymentsBlock.vue";
 import axios from "axios";
 
 export default {
     name: "ReservationFormBlock",
     components: {
         AdditionalComponent,
+        OnlinePaymentsBlock,
     },
     data() {
         return {
@@ -90,11 +93,12 @@ export default {
                     fontFamily: "Work Sans, sans-serif",
                     fontSize: "22px",
                     fontSmoothing: "antialiased",
+
                     ":-webkit-autofill": {
                         color: "#fce883",
                     },
                     "::placeholder": {
-                        color: "green",
+                        color: "#2b3a77",
                     },
                 },
                 invalid: {
@@ -132,15 +136,15 @@ export default {
                 this.cardElement = this.elements.getElement("card");
 
                 try {
-                    const response = await fetch("http://localhost:8080/api/stripe", {
+                    const response = await fetch("https://kbely.herokuapp.com/api/stripe", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify(this.$parent.formData),
                     });
-                    const { secret } = await response.json();
-                    console.log("secret", secret);
+                    const { secret, id } = await response.json();
+                    this.$parent.formData.stripeId = id;
                     const paymentMethodReq = await this.stripe.createPaymentMethod({
                         type: "card",
                         card: this.cardElement,
@@ -155,7 +159,7 @@ export default {
                     this.loading = false;
                     this.addItem();
                 } catch (error) {
-                    console.log("error: ", error);
+                    // console.log("error: ", error);
                 }
             } else {
                 this.addItem();

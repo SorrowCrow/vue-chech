@@ -45,6 +45,10 @@ const reservationItemSchema = new Schema({
         type: Number,
         required: true,
     },
+    stripeId: {
+        type: String,
+        default: "No payment",
+    },
 });
 
 const reservationItem = model("reservationItem", reservationItemSchema);

@@ -2,16 +2,7 @@
     <div class="OnlinePaymentsBlock">
         <div class="OnlinePaymentsBlock__overlay"></div>
         <div class="OnlinePaymentsBlock__wrapper">
-            <div class="OnlinePaymentsBlock__payments">
-                <form action="" @submit.prevent="redirect">
-                    <label>
-                        Card
-                        <div id="card-element"></div>
-                    </label>
-                    <button @click="submit">Pay now!</button>
-                </form>
-                <!-- <stripe-checkout ref="checkoutRef" mode="payment" :pk="publishableKey" :line-items="lineItems" :success-url="successURL" :cancel-url="cancelURL" @loading="(v) => (loading = v)" /> -->
-            </div>
+            <div class="spin"></div>
         </div>
     </div>
 </template>
@@ -20,16 +11,38 @@
 export default {
     name: "OnlinePaymentsBlock",
     data() {
-        return {
-        };
+        return {};
     },
-    async mounted() {
-    },
-    
+    async mounted() {},
 };
 </script>
 
 <style lang="scss" scoped>
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+.spin {
+    display: flex;
+}
+.spin::before {
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px #cfd0d1;
+    border-bottom-color: $primary;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    top: 10%;
+    left: 10%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 40px;
+    will-change: transform;
+}
 .OnlinePaymentsBlock,
 .OnlinePaymentsBlock__overlay,
 .OnlinePaymentsBlock__wrapper {
@@ -50,23 +63,27 @@ export default {
     &__wrapper {
         position: absolute;
         overflow-y: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &::-webkit-scrollbar {
             display: none;
         }
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }
-    &__payments {
-        position: relative;
-        max-width: 1000px;
-        margin: 100px auto 100px auto;
-        background: $white;
-        border-radius: 30px;
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        padding: 48px 0 0 0;
-        background: $backgroundgrey;
-    }
+
+    // &__payments {
+    //     position: relative;
+    //     max-width: 1000px;
+    //     margin: 100px auto 100px auto;
+    //     background: $white;
+    //     border-radius: 30px;
+    //     position: relative;
+    //     z-index: 1;
+    //     width: 100%;
+    //     padding: 48px 0 0 0;
+    //     background: $backgroundgrey;
+    // }
 }
 </style>

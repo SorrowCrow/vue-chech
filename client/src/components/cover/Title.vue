@@ -1,6 +1,6 @@
 <template>
     <div class="contain" id="cover">
-        <Slider />
+        <Slider :isSlider="isSlider" />
         <div id="sliderInit" class="title" @click="titleClick()">
             <div class="title-privatni">Tvůj privátní</div>
             <div class="title-wellness">Wellness</div>
@@ -21,6 +21,11 @@ export default {
     components: {
         Menu,
         Slider,
+    },
+    data() {
+        return {
+            isSlider: false,
+        };
     },
     created() {
         window.addEventListener("resize", this.hideUnhide);
@@ -44,9 +49,11 @@ export default {
                 if (sliderInit.classList.contains("hiddenTitle")) {
                     sliderInit.classList.remove("hiddenTitle");
                     document.getElementsByClassName("slider__wrap")[0].classList.remove("unHiddenForSlide");
+                    this.isSlider = false;
                 } else {
                     sliderInit.classList.add("hiddenTitle");
                     document.getElementsByClassName("slider__wrap")[0].classList.add("unHiddenForSlide");
+                    this.isSlider = true;
                 }
             }
         },

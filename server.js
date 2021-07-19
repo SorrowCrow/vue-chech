@@ -8,8 +8,6 @@ const bodyParser = require("body-parser");
 const reservationItemRoutes = require("./routes/api/reservationItems");
 const path = require("path");
 const Stripe = require("stripe");
-const { request } = require("http");
-const { response } = require("express");
 
 app.use(cors());
 app.use(morgan("tiny"));
@@ -81,7 +79,7 @@ app.post("/api/stripe", async (req, res) => {
             currency: "czk",
         });
 
-        res.status(200).send({ secret: paymentIntent.client_secret });
+        res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id });
     } catch (error) {
         console.log("error: ", error);
         res.status(500).send("error" + error);

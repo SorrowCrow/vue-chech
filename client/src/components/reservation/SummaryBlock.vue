@@ -9,8 +9,8 @@
             <div class="SummaryBlock__costs">
                 <div class="SummaryBlock__costs-item">
                     <div>
-                        <span>{{ date }}</span>
-                        <span>, od {{ time }}</span>
+                        <span>{{ date }},&nbsp;</span>
+                        <span>od {{ time }}</span>
                     </div>
                     <div>{{ timePrice }},– Kč</div>
                 </div>
@@ -119,6 +119,9 @@ export default {
 .cardShow {
     transition: 0.5s;
     height: 26.4px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f2eef5;
 }
 .cardHide {
     transition: 0.5s;

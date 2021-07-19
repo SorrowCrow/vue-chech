@@ -59,6 +59,17 @@ body {
     }
     .block__sliderButtons {
         opacity: 1;
+        &-nextBtn,
+        &-prevBtn {
+            &:hover {
+                cursor: pointer;
+                width: 70px;
+                height: 70px;
+                svg {
+                    fill: $primary;
+                }
+            }
+        }
     }
 }
 .hiddenTitle {

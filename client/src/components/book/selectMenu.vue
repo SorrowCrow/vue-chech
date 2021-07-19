@@ -56,7 +56,7 @@ export default {
 
         secondDate: String,
     },
-    mounted: async function () {
+    mounted() {
         if (this.$parent.canBeVisible) {
             this.$parent.$parent.removeMenu();
             this.$parent.$parent.insertSelect(this.indexHour);

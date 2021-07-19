@@ -6,10 +6,10 @@
         </div>
         <div class="background"></div>
         <div class="block__sliderButtons">
-            <div class="block__sliderButtons-nextBtn">
+            <div class="block__sliderButtons-nextBtn" :class="isSlider ? '' : 'buttonsHidden'">
                 <svg><use href="#arrowScroll" /></svg>
             </div>
-            <div class="block__sliderButtons-prevBtn">
+            <div class="block__sliderButtons-prevBtn" :class="isSlider ? '' : 'buttonsHidden'">
                 <svg><use href="#arrowScroll" /></svg>
             </div>
         </div>
@@ -22,6 +22,9 @@ import "tiny-slider/dist/tiny-slider.css";
 
 export default {
     name: "Slider",
+    props: {
+        isSlider: Boolean,
+    },
     methods: {
         carousel() {
             tns({
@@ -37,6 +40,7 @@ export default {
         },
     },
     mounted: function () {
+        console.log(this.isSlider);
         this.carousel();
     },
     computed: {
@@ -79,12 +83,16 @@ export default {
     height: 70px;
     width: 100%;
     grid-column-gap: 30px;
+    .buttonsHidden {
+        visibility: hidden;
+    }
     &-nextBtn,
     &-prevBtn {
         position: relative;
         display: grid;
         width: 60px;
         height: 60px;
+        overflow: hidden;
         margin-left: 75px;
         background: $white;
         border-radius: 50%;
@@ -95,14 +103,6 @@ export default {
             width: 36px;
             height: 36px;
             fill: $secondary;
-        }
-        &:hover {
-            cursor: pointer;
-            width: 70px;
-            height: 70px;
-            svg {
-                fill: $primary;
-            }
         }
     }
     &-prevBtn {
