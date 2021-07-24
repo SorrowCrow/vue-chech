@@ -32,11 +32,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Italiana&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-
 #app {
     overflow-x: hidden;
 }

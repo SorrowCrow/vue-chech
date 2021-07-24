@@ -1,5 +1,11 @@
 module.exports = {
     configureWebpack: {
+        optimization: {
+            splitChunks: {
+                // include all types of chunks
+                chunks: "all"
+            }
+        },
         devServer: {
             proxy: {
                 "/api": {
@@ -9,6 +15,7 @@ module.exports = {
         }
     },
     css: {
+        sourceMap: true,
         loaderOptions: {
             sass: {
                 additionalData: `

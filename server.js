@@ -74,7 +74,7 @@ app.post("/api/stripe", async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: "czk",
-            description: "amount: " + amount / 100 + ".00" + ", time: " + time + ", persons" + persons + ", ozdoba: " + ozdoba + ", prossecco: " + prossecco + ", misa: " + misa,
+            description: "amount: " + amount / 100 + ".00" + ", time: " + time + ", persons: " + persons + ", ozdoba: " + ozdoba + ", prossecco: " + prossecco + ", misa: " + misa,
         });
         res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id, description: paymentIntent.description });
     } catch (error) {

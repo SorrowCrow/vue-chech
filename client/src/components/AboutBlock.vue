@@ -1,11 +1,11 @@
 <template>
-    <div class="contain mx-auto overflow-hidden">
+    <div class="contain">
         <div class="title-container grid">
             <div class="title" id="about">O nás</div>
             <div class="sub-title">Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.</div>
             <div class="background flex relative content-flex-end">
-                <div class="MagnifyingGlass relative align-self-end grid" @click="magnifyingGlassClick()">
-                    <svg>
+                <div class="MagnifyingGlass relative align-self-end grid h-p" @click="magnifyingGlassClick()">
+                    <svg class="m-auto">
                         <use href="#magnifyingGlass" />
                     </svg>
                 </div>
@@ -101,7 +101,6 @@ export default {
                 transition: 0.2s;
                 bottom: 100px;
                 svg {
-                    margin: auto;
                     width: 33px;
                     height: 33px;
                     stroke: $deepblue;
@@ -109,7 +108,6 @@ export default {
                 &:hover {
                     width: 80px;
                     height: 80px;
-                    cursor: pointer;
                     svg {
                         stroke: $orange;
                     }
@@ -159,37 +157,37 @@ export default {
         display: grid;
         justify-content: center;
         margin: 0 auto;
-    }
-    .services {
-        display: flex;
-    }
-    .title-container {
-        .sub-title {
-            z-index: 1;
-            max-width: 350px;
-            border-radius: 150px 300px 300px 0px;
-            padding-bottom: 46px;
-            padding-right: 50px;
+        .services {
+            display: flex;
         }
-        .background {
-            margin-top: -300px;
-            .MagnifyingGlass {
-                width: 100px;
-                height: 100px;
-                bottom: 70px;
-                svg {
-                    width: 50px;
-                    height: 50px;
-                }
-                &:hover {
-                    width: 110px;
-                    height: 110px;
+        .title-container {
+            .sub-title {
+                z-index: 1;
+                max-width: 350px;
+                border-radius: 150px 300px 300px 0px;
+                padding-bottom: 46px;
+                padding-right: 50px;
+            }
+            .background {
+                margin-top: -300px;
+                .MagnifyingGlass {
+                    width: 100px;
+                    height: 100px;
+                    bottom: 70px;
+                    svg {
+                        width: 50px;
+                        height: 50px;
+                    }
+                    &:hover {
+                        width: 110px;
+                        height: 110px;
+                    }
                 }
             }
         }
-    }
-    .services {
-        display: flex;
+        .services {
+            display: flex;
+        }
     }
 }
 @media only screen and (min-width: $md-breakpoint) {
