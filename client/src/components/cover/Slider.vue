@@ -1,16 +1,16 @@
 <template>
     <div class="slider__wrap">
-        <div class="block__slider">
+        <div class="block__slider relative flex content-center">
             <img src="../../assets/background.webp" />
             <img src="../../assets/background.webp" />
         </div>
-        <div class="background"></div>
-        <div class="block__sliderButtons">
-            <div class="block__sliderButtons-nextBtn" :class="isSlider ? '' : 'buttonsHidden'">
-                <svg><use href="#arrowScroll" /></svg>
+        <div class="background absolute"></div>
+        <div class="block__sliderButtons flex absolute content-between align-center">
+            <div class="block__sliderButtons-nextBtn relative grid" :class="isSlider ? '' : 'invisible'">
+                <svg class="m-auto"><use href="#arrowScroll" /></svg>
             </div>
-            <div class="block__sliderButtons-prevBtn" :class="isSlider ? '' : 'buttonsHidden'">
-                <svg><use href="#arrowScroll" /></svg>
+            <div class="block__sliderButtons-prevBtn relative grid" :class="isSlider ? '' : 'invisible'">
+                <svg class="m-auto"><use href="#arrowScroll" /></svg>
             </div>
         </div>
     </div>
@@ -40,7 +40,6 @@ export default {
         },
     },
     mounted: function () {
-        console.log(this.isSlider);
         this.carousel();
     },
     computed: {
@@ -53,7 +52,6 @@ export default {
 
 <style lang="scss" scoped>
 .background {
-    position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
@@ -62,11 +60,8 @@ export default {
     mix-blend-mode: multiply;
 }
 .block__slider {
-    position: relative;
     width: 100%;
     max-height: 750px;
-    display: flex;
-    justify-content: center;
     img {
         width: auto !important;
         filter: blur(7px);
@@ -74,32 +69,22 @@ export default {
     }
 }
 .block__sliderButtons {
+    transition: $transition;
     opacity: 0;
-    position: absolute;
     bottom: 50%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     height: 70px;
     width: 100%;
     grid-column-gap: 30px;
-    .buttonsHidden {
-        visibility: hidden;
-    }
     &-nextBtn,
     &-prevBtn {
-        position: relative;
-        display: grid;
         width: 60px;
         height: 60px;
-        overflow: hidden;
         margin-left: 75px;
         background: $white;
         border-radius: 50%;
         transition: 0.2s;
         z-index: 1;
         svg {
-            margin: auto;
             width: 36px;
             height: 36px;
             fill: $secondary;
@@ -110,7 +95,7 @@ export default {
         transform: rotate(180deg);
     }
 }
-@media only screen and (min-width: $background-breakpoint) {
+@media only screen and (min-width: $md-breakpoint) {
     .background {
         height: calc(100% - 29px);
     }

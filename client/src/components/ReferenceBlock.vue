@@ -1,46 +1,43 @@
 <template>
-    <svg class="mx-auto containerWave">
+    <svg class="mx-auto containerWave relative">
         <use href="#containerWave" />
     </svg>
     <footer class="contain">
         <div class="content mx-auto">
             <div class="carouselContainer">
-                <div class="footer__carousel" id="reference">
+                <div class="footer__carousel h-p" id="reference">
                     <div>
-                        <div class="footer__carousel-slide">Super prostředí, čistota a soukromí. Doporučuji! — 5/5</div>
+                        <div class="footer__carousel-slide text-center user-select-none m-auto">Super prostředí, čistota a soukromí. Doporučuji! — 5/5</div>
                     </div>
                     <div>
-                        <div class="footer__carousel-slide">Super prostředí, čistota a soukromí. Doporučuji! — 5/5</div>
-                    </div>
-                    <div>
-                        <div class="footer__carousel-slide">Super prostředí, čistota a soukromí. Doporučuji! — 5/5</div>
+                        <div class="footer__carousel-slide text-center user-select-none m-auto">Super prostředí, čistota a soukromí. Doporučuji! — 5/5</div>
                     </div>
                 </div>
-                <div class="buttons">
-                    <div class="footer__carousel-nextBtn">
-                        <svg><use href="#arrowScroll" /></svg>
+                <div class="buttons flex content-center align-center">
+                    <div class="footer__carousel-nextBtn grid h-p">
+                        <svg class="m-auto"><use href="#arrowScroll" /></svg>
                     </div>
-                    <div class="footer__carousel-prevBtn">
-                        <svg><use href="#arrowScroll" /></svg>
+                    <div class="footer__carousel-prevBtn grid h-p">
+                        <svg class="m-auto"><use href="#arrowScroll" /></svg>
                     </div>
                 </div>
                 <svg class="mx-auto wave">
                     <use href="#wave" />
                 </svg>
             </div>
-            <a class="mx-auto content__number" href="tel:+420 286 851 738">+420 286 851 738</a>
-            <div class="sub-title">
+            <a class="mx-auto content__number text-decoration-none h-fit-content max-content text-center block" href="tel:+420 286 851 738">+420 286 851 738</a>
+            <div class="sub-title grid text-center">
                 Krnska 350/26, Praha 19700
-                <a class="mx-auto content__email" href="mailto:sauna@marieluisa.cz">sauna@marieluisa.cz</a>
+                <a class="mx-auto content__email text-decoration-none" href="mailto:sauna@marieluisa.cz">sauna@marieluisa.cz</a>
             </div>
-            <div class="mx-auto content__links">
-                <a href="https://facebook.com" target="_blank" rel="noopener">
-                    <svg>
+            <div class="mx-auto content__links max-content">
+                <a class="text-decoration-none inline-block" href="https://facebook.com" target="_blank" rel="noopener">
+                    <svg class="h-p">
                         <use href="#facebook" rel="noopener" />
                     </svg>
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener">
-                    <svg>
+                <a class="text-decoration-none inline-block" href="https://instagram.com" target="_blank" rel="noopener">
+                    <svg class="h-p">
                         <use href="#instagram" rel="noopener" />
                     </svg>
                 </a>
@@ -78,7 +75,6 @@ export default {
 
 <style lang="scss" scoped>
 .containerWave {
-    position: relative;
     width: 100%;
     min-width: 680px;
     height: 22px;
@@ -96,7 +92,6 @@ export default {
             .footer__carousel {
                 &-nextBtn,
                 &-prevBtn {
-                    display: grid;
                     top: 80px;
                     width: 60px;
                     height: 60px;
@@ -104,32 +99,24 @@ export default {
                     border-radius: 50%;
                     transition: 0.2s;
                     svg {
-                        margin: auto;
                         width: 36px;
                         height: 36px;
                         fill: $deepblue;
-                    }
-                    &:hover {
-                        cursor: pointer;
                     }
                 }
                 &-prevBtn {
                     transform: rotate(180deg);
                 }
                 &-slide {
-                    text-align: center;
                     font-weight: 300;
                     font-size: 25px;
                     line-height: 37.5px;
                     width: 100%;
-                    user-select: none;
                 }
             }
             padding-top: 40px;
             .buttons {
                 padding-top: 30px;
-                display: flex;
-                justify-content: center;
                 grid-column-gap: 30px;
             }
             .wave {
@@ -143,36 +130,25 @@ export default {
         }
         a {
             color: $deepblue;
-            text-decoration: none;
         }
         &__number {
-            height: fit-content;
-            display: block;
-            width: max-content;
             font-family: $playfair-font;
             font-size: 45px;
-            text-align: center;
             letter-spacing: -0.03em;
             padding-bottom: 41px;
         }
-        .sub-title {
-            display: grid;
-            text-align: center;
-        }
+
         &__links {
-            display: grid;
-            grid-template-columns: auto auto;
-            grid-column-gap: 20px;
-            width: min-content;
             padding-top: 45px;
             padding-bottom: 60px;
+            a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
             svg {
                 width: 50px;
                 height: 50px;
                 fill: $deepblue;
-                &:hover {
-                    cursor: pointer;
-                }
             }
         }
     }
@@ -181,6 +157,7 @@ export default {
     .containerWave {
         width: 100%;
         height: 22px;
+        z-index: -1;
     }
     .contain {
         .content {
@@ -189,8 +166,6 @@ export default {
                 .footer__carousel {
                     &-nextBtn,
                     &-prevBtn {
-                        align-self: center;
-                        border-radius: 50%;
                         z-index: 1;
                         &:hover {
                             width: 70px;
@@ -198,12 +173,7 @@ export default {
                             bottom: 49.5%;
                         }
                     }
-                    &-prevBtn {
-                        transform: rotate(180deg);
-                    }
                     &-slide {
-                        margin: auto;
-                        text-align: center;
                         font-weight: 300;
                         font-size: 50px;
                         line-height: 150%;
@@ -220,14 +190,8 @@ export default {
                     padding-top: 50px;
                     padding-bottom: 44px;
                     width: 100%;
-                    fill: black;
-                    fill-opacity: 0.09;
                     height: min-content;
                 }
-            }
-            a {
-                color: $deepblue;
-                text-decoration: none;
             }
             &__number {
                 font-size: 100px;

@@ -1,7 +1,7 @@
 <template>
-    <div :class="[info ? 'reservationForm__additional-info' : '']" class="reservationForm__additional">
-        <div class="wrap">
-            <div class="reservationForm__additional-item">
+    <div :class="[info ? 'reservationForm__additional-info' : '']" class="reservationForm__additional grid">
+        <div class="wrap grid content-between">
+            <div class="reservationForm__additional-item flex">
                 <svg class="tux">
                     <use v-if="name == 'Ozdoba'" href="#tux" />
                     <use v-else-if="name == 'Prossecco'" href="#prossecco" />
@@ -12,7 +12,7 @@
                     <p>{{ price }},- Kč</p>
                 </div>
             </div>
-            <div class="reservationForm__additional-item">
+            <div class="reservationForm__additional-item flex">
                 <label class="switch">
                     <input type="checkbox" @change="name == 'Ozdoba' ? ($parent.$parent.ozdoba = !$parent.$parent.ozdoba) : '', name == 'Prossecco' ? ($parent.$parent.prossecco = !$parent.$parent.prossecco) : '', name == 'Ovocna Misa' ? ($parent.$parent.misa = !$parent.$parent.misa) : ''" />
                     <span class="slider round"></span>
@@ -61,18 +61,14 @@ export default {
     }
 }
 .reservationForm__additional {
-    display: grid;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 28px;
     padding-bottom: 28px;
     .wrap {
-        display: grid;
         width: 100%;
-        justify-content: space-between;
     }
     &-item {
-        display: flex;
         .strawberry,
         .prossecco,
         .tux {

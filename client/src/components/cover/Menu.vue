@@ -1,14 +1,14 @@
 <template>
-    <div class="menu mx-auto" v-if="!isMd">
-        <div class="menu__main">
-            <div @click="scroll('#about')">O nás</div>
-            <div @click="scroll('#book')">Rezervace</div>
-            <div @click="scroll('#giftCards')">Dárkové poukazy</div>
-            <div @click="scroll('#reference')">Reference</div>
+    <div class="menu mx-auto relative flex content-between" v-if="!isMd">
+        <div class="menu__main flex content-between">
+            <div class="h-p" @click="scroll('#about')">O nás</div>
+            <div class="h-p" @click="scroll('#book')">Rezervace</div>
+            <div class="h-p" @click="scroll('#giftCards')">Dárkové poukazy</div>
+            <div class="h-p" @click="scroll('#reference')">Reference</div>
         </div>
-        <div class="menu__social">
-            <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <div class="menu__social flex content-between">
+            <a class="text-decoration-none" href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+            <a class="text-decoration-none" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
         </div>
     </div>
 </template>
@@ -34,27 +34,16 @@ export default {
 
 <style lang="scss" scoped>
 .menu {
-    position: relative;
+    color: $white;
     bottom: 65px;
     width: 970px;
-    display: flex;
-    justify-content: space-between;
-    color: $white;
     font-size: 25px;
     &__main {
-        display: flex;
-        justify-content: space-between;
         width: 617px;
-        div:hover {
-            cursor: pointer;
-        }
     }
     &__social {
-        display: flex;
-        justify-content: space-between;
         width: 269px;
         a {
-            text-decoration: none;
             color: $white;
         }
     }

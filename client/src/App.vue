@@ -46,13 +46,6 @@ body {
     margin: 0;
     cursor: default;
 }
-
-.pointer {
-    cursor: pointer;
-}
-.max-content {
-    width: max-content;
-}
 .unHiddenForSlide {
     .block__slider img {
         filter: blur(0);
@@ -76,22 +69,5 @@ body {
     opacity: 0;
     overflow: hidden;
     transition-timing-function: linear, step-end;
-}
-.newhidden {
-    position: absolute;
-    height: 0;
-    transition-timing-function: linear, step-end;
-}
-.positionRelative {
-    position: relative;
-}
-.hidden {
-    opacity: 0;
-    height: 0;
-    // transition-timing-function: linear, step-end;
-}
-.unhidden {
-    opacity: 1 !important;
-    height: 300px !important;
 }
 </style>

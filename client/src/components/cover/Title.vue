@@ -1,10 +1,10 @@
 <template>
-    <div class="contain" id="cover">
+    <div class="contain relative" id="cover">
         <Slider :isSlider="isSlider" />
-        <div id="sliderInit" class="title" @click="titleClick()">
-            <div class="title-privatni">Tvůj privátní</div>
-            <div class="title-wellness">Wellness</div>
-            <svg>
+        <div id="sliderInit" class="title absolute fit-content my-auto user-select-none" @click="titleClick()">
+            <div class="title-privatni relative fit-content mx-auto">Tvůj privátní</div>
+            <div class="title-wellness relative mx-auto">Wellness</div>
+            <svg class="relative">
                 <use href="#rezervace" @click="isMd ? rezervaceClick() : ''" />
             </svg>
         </div>
@@ -67,76 +67,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.contain {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    overflow: hidden;
+.title {
+    top: calc(50% - 334px / 2);
+    left: calc(50% - 314px / 2);
+    color: $white;
+    transition: $transition;
+    &-privatni {
+        font-family: $indieFlower-font;
+        line-height: 58px;
+        color: $secondary;
+    }
+    &-wellness {
+        top: 0;
+        width: 100%;
+        font-size: 85px;
+        line-height: 100px;
+        font-family: $italiana-font;
+    }
+    svg {
+        width: 140px;
+        height: 140px;
+        right: 0px;
+        padding-top: 36px;
+        padding-left: 83px;
+        fill: $orange;
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
     .title {
-        position: absolute;
-        margin: 0 auto;
-        width: fit-content;
-        top: calc(50% - 334px / 2);
-        left: calc(50% - 314px / 2);
-        color: $white;
-        transition: 0.25s;
-        user-select: none;
+        width: 970px;
+        top: calc(50% - 366px / 2);
+        left: calc(50% - 970px / 2);
+        &:hover {
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+        }
         &-privatni {
-            position: relative;
-            width: fit-content;
-            font-family: $indieFlower-font;
-            line-height: 58px;
-            color: $secondary;
-            margin: 0 auto;
+            font-size: 80px;
+            line-height: 117px;
         }
         &-wellness {
-            position: relative;
-            top: 0;
+            top: -46px;
             width: 100%;
-            font-size: 85px;
-            line-height: 100px;
-            font-family: $italiana-font;
-            color: inherit;
-            margin: 0 auto;
+            font-size: 250px;
+            line-height: 294px;
         }
         svg {
-            position: relative;
+            position: absolute;
             width: 140px;
             height: 140px;
             right: 0px;
-            padding-top: 36px;
-            padding-left: 83px;
-            fill: $orange;
-        }
-    }
-    @media only screen and (min-width: $md-breakpoint) {
-        .title {
-            width: 970px;
-            top: calc(50% - 366px / 2);
-            left: calc(50% - 970px / 2);
-            &:hover {
-                cursor: pointer;
-                color: rgba(255, 255, 255, 0.5);
-            }
-            &-privatni {
-                width: 405px;
-                font-size: 80px;
-                line-height: 117px;
-            }
-            &-wellness {
-                top: -46px;
-                width: 100%;
-                font-size: 250px;
-                line-height: 294px;
-            }
-            svg {
-                position: absolute;
-                width: 140px;
-                height: 140px;
-                right: 0px;
-                top: 79px;
-                padding: 0;
-            }
+            top: 79px;
+            padding: 0;
         }
     }
 }

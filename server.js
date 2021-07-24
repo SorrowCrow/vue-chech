@@ -61,7 +61,6 @@ app.post("/api/stripe", async (req, res) => {
     if (prossecco) amount += 290;
     if (misa) amount += 350;
     let reservedArray = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
-    console.log(reservedArray);
     intTime = Number(reservedArray[2]) - Number(reservedArray[0]);
     if (Number(reservedArray[3]) === 30) {
         intTime += 0.5;
@@ -71,15 +70,13 @@ app.post("/api/stripe", async (req, res) => {
     else if (intTime === 2) amount += 1399;
     else if (intTime === 3) amount += 1899;
     amount = amount * 100;
-    console.log(intTime);
-    console.log(amount);
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: "czk",
+            description: "amount: " + amount / 100 + ".00" + ", time: " + time + ", persons" + persons + ", ozdoba: " + ozdoba + ", prossecco: " + prossecco + ", misa: " + misa,
         });
-
-        res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id });
+        res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id, description: paymentIntent.description });
     } catch (error) {
         console.log("error: ", error);
         res.status(500).send("error" + error);

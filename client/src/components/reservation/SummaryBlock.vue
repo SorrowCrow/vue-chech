@@ -1,46 +1,46 @@
 <template>
     <div class="containerWave-cover">
-        <svg class="containerWave">
+        <svg class="containerWave relative">
             <use href="#containerWave" />
         </svg>
     </div>
     <div class="wrap">
-        <div class="SummaryBlock">
+        <div class="SummaryBlock grid mx-auto">
             <div class="SummaryBlock__costs">
-                <div class="SummaryBlock__costs-item">
-                    <div>
+                <div class="SummaryBlock__costs-item flex content-between">
+                    <div class="grid">
                         <span>{{ date }},&nbsp;</span>
                         <span>od {{ time }}</span>
                     </div>
                     <div>{{ timePrice }},– Kč</div>
                 </div>
-                <div class="SummaryBlock__costs-item">
+                <div class="SummaryBlock__costs-item flex content-between">
                     <div>{{ persons }} osoby</div>
                     <div>{{ persons * 100 }},– Kč</div>
                 </div>
-                <div v-if="ozdoba" class="SummaryBlock__costs-item">
+                <div v-if="ozdoba" class="SummaryBlock__costs-item flex content-between">
                     <div>Ozdoba</div>
                     <div>{{ ozdobaPrice }},– Kč</div>
                 </div>
-                <div v-if="prossecco" class="SummaryBlock__costs-item">
+                <div v-if="prossecco" class="SummaryBlock__costs-item flex content-between">
                     <div>Prossecco</div>
                     <div>{{ prosseccoPrice }},– Kč</div>
                 </div>
-                <div v-if="misa" class="SummaryBlock__costs-item">
+                <div v-if="misa" class="SummaryBlock__costs-item flex content-between">
                     <div>Misa</div>
                     <div>{{ misaPrice }},– Kč</div>
                 </div>
-                <div class="SummaryBlock__costs-total SummaryBlock__costs-item">
+                <div class="SummaryBlock__costs-total SummaryBlock__costs-item flex content-between">
                     <div>Total:</div>
                     <div>{{ persons * 100 + timePrice + (ozdoba ? ozdobaPrice : 0) + (prossecco ? prosseccoPrice : 0) + (misa ? misaPrice : 0) }},– Kč</div>
                 </div>
             </div>
-            <div class="SummaryBlock__voucher">
+            <div class="SummaryBlock__voucher flex content-between align-center">
                 <div class="SummaryBlock__voucher-text">Mam voucher</div>
-                <div class="SummaryBlock__voucher-button">Uplatnit</div>
+                <div class="SummaryBlock__voucher-button h-p align-center flex content-space-around">Uplatnit</div>
             </div>
             <div class="SummaryBlock__payingMethods">
-                <label class="SummaryBlock__payingMethods-item">
+                <label class="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
                     <div class="SummaryBlock__payingMethods-method">
                         Bankovní převod
                         <input type="radio" checked="checked" name="radio" form="form" v-on:change="$parent.OnlinePayments = true" />
@@ -48,7 +48,7 @@
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Prevodem obvykle 2 dni</div>
                 </label>
-                <label class="SummaryBlock__payingMethods-item">
+                <label class="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
                     <div class="SummaryBlock__payingMethods-method">
                         Hotové
                         <input type="radio" name="radio" form="form" v-on:change="$parent.OnlinePayments = false" />
@@ -56,7 +56,7 @@
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Hotove nebo kartou pri prichodu</div>
                 </label>
-                <label class="SummaryBlock__payingMethods-item">
+                <label class="SummaryBlock__payingMethods-item grid relative content-between h-p align-center user-select-none">
                     <div class="SummaryBlock__payingMethods-item-method">
                         Platba Online
                         <input type="radio" name="radio" form="form" v-on:change="$parent.OnlinePayments = true" />
@@ -64,22 +64,16 @@
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Kartou Online</div>
                 </label>
-                <div id="stripe-card" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
+                <div id="stripe-card" class="overflow-hidden" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
             </div>
-            <button type="submit" class="SummaryBlock__rezervovat" form="form">Rezervovat</button>
+            <button type="submit" class="SummaryBlock__rezervovat h-p mx-auto align-center" form="form">Rezervovat</button>
         </div>
     </div>
-    <!-- <OnlinePaymentsBlock v-if="OnlinePaymentsBlockVisible" /> -->
 </template>
 
 <script>
-// import OnlinePaymentsBlock from "./OnlinePaymentsBlock.vue";
-
 export default {
     name: "SummaryBlock",
-    // components: {
-    //     OnlinePaymentsBlock,
-    // },
     props: {
         time: String,
         date: String,
@@ -112,10 +106,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cardShow,
-.cardHide {
-    overflow: hidden;
-}
 .cardShow {
     transition: 0.5s;
     height: 26.4px;
@@ -128,7 +118,6 @@ export default {
     height: 0px;
 }
 .containerWave {
-    position: relative;
     width: 100%;
     min-width: 680px;
     height: 22px;
@@ -140,23 +129,16 @@ export default {
     margin-top: -4px;
 }
 .SummaryBlock {
-    display: grid;
     color: $deepblue;
     font-size: 18px;
     max-width: 570px;
-    margin: 0 auto;
     padding-right: 30px;
     padding-left: 30px;
     padding-top: 100px;
     padding-bottom: 100px;
     &__costs {
         &-item {
-            display: flex;
-            justify-content: space-between;
             padding-bottom: 16px;
-            div {
-                display: grid;
-            }
         }
         &-total {
             font-family: $playfair-font;
@@ -164,8 +146,6 @@ export default {
         }
     }
     &__voucher {
-        display: flex;
-        justify-content: space-between;
         background-color: $backgroundgrey;
         border-radius: 10px;
         margin-top: 35px;
@@ -180,30 +160,17 @@ export default {
             width: 125px;
             height: 38px;
             margin-right: 11px;
-            display: flex;
-            align-self: center;
-            align-items: center;
-            justify-content: space-around;
             color: white;
-            &:hover {
-                cursor: pointer;
-            }
         }
     }
     &__payingMethods {
         padding-top: 42px;
         &-item {
-            display: grid;
             grid-row-gap: 3px;
-            justify-content: space-between;
-            position: relative;
             padding-left: 55px;
             height: 30px;
             padding-bottom: 25px;
-            cursor: pointer;
             font-size: 22px;
-            user-select: none;
-            align-items: center;
             &-info {
                 color: $secondary;
                 font-size: 16px;
@@ -248,7 +215,6 @@ export default {
     }
     &__rezervovat {
         border: 0;
-        margin: 0 auto;
         width: 239px;
         font-size: 25px;
         height: 60px;
@@ -256,12 +222,6 @@ export default {
         margin-top: 42px;
         background-color: $orange;
         color: white;
-        align-self: center;
-        align-items: center;
-        justify-content: space-around;
-        &:hover {
-            cursor: pointer;
-        }
     }
 }
 @media only screen and (min-width: 1070px) {

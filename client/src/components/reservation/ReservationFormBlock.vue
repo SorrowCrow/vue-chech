@@ -1,73 +1,64 @@
 <template>
-    <div>
-        <svg class="containerWave">
-            <use href="#containerWave" />
-        </svg>
-        <form class="reservationForm" id="form" @submit.prevent="handleSubmit">
-            <div class="container">
-                <div class="grid">
-                    <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
-                    <div class="reservationForm__select">
-                        <!-- <select class="reservationForm__select-inner" form="form">
-                        <option value="1">
-                            1 Osoby
-                            <p>(+100,- Kč)</p>
-                        </option>
-                    </select> -->
-                        <div class="reservationForm__select-inner" @click="osobyClick()">
-                            <div class="pa">
-                                {{ $parent.persons }} Osoby
-                                <p v-if="$parent.persons > 1">(+{{ $parent.persons - 1 }}00,- Kč)</p>
-                            </div>
-                            <svg><use href="#openedArrow" /></svg>
+    <svg class="containerWave relative">
+        <use href="#containerWave" />
+    </svg>
+    <form class="reservationForm" id="form" @submit.prevent="handleSubmit">
+        <div class="container mx-auto">
+            <div class="form-grid grid">
+                <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
+                <div class="reservationForm__select">
+                    <div class="reservationForm__select-inner flex content-between align-center h-p" @click="osobyClick()">
+                        <div class="pa flex align-center">
+                            {{ $parent.persons }} Osoby
+                            <p v-if="$parent.persons > 1">(+{{ $parent.persons - 1 }}00,- Kč)</p>
                         </div>
-
-                        <div class="reservationForm__select-list">
-                            <div @click="($parent.persons = 1), osobyClick()">1 Osoby</div>
-                            <div @click="($parent.persons = 2), osobyClick()">
-                                2 Osoby
-                                <p>(+100,- Kč)</p>
-                            </div>
-                            <div @click="($parent.persons = 3), osobyClick()">
-                                3 Osoby
-                                <p>(+200,- Kč)</p>
-                            </div>
-                            <div @click="($parent.persons = 4), osobyClick()">
-                                4 Osoby
-                                <p>(+300,- Kč)</p>
-                            </div>
+                        <svg id="formArrow"><use href="#openedArrow" /></svg>
+                    </div>
+                    <div class="reservationForm__select-list none h-fit-content overflow-hidden">
+                        <div class="h-p flex align-center" @click="($parent.persons = 1), osobyClick()">1 Osoby</div>
+                        <div class="h-p flex align-center" @click="($parent.persons = 2), osobyClick()">
+                            2 Osoby
+                            <p>(+100,- Kč)</p>
+                        </div>
+                        <div class="h-p flex align-center" @click="($parent.persons = 3), osobyClick()">
+                            3 Osoby
+                            <p>(+200,- Kč)</p>
+                        </div>
+                        <div class="h-p flex align-center" @click="($parent.persons = 4), osobyClick()">
+                            4 Osoby
+                            <p>(+300,- Kč)</p>
                         </div>
                     </div>
-                    <input required type="tel" name="phone" placeholder="Telefon*" v-model="$parent.formData.phone" v-on:keypress="isNumber(event)" />
-                    <input required type="email" name="email" placeholder="E-mail" v-model="$parent.formData.email" />
-                    <textarea
-                        v-model="$parent.formData.message"
-                        type="text"
-                        name="message"
-                        placeholder="Dalsi pozadavky
-Treba jokou chcete hudbu..."
-                    ></textarea>
                 </div>
-
-                <AdditionalComponent :name="'Ozdoba'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
-                <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
-                <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+                <input required type="tel" name="phone" placeholder="Telefon*" v-model="$parent.formData.phone" v-on:keypress="isNumber(event)" />
+                <input required type="email" name="email" placeholder="E-mail" v-model="$parent.formData.email" />
+                <textarea
+                    v-model="$parent.formData.message"
+                    type="text"
+                    name="message"
+                    placeholder="Dalsi pozadavky
+Treba jokou chcete hudbu..."
+                ></textarea>
             </div>
-        </form>
+
+            <AdditionalComponent :name="'Ozdoba'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+            <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+            <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+        </div>
+    </form>
+    <div class="flex content-center align-center fixed overflow-hidden OnlinePaymentsBlock" v-if="loading">
+        <div class="spin flex"></div>
     </div>
-    <OnlinePaymentsBlock v-if="loading" />
 </template>
 
 <script>
 import AdditionalComponent from "./AdditionalComponent.vue";
-import OnlinePaymentsBlock from "./OnlinePaymentsBlock.vue";
 import axios from "axios";
 
 export default {
     name: "ReservationFormBlock",
     components: {
         AdditionalComponent,
-        OnlinePaymentsBlock,
     },
     data() {
         return {
@@ -114,6 +105,13 @@ export default {
         const element = this.elements.create("card", style);
         await element.mount("#stripe-card");
         this.loading = false;
+        document.getElementsByClassName("Reservation__reservationForm")[0].addEventListener("click", (e) => {
+            e.stopPropagation();
+            document.getElementsByClassName("reservationForm__select-list")[0].style.display = "";
+            document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "";
+            document.getElementById("formArrow").style.transform = "";
+        });
+        document.getElementsByClassName("reservationForm__select")[0].addEventListener("click", (e) => e.stopPropagation());
     },
     methods: {
         async handleSubmit() {
@@ -136,14 +134,12 @@ export default {
                 this.cardElement = this.elements.getElement("card");
 
                 try {
-                    const response = await fetch("https://kbely.herokuapp.com/api/stripe", {
-                        method: "POST",
+                    const response = await axios.post("api/stripe/", JSON.stringify(this.$parent.formData), {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(this.$parent.formData),
                     });
-                    const { secret, id } = await response.json();
+                    const { secret, id } = response.data;
                     this.$parent.formData.stripeId = id;
                     const paymentMethodReq = await this.stripe.createPaymentMethod({
                         type: "card",
@@ -174,11 +170,18 @@ export default {
                 return true;
             }
         },
+        closeList() {
+            document.getElementsByClassName("reservationForm__select-list")[0].style.display = "";
+            document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "";
+            document.getElementById("formArrow").style.transform = "";
+        },
         osobyClick() {
             if (document.getElementsByClassName("reservationForm__select-list")[0].style.display == "grid") {
-                document.getElementsByClassName("reservationForm__select-list")[0].style.display = "none";
+                this.closeList();
             } else {
                 document.getElementsByClassName("reservationForm__select-list")[0].style.display = "grid";
+                document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "10px 10px 0 0";
+                document.getElementById("formArrow").style.transform = "rotate(180deg)";
             }
         },
         async addItem() {
@@ -190,8 +193,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.spin::before {
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px #cfd0d1;
+    border-bottom-color: $primary;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    width: 40px;
+    will-change: transform;
+}
+.OnlinePaymentsBlock {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
 .containerWave {
-    position: relative;
     width: 100%;
     min-width: 680px;
     height: 22px;
@@ -208,13 +238,12 @@ export default {
         max-width: 769px;
         padding-left: 30px;
         padding-right: 30px;
-        margin: 0 auto;
-        .grid {
-            display: grid;
+        .form-grid {
             grid-template-columns: auto;
             grid-row-gap: 10px;
             p {
                 color: $secondary;
+                padding-left: 20px;
             }
         }
     }
@@ -249,35 +278,21 @@ export default {
         &-inner {
             background-color: $white;
             height: 60px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .pa {
-                display: flex;
-                align-items: center;
-                p {
-                    padding-left: 20px;
-                }
-            }
-            &:hover {
-                cursor: pointer;
-            }
         }
         &-list {
-            display: none;
-            justify-content: space-between;
-
+            grid-template-columns: 100%;
+            background-color: white;
+            border-radius: 0 0 10px 10px;
             div {
-                background-color: white;
+                border-radius: 0;
+
                 z-index: 1;
                 width: 100%;
                 height: 60px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                p {
+                    padding-left: 20px;
+                }
                 &:hover {
-                    cursor: pointer;
                     background-color: $backgroundgrey;
                 }
             }
@@ -298,14 +313,10 @@ export default {
         padding-top: 100px;
         padding-bottom: 88px;
         .container {
-            .grid {
-                display: grid;
+            .form-grid {
                 grid-template-columns: auto auto;
                 grid-column-gap: 30px;
                 grid-row-gap: 30px;
-                p {
-                    color: $secondary;
-                }
             }
         }
         &__select-inner,
@@ -317,7 +328,6 @@ export default {
         textarea {
             margin-bottom: 30px;
             grid-column: 1 / -1;
-            resize: none;
             height: 170px;
         }
     }

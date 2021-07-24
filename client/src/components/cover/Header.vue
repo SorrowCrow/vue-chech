@@ -1,33 +1,33 @@
 <template>
-    <header class="header">
-        <div class="header__wrap mx-auto" v-if="!isMenu">
-            <div class="header__logo">
-                <svg v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
+    <header class="header absolute">
+        <div class="header__wrap flex content-between mx-auto" v-if="!isMenu">
+            <div class="header__logo flex">
+                <svg class="relative float-left" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
                     <use href="#logo" />
                 </svg>
-                <div class="header__logo-text" v-if="displayMenu">Sauna Kbely</div>
+                <div class="header__logo-text relative" v-if="displayMenu">Sauna Kbely</div>
             </div>
-            <div class="header__contacts" v-if="displayMenu">
-                <div class="header__contacts-item">
+            <div class="header__contacts flex content-between" v-if="displayMenu">
+                <div class="header__contacts-item flex">
                     <svg>
                         <use href="#clock" />
                     </svg>
                     <div>08:00—22:00</div>
                 </div>
-                <div class="header__contacts-item">
+                <div class="header__contacts-item flex">
                     <svg>
                         <use href="#location" />
                     </svg>
-                    <a href="https://www.google.com/maps/place/Krnská+350,+197+00+Kbely,+Czechia/@50.1286805,14.5498908,19z" target="_blank" rel="noopener">Krnska 350/26, Praha 19700</a>
+                    <a class="text-decoration-none" href="https://www.google.com/maps/place/Krnská+350,+197+00+Kbely,+Czechia/@50.1286805,14.5498908,19z" target="_blank" rel="noopener">Krnska 350/26, Praha 19700</a>
                 </div>
-                <div class="header__contacts-item">
+                <div class="header__contacts-item flex">
                     <svg>
                         <use href="#phone" />
                     </svg>
-                    <a href="tel:+420 286 851 738">+420 286 851 738</a>
+                    <a class="text-decoration-none" href="tel:+420 286 851 738">+420 286 851 738</a>
                 </div>
             </div>
-            <svg v-else class="header__menu" @click="isMenu = true">
+            <svg v-else class="header__menu h-p" @click="isMenu = true">
                 <use href="#headerMenu" />
             </svg>
         </div>
@@ -70,7 +70,6 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-    position: absolute;
     width: 100%;
     padding-top: 30px;
     z-index: 100;
@@ -79,24 +78,16 @@ export default {
         height: 60px;
         padding-right: 30px;
         fill: $secondary;
-        &:hover {
-            cursor: pointer;
-        }
     }
     &__wrap {
         max-width: 1440px;
         color: $white;
-        display: flex;
-        justify-content: space-between;
     }
     &__logo {
         padding-left: 30px;
-        display: flex;
         &-icon,
         &-iconBig {
             fill: $secondary;
-            position: relative;
-            float: left;
             padding-right: 20px;
             width: 40px;
             height: 48px;
@@ -106,40 +97,26 @@ export default {
             height: 68px;
         }
         &-text {
-            position: relative;
             font-size: 35px;
             line-height: 41px;
             top: 7px;
         }
     }
     &__contacts {
-        display: flex;
-        justify-content: space-between;
         width: 884px;
         padding-right: 35px;
+        margin-top: 16px;
+        font-size: 25px;
+        line-height: 29px;
         a {
             color: $white;
-            text-decoration: none;
-        }
-        div,
-        svg {
-            position: relative;
-        }
-        div {
-            font-size: 25px;
-            line-height: 29px;
         }
         svg {
-            float: left;
             padding-top: 2px;
             padding-right: 5px;
             width: 25px;
             height: 25px;
             fill: $secondary;
-        }
-        &-item {
-            display: flex;
-            margin-top: 16px;
         }
     }
 }

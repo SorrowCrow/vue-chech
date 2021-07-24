@@ -1,37 +1,37 @@
 <template>
-    <div class="contain mx-auto">
-        <div class="title-container">
+    <div class="contain mx-auto overflow-hidden">
+        <div class="title-container grid">
             <div class="title" id="about">O nás</div>
             <div class="sub-title">Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.</div>
-            <div class="background">
-                <div class="MagnifyingGlass" @click="magnifyingGlassClick()">
+            <div class="background flex relative content-flex-end">
+                <div class="MagnifyingGlass relative align-self-end grid" @click="magnifyingGlassClick()">
                     <svg>
                         <use href="#magnifyingGlass" />
                     </svg>
                 </div>
             </div>
         </div>
-        <div class="services mx-auto">
-            <div class="services__item">
+        <div class="services mx-auto relative grid content-space-between max-content">
+            <div class="services__item grid content-center text-center">
                 <svg class="frame1">
                     <use href="#frame1" />
                 </svg>
                 Vířivka
             </div>
-            <div class="services__item">
+            <div class="services__item grid content-center text-center">
                 <svg class="frame2">
                     <use href="#frame2" />
                 </svg>
                 Sauna
             </div>
-            <div class="services__item">
+            <div class="services__item grid content-center text-center">
                 <svg class="frame3">
                     <use href="#frame3" />
                 </svg>
                 Bazén
             </div>
-            <div class="services__item">
-                <svg class="frame4">
+            <div class="services__item grid content-center text-center">
+                <svg class="frame4 m-auto">
                     <use href="#frame4" />
                 </svg>
                 Odpočívárna
@@ -71,10 +71,8 @@ export default {
     margin-left: 30px;
     margin-right: 30px;
     .title-container {
-        display: grid;
         grid-template-columns: auto;
         .title {
-            width: max-content;
             padding-top: 53px;
             line-height: 107px;
         }
@@ -86,7 +84,6 @@ export default {
             margin-right: -72px;
         }
         .background {
-            position: relative;
             background-image: url("../assets/pic.webp");
             background-position: top right;
             background-repeat: no-repeat;
@@ -96,12 +93,7 @@ export default {
             height: 100vw;
             max-height: 570px;
             margin-right: 30px;
-            display: flex;
-            justify-content: flex-end;
             .MagnifyingGlass {
-                position: relative;
-                align-self: flex-end;
-                display: grid;
                 width: 66px;
                 height: 66px;
                 background: $white;
@@ -126,20 +118,13 @@ export default {
         }
     }
     .services {
-        position: relative;
-        display: grid;
-        grid-column-gap: 19px;
         grid-template-columns: auto auto;
-        justify-content: space-between;
-        width: max-content;
+        grid-column-gap: 19px;
 
         font-family: $playfair-font;
         &__item {
             width: 148px;
             height: 150px;
-            display: grid;
-            justify-content: center;
-            text-align: center;
             font-size: 20px;
             line-height: 27px;
             svg {
@@ -165,7 +150,6 @@ export default {
                 width: 84px;
                 height: 72px;
                 padding-top: 26px;
-                margin: auto;
             }
         }
     }
@@ -175,38 +159,37 @@ export default {
         display: grid;
         justify-content: center;
         margin: 0 auto;
-        .services {
-            display: flex;
+    }
+    .services {
+        display: flex;
+    }
+    .title-container {
+        .sub-title {
+            z-index: 1;
+            max-width: 350px;
+            border-radius: 150px 300px 300px 0px;
+            padding-bottom: 46px;
+            padding-right: 50px;
         }
-        .title-container {
-            .sub-title {
-                align-items: center;
-                z-index: 1;
-                max-width: 350px;
-                border-radius: 150px 300px 300px 0px;
-                padding-bottom: 46px;
-                padding-right: 50px;
-            }
-            .background {
-                margin-top: -300px;
-                .MagnifyingGlass {
-                    width: 100px;
-                    height: 100px;
-                    bottom: 70px;
-                    svg {
-                        width: 50px;
-                        height: 50px;
-                    }
-                    &:hover {
-                        width: 110px;
-                        height: 110px;
-                    }
+        .background {
+            margin-top: -300px;
+            .MagnifyingGlass {
+                width: 100px;
+                height: 100px;
+                bottom: 70px;
+                svg {
+                    width: 50px;
+                    height: 50px;
+                }
+                &:hover {
+                    width: 110px;
+                    height: 110px;
                 }
             }
         }
-        .services {
-            display: flex;
-        }
+    }
+    .services {
+        display: flex;
     }
 }
 @media only screen and (min-width: $md-breakpoint) {
@@ -229,8 +212,6 @@ export default {
             }
         }
         .services {
-            position: relative;
-            display: flex;
             justify-content: space-between;
             width: 1010px;
             padding-top: 80px;
@@ -239,9 +220,6 @@ export default {
             &__item {
                 width: 230px;
                 height: 197px;
-                display: grid;
-                justify-content: center;
-                text-align: center;
                 font-size: 30px;
                 line-height: 40px;
                 svg {
