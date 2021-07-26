@@ -1,8 +1,8 @@
 <template>
-    <svg class="containerWave relative" preserveAspectRatio="none">
-        <use href="#containerWave" />
-    </svg>
     <div class="contain mx-auto overflow-hidden">
+        <svg class="containerWave relative" preserveAspectRatio="none">
+            <use href="#containerWave" />
+        </svg>
         <div class="BookBlock__wrapper">
             <div class="mx-auto max-content content">
                 <div class="title mx-auto fit-content" id="book">Zarezervujete svoji návštěvu</div>
@@ -66,6 +66,7 @@ export default {
     min-width: 680px;
     height: 22px;
     fill: $deepdarkblue;
+    background: white;
 }
 .BookBlock__wrapper {
     margin-right: 30px;
@@ -75,7 +76,6 @@ export default {
     padding-bottom: 100px;
     background: $deepdarkblue;
     color: $beige;
-    margin-top: -4px;
     .content {
         width: 100%;
         max-width: 970px;

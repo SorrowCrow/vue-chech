@@ -1,8 +1,8 @@
 <template>
-    <svg class="mx-auto containerWave relative">
-        <use href="#containerWave" />
-    </svg>
     <footer class="contain">
+        <svg class="mx-auto containerWave relative">
+            <use href="#containerWave" />
+        </svg>
         <div class="content mx-auto">
             <div class="carouselContainer">
                 <div class="footer__carousel h-p" id="reference">
@@ -79,10 +79,10 @@ export default {
     min-width: 680px;
     height: 22px;
     fill: $medium-beige;
+    background: white;
 }
 .contain {
     color: $deepblue;
-    margin-top: -4px;
     background: $medium-beige;
     .content {
         max-width: 970px;
@@ -157,7 +157,6 @@ export default {
     .containerWave {
         width: 100%;
         height: 22px;
-        z-index: -1;
     }
     .contain {
         .content {

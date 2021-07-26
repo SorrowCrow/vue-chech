@@ -1,8 +1,8 @@
 <template>
-    <svg class="containerWave relative">
-        <use href="#containerWave" />
-    </svg>
     <form class="reservationForm" id="form" @submit.prevent="handleSubmit">
+        <svg class="containerWave relative">
+            <use href="#containerWave" />
+        </svg>
         <div class="container mx-auto">
             <div class="form-grid grid">
                 <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
@@ -103,6 +103,18 @@ export default {
 
         this.elements = this.stripe.elements();
         const element = this.elements.create("card", style);
+        // const prButton = this.elements.create("paymentRequestButton", {
+        //     paymentRequest: paymentRequest,
+        // });
+
+        // Check the availability of the Payment Request API first.
+        // paymentRequest.canMakePayment().then(function (result) {
+        //     if (result) {
+        //         prButton.mount("#payment-request-button");
+        //     } else {
+        //         document.getElementById("payment-request-button").style.display = "none";
+        //     }
+        // });
         await element.mount("#stripe-card");
         this.loading = false;
         document.getElementsByClassName("Reservation__reservationForm")[0].addEventListener("click", (e) => {
@@ -225,12 +237,11 @@ export default {
     width: 100%;
     min-width: 680px;
     height: 22px;
-    fill: $backgroundgrey;
-    margin-top: 30px;
     opacity: 0;
+    fill: $backgroundgrey;
+    background: white;
 }
 .reservationForm {
-    margin-top: -4px;
     padding-bottom: 60px;
     background-color: $backgroundgrey;
     color: $deepblue;
@@ -310,9 +321,10 @@ export default {
         opacity: 1;
     }
     .reservationForm {
-        padding-top: 100px;
         padding-bottom: 88px;
+        margin-top: 30px;
         .container {
+            padding-top: 100px;
             .form-grid {
                 grid-template-columns: auto auto;
                 grid-column-gap: 30px;

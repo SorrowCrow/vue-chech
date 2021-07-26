@@ -2,7 +2,7 @@
     <div class="contain relative" id="cover">
         <Slider :isSlider="isSlider" />
         <div id="sliderInit" class="title absolute fit-content my-auto user-select-none" @click="titleClick()">
-            <div class="title-privatni relative fit-content mx-auto">Tvůj privátní</div>
+            <div class="title-privatni relative fit-content" :class="isMd ? 'mx-auto' : ''">Tvůj privátní</div>
             <div class="title-wellness relative mx-auto">Wellness</div>
             <svg class="relative">
                 <use href="#rezervace" @click="isMd ? rezervaceClick() : ''" />

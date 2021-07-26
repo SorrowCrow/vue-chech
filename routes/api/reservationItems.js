@@ -18,7 +18,17 @@ router.get("/:date", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const newreservationItem = new reservationItem(req.body);
+    const stripe = require("stripe")(process.env.SECRET_KEY);
+    const { stripeId } = req.body;
+    let newreservationItem = "";
+
+    if (stripeId) {
+        let paymentIntent = await stripe.paymentIntents.retrieve(stripeId);
+        let metadata = paymentIntent.metadata;
+        newreservationItem = new reservationItem(metadata);
+    } else {
+        newreservationItem = new reservationItem(req.body);
+    }
     try {
         const reservationItem = await newreservationItem.save();
         if (!reservationItem) throw new Error("Something went wrong while saving form");

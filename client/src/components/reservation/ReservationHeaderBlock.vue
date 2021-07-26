@@ -1,7 +1,7 @@
 <template>
     <div class="grid mx-auto ReservationHeaderBlock">
         <svg v-if="isMd" class="ReservationHeaderBlock-icon">
-            <use href="#logo" />
+            <image href="../../../public/icon.svg" class="ReservationHeaderBlock-icon" />
         </svg>
         <div class="title min-content">Rezervace</div>
         <div class="ReservationInfo flex h-fit-content">

@@ -3,7 +3,7 @@
         <div class="header__wrap flex content-between mx-auto" v-if="!isMenu">
             <div class="header__logo flex">
                 <svg class="relative float-left" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
-                    <use href="#logo" />
+                    <image href="../../../public/icon.svg" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'" />
                 </svg>
                 <div class="header__logo-text relative" v-if="displayMenu">Sauna Kbely</div>
             </div>

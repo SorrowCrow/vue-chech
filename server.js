@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 const reservationItemRoutes = require("./routes/api/reservationItems");
 const path = require("path");
 const Stripe = require("stripe");
+const https = require("https");
+const fs = require("fs");
 
 app.use(cors());
 app.use(morgan("tiny"));
@@ -74,7 +76,7 @@ app.post("/api/stripe", async (req, res) => {
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: "czk",
-            description: "amount: " + amount / 100 + ".00" + ", time: " + time + ", persons: " + persons + ", ozdoba: " + ozdoba + ", prossecco: " + prossecco + ", misa: " + misa,
+            metadata: req.body,
         });
         res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id, description: paymentIntent.description });
     } catch (error) {
@@ -90,6 +92,15 @@ if (process.env.NODE_ENV === "production") {
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
     });
+    app.listen(PORT, () => console.log(`Port: ${PORT}`));
+} else {
+    https
+        .createServer(
+            {
+                key: fs.readFileSync("server.key"),
+                cert: fs.readFileSync("server.cert"),
+            },
+            app
+        )
+        .listen(PORT, () => console.log(`Port: ${PORT}`));
 }
-
-app.listen(PORT, () => console.log(`Port: ${PORT}`));

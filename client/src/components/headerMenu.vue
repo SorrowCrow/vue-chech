@@ -2,7 +2,7 @@
     <div class="headerMenu scroll-hidden y-scroll fixed">
         <div class="headerMenu__header flex content-between align-center">
             <svg class="headerMenu__header-icon">
-                <use href="#logo" />
+                <image href="../../public/icon.svg" class="headerMenu__header-icon" />
             </svg>
             <div class="headerMenu__header-time">08:00—22:00</div>
             <div class="ReservationExit flex relative content-center align-center h-p" @click="($parent.isMenu = false), bodyDisplayAuto()">

@@ -1,10 +1,8 @@
 <template>
-    <div class="containerWave-cover">
+    <div class="wrap">
         <svg class="containerWave relative">
             <use href="#containerWave" />
         </svg>
-    </div>
-    <div class="wrap">
         <div class="SummaryBlock grid mx-auto">
             <div class="SummaryBlock__costs">
                 <div class="SummaryBlock__costs-item flex content-between">
@@ -64,6 +62,9 @@
                     </div>
                     <div class="SummaryBlock__payingMethods-item-info">Kartou Online</div>
                 </label>
+                <div id="payment-request-button">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
                 <div id="stripe-card" class="overflow-hidden" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
             </div>
             <button type="submit" class="SummaryBlock__rezervovat h-p mx-auto align-center" form="form">Rezervovat</button>
@@ -122,11 +123,10 @@ export default {
     min-width: 680px;
     height: 22px;
     fill: $white;
-    background-color: $backgroundgrey;
+    background: $backgroundgrey;
 }
 .wrap {
     background-color: $white;
-    margin-top: -4px;
 }
 .SummaryBlock {
     color: $deepblue;

@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 module.exports = {
     configureWebpack: {
         optimization: {
@@ -7,9 +9,13 @@ module.exports = {
             }
         },
         devServer: {
+            https: {
+                key: fs.readFileSync("../server.key"),
+                cert: fs.readFileSync("../server.cert")
+            },
             proxy: {
                 "/api": {
-                    target: "http://localhost:3000"
+                    target: "https://localhost:3000"
                 }
             }
         }

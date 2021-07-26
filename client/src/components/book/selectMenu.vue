@@ -91,7 +91,13 @@ export default {
         checktime(hoursStart, hoursEnd) {
             let n = new Date().getHours();
             let dd = String(new Date().getDate()).padStart(2, "0");
-            if (hoursStart <= n && dd === this.secondDate && this.month === this.currentMonth && this.yearLoop != 1) return false;
+            if (hoursStart <= n && dd === this.secondDate && this.month === this.currentMonth && this.yearLoop != 1) {
+                if (this.halfBool && hoursStart % 3 === 0) {
+                    let n = new Date().getMinutes();
+                    if (n < 30) return true;
+                }
+                return false;
+            }
             for (let i = 0; i < this.$parent.$parent.reservedArray.length; i++) {
                 if (hoursStart == this.$parent.$parent.reservedArray[i][0]) return false;
                 else if (hoursStart > Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2])) return false;
