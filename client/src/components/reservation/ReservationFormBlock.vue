@@ -6,7 +6,7 @@
         <div class="container mx-auto">
             <div class="form-grid grid">
                 <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
-                <div class="reservationForm__select">
+                <div class="reservationForm__select user-select-none">
                     <div class="reservationForm__select-inner flex content-between align-center h-p" @click="osobyClick()">
                         <div class="pa flex align-center">
                             {{ $parent.persons }} Osoby
@@ -30,8 +30,8 @@
                         </div>
                     </div>
                 </div>
-                <input required type="tel" name="phone" placeholder="Telefon*" v-model="$parent.formData.phone" v-on:keypress="isNumber(event)" />
-                <input required type="email" name="email" placeholder="E-mail" v-model="$parent.formData.email" />
+                <input required type="tel" name="phone" id="telephone" placeholder="Telefon*" v-model="$parent.formData.phone" />
+                <input required type="email" name="email" id="email" placeholder="E-mail" v-model="$parent.formData.email" />
                 <textarea
                     v-model="$parent.formData.message"
                     type="text"
@@ -40,7 +40,6 @@
 Treba jokou chcete hudbu..."
                 ></textarea>
             </div>
-
             <AdditionalComponent :name="'Ozdoba'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
             <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
             <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
@@ -82,7 +81,7 @@ export default {
                     iconColor: "#000",
                     color: "#000",
                     fontFamily: "Work Sans, sans-serif",
-                    fontSize: "22px",
+                    fontSize: "20px",
                     fontSmoothing: "antialiased",
 
                     ":-webkit-autofill": {
@@ -126,60 +125,94 @@ export default {
         document.getElementsByClassName("reservationForm__select")[0].addEventListener("click", (e) => e.stopPropagation());
     },
     methods: {
-        async handleSubmit() {
-            this.$parent.formData.misa = this.$parent.misa;
-            this.$parent.formData.ozdoba = this.$parent.ozdoba;
-            this.$parent.formData.prossecco = this.$parent.prossecco;
-            this.$parent.formData.persons = this.$parent.persons;
-            if (this.OnlinePayments) {
-                if (this.loading) return;
-                this.loading = true;
-
-                const name = this.$parent.formData.name;
-                const email = this.$parent.formData.email;
-
-                const billingDetails = {
-                    name,
-                    email,
-                };
-
-                this.cardElement = this.elements.getElement("card");
-
-                try {
-                    const response = await axios.post("api/stripe/", JSON.stringify(this.$parent.formData), {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    });
-                    const { secret, id } = response.data;
-                    this.$parent.formData.stripeId = id;
-                    const paymentMethodReq = await this.stripe.createPaymentMethod({
-                        type: "card",
-                        card: this.cardElement,
-                        billing_details: billingDetails,
-                    });
-
-                    const { error } = await this.stripe.confirmCardPayment(secret, {
-                        payment_method: paymentMethodReq.paymentMethod.id,
-                    });
-
-                    if (error) return;
-                    this.loading = false;
-                    this.addItem();
-                } catch (error) {
-                    // console.log("error: ", error);
-                }
-            } else {
-                this.addItem();
-            }
-        },
-        isNumber: function (evt) {
-            evt = evt ? evt : window.event;
-            var charCode = evt.which ? evt.which : evt.keyCode;
-            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
-                evt.preventDefault();
-            } else {
+        // CheckCard() {
+        //     this.cardElement = this.elements.getElement("card");
+        //     this.cardElement((event) => {
+        //         if (event.complete) {
+        //             // enable payment button
+        //         return true;
+        //         }
+        //     });
+        //     if (this.cardElement == undefined) {
+        //         document.getElementsByClassName("InputElement")[0].focus();
+        //         document.getElementsByClassName("InputElement")[0].classList.add("is-invalid");
+        //     }
+        //     return true;
+        // },
+        ValidateEmail(inputText) {
+            // eslint-disable-next-line
+            const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (re.test(inputText)) {
                 return true;
+            }
+            document.getElementById("email").focus();
+            return false;
+        },
+        ValidatePhone(inputText) {
+            // eslint-disable-next-line
+            const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            if (re.test(inputText)) {
+                return true;
+            }
+            document.getElementById("telephone").focus();
+            return false;
+        },
+        // isNumber: function (evt) {
+        //     evt = evt ? evt : window.event;
+        //     var charCode = evt.which ? evt.which : evt.keyCode;
+        //     if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+        //         evt.preventDefault();
+        //     } else {
+        //         return true;
+        //     }
+        // },
+        async handleSubmit() {
+            if (this.ValidateEmail(this.$parent.formData.email) && this.ValidatePhone(this.$parent.formData.phone)) {
+                this.$parent.formData.misa = this.$parent.misa;
+                this.$parent.formData.ozdoba = this.$parent.ozdoba;
+                this.$parent.formData.prossecco = this.$parent.prossecco;
+                this.$parent.formData.persons = this.$parent.persons;
+                if (this.OnlinePayments) {
+                    if (this.loading) return;
+                    this.loading = true;
+
+                    const name = this.$parent.formData.name;
+                    const email = this.$parent.formData.email;
+
+                    const billingDetails = {
+                        name,
+                        email,
+                    };
+
+                    this.cardElement = this.elements.getElement("card");
+
+                    try {
+                        const response = await axios.post("api/stripe/", JSON.stringify(this.$parent.formData), {
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        });
+                        const { secret, id } = response.data;
+                        this.$parent.formData.stripeId = id;
+                        const paymentMethodReq = await this.stripe.createPaymentMethod({
+                            type: "card",
+                            card: this.cardElement,
+                            billing_details: billingDetails,
+                        });
+
+                        const { error } = await this.stripe.confirmCardPayment(secret, {
+                            payment_method: paymentMethodReq.paymentMethod.id,
+                        });
+
+                        if (error) return;
+                        this.loading = false;
+                        this.addItem();
+                    } catch (error) {
+                        // console.log("error: ", error);
+                    }
+                } else {
+                    this.addItem();
+                }
             }
         },
         closeList() {

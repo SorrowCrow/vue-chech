@@ -65,7 +65,11 @@
                 <div id="payment-request-button">
                     <!-- A Stripe Element will be inserted here. -->
                 </div>
-                <div id="stripe-card" class="overflow-hidden" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
+                <br/>
+                <div class="g-recaptcha" data-sitekey="6Le428QbAAAAAJtzzkOgPTjuGq8xp2uvjN79yGEf"></div>
+                <br/>
+
+                <div id="stripe-card" required class="overflow-hidden" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
             </div>
             <button type="submit" class="SummaryBlock__rezervovat h-p mx-auto align-center" form="form">Rezervovat</button>
         </div>

@@ -7,9 +7,9 @@
         <div class="dropletContainer grid min-content user-select-none mx-auto">
             <div class="droplet overflow-hidden">
                 <svg viewBox="0 0 71.437498 87.047919" class="test h-p">
-                    <g>
+                    <g clip-path="url(#layer3)">
                         <g id="layer1" style="display: inline">
-                            <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
+                            <path id="path31" style="fill: #f2eef5" d="M 60.619027,25.550914 C 67.470286,32.519726 71,41.808494 71,50.889965 71,59.971628 67.470286,69.47197 60.619027,76.440828 53.768251,83.409687 44.636251,87 35.5,87 26.363701,87 17.231845,83.409687 10.380731,76.440828 3.5296274,69.47197 0,59.971628 0,50.889965 0,41.808494 3.5296274,32.519726 10.380731,25.550914 L 35.5,0 Z" />
                             <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">799,- Kč</tspan></text>
                             <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
                             <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="197.85073" id="tspan97229">1</tspan></text>
@@ -23,16 +23,13 @@
                                 <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
                                 <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="197.85073" id="tspan97229">1</tspan></text>
                             </g>
-                            <clipPath id="layer7" style="opacity: 0">
+                            <clipPath id="layer7" style="opacity: 1">
                                 <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
                             </clipPath>
                         </g>
-                        <g id="layer3" style="display: inline; mix-blend-mode: normal">
-                            <path id="rect126" style="display: inline; fill: #ffffff; fill-opacity: 1; stroke: #000000; stroke-width: 0" d="M 5e-7,5e-7 V 51.329167 c 0,-9.86346 4.101533,-18.691201 10.4618945,-25.256856 L 35.71875,5e-7 Z M 35.71875,5e-7 60.975604,26.072311 C 67.33596,32.637966 71.4375,41.465707 71.4375,51.329167 V 5e-7 Z M 71.4375,51.329167 c 0,19.72692 -15.991822,35.71875 -35.71875,35.71875 H 71.4375 Z M 35.71875,87.047917 C 15.99183,87.047917 5e-7,71.056087 5e-7,51.329167 v 35.71875 z" />
-                        </g>
                     </g>
                     <clipPath id="layer3" style="display: inline; mix-blend-mode: normal">
-                        <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
+                        <path id="path31" style="fill: #f2eef5" d="M 60.619027,25.550914 C 67.470286,32.519726 71,41.808494 71,50.889965 71,59.971628 67.470286,69.47197 60.619027,76.440828 53.768251,83.409687 44.636251,87 35.5,87 26.363701,87 17.231845,83.409687 10.380731,76.440828 3.5296274,69.47197 0,59.971628 0,50.889965 0,41.808494 3.5296274,32.519726 10.380731,25.550914 L 35.5,0 Z" />
                     </clipPath>
                 </svg>
                 <svg id="buyNow" class="relative h-p" viewBox="0 0 120 120" fill="none">
@@ -45,27 +42,26 @@
             </div>
             <div class="droplet overflow-hidden">
                 <svg viewBox="0 0 71.437498 87.047919" class="test1 h-p">
-                    <g id="layer1" style="display: inline">
-                        <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
-                        <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">1099,- Kč</tspan></text>
-                        <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
-                        <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="190" id="tspan97229">1,5</tspan></text>
-                    </g>
-                    <g id="layer2" clip-path="url(#layer71)" style="display: inline; mix-blend-mode: normal">
-                        <g id="layer5">
-                            <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                    <g clip-path="url(#layer3)">
+                        <g id="layer1" style="display: inline">
+                            <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
+                            <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">1099,- Kč</tspan></text>
+                            <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
+                            <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="190" id="tspan97229">1,5</tspan></text>
                         </g>
-                        <g id="layer6">
-                            <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1099,- Kč</tspan></text>
-                            <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
-                            <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="190" id="tspan97229">1,5</tspan></text>
+                        <g id="layer2" clip-path="url(#layer71)" style="display: inline; mix-blend-mode: normal">
+                            <g id="layer5">
+                                <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                            </g>
+                            <g id="layer6">
+                                <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1099,- Kč</tspan></text>
+                                <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
+                                <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="190" id="tspan97229">1,5</tspan></text>
+                            </g>
+                            <clipPath id="layer71" style="opacity: 0">
+                                <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                            </clipPath>
                         </g>
-                        <clipPath id="layer71" style="opacity: 0">
-                            <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
-                        </clipPath>
-                    </g>
-                    <g id="layer3" style="display: inline; mix-blend-mode: normal">
-                        <path id="rect126" style="display: inline; fill: #ffffff; fill-opacity: 1; stroke: #000000; stroke-width: 0" d="M 5e-7,5e-7 V 51.329167 c 0,-9.86346 4.101533,-18.691201 10.4618945,-25.256856 L 35.71875,5e-7 Z M 35.71875,5e-7 60.975604,26.072311 C 67.33596,32.637966 71.4375,41.465707 71.4375,51.329167 V 5e-7 Z M 71.4375,51.329167 c 0,19.72692 -15.991822,35.71875 -35.71875,35.71875 H 71.4375 Z M 35.71875,87.047917 C 15.99183,87.047917 5e-7,71.056087 5e-7,51.329167 v 35.71875 z" />
                     </g>
                 </svg>
                 <svg id="buyNow" class="relative h-p" viewBox="0 0 120 120" fill="none">
@@ -78,27 +74,26 @@
             </div>
             <div class="droplet overflow-hidden">
                 <svg viewBox="0 0 71.437498 87.047919" class="test2 h-p">
-                    <g id="layer1" style="display: inline">
-                        <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
-                        <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">1399,- Kč</tspan></text>
-                        <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
-                        <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="197.85073" id="tspan97229">2</tspan></text>
-                    </g>
-                    <g id="layer2" clip-path="url(#layer72)" style="display: inline; mix-blend-mode: normal">
-                        <g id="layer5">
-                            <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                    <g clip-path="url(#layer3)">
+                        <g id="layer1" style="display: inline">
+                            <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
+                            <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">1399,- Kč</tspan></text>
+                            <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
+                            <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="197.85073" id="tspan97229">2</tspan></text>
                         </g>
-                        <g id="layer6">
-                            <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1399,- Kč</tspan></text>
-                            <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
-                            <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="197.85073" id="tspan97229">2</tspan></text>
+                        <g id="layer2" clip-path="url(#layer72)" style="display: inline; mix-blend-mode: normal">
+                            <g id="layer5">
+                                <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                            </g>
+                            <g id="layer6">
+                                <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1399,- Kč</tspan></text>
+                                <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
+                                <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="197.85073" id="tspan97229">2</tspan></text>
+                            </g>
+                            <clipPath id="layer72" style="opacity: 0">
+                                <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                            </clipPath>
                         </g>
-                        <clipPath id="layer72" style="opacity: 0">
-                            <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
-                        </clipPath>
-                    </g>
-                    <g id="layer3" style="display: inline; mix-blend-mode: normal">
-                        <path id="rect126" style="display: inline; fill: #ffffff; fill-opacity: 1; stroke: #000000; stroke-width: 0" d="M 5e-7,5e-7 V 51.329167 c 0,-9.86346 4.101533,-18.691201 10.4618945,-25.256856 L 35.71875,5e-7 Z M 35.71875,5e-7 60.975604,26.072311 C 67.33596,32.637966 71.4375,41.465707 71.4375,51.329167 V 5e-7 Z M 71.4375,51.329167 c 0,19.72692 -15.991822,35.71875 -35.71875,35.71875 H 71.4375 Z M 35.71875,87.047917 C 15.99183,87.047917 5e-7,71.056087 5e-7,51.329167 v 35.71875 z" />
                     </g>
                 </svg>
                 <svg id="buyNow" class="relative h-p" viewBox="0 0 120 120" fill="none">
@@ -111,27 +106,26 @@
             </div>
             <div class="droplet overflow-hidden">
                 <svg viewBox="0 0 71.437498 87.047919" class="test3 h-p">
-                    <g id="layer1" style="display: inline">
-                        <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
-                        <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">1899,- Kč</tspan></text>
-                        <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
-                        <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="185" id="tspan97229">3</tspan></text>
-                    </g>
-                    <g id="layer2" clip-path="url(#layer73)" style="display: inline; mix-blend-mode: normal">
-                        <g id="layer5">
-                            <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                    <g clip-path="url(#layer3)">
+                        <g id="layer1" style="display: inline">
+                            <path id="path31" style="fill: #f2eef5" d="m 71.437497,51.329167 c 0,19.726918 -15.991829,35.718748 -35.718747,35.718748 C 15.991829,87.047915 5.0000001e-7,71.056085 5.0000001e-7,51.329167 5.0000001e-7,41.465707 4.1014205,32.637852 10.461781,26.072197 L 35.71875,7.1860916e-7 60.975718,26.072197 c 6.36036,6.565655 10.461779,15.39351 10.461779,25.25697 z" sodipodi:nodetypes="sssscss" />
+                            <text style="font-size: 5.29167px; line-height: 1.25; fill: #69498c" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" style="font-size: 5.29167px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="24.208342" y="70.476318">1899,- Kč</tspan></text>
+                            <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: #69498c" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" style="font-size: 7.9375px; fill: #69498c; stroke-width: 0.264583; fill-opacity: 1" x="21.846729" y="58.947308">Hodina</tspan></text>
+                            <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: #69498c" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="185" id="tspan97229">3</tspan></text>
                         </g>
-                        <g id="layer6">
-                            <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1899,- Kč</tspan></text>
-                            <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
-                            <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="185" id="tspan97229">3</tspan></text>
+                        <g id="layer2" clip-path="url(#layer73)" style="display: inline; mix-blend-mode: normal">
+                            <g id="layer5">
+                                <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                            </g>
+                            <g id="layer6">
+                                <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1899,- Kč</tspan></text>
+                                <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
+                                <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="185" id="tspan97229">3</tspan></text>
+                            </g>
+                            <clipPath id="layer73" style="opacity: 0">
+                                <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
+                            </clipPath>
                         </g>
-                        <clipPath id="layer73" style="opacity: 0">
-                            <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
-                        </clipPath>
-                    </g>
-                    <g id="layer3" style="display: inline; mix-blend-mode: normal">
-                        <path id="rect126" style="display: inline; fill: #ffffff; fill-opacity: 1; stroke: #000000; stroke-width: 0" d="M 5e-7,5e-7 V 51.329167 c 0,-9.86346 4.101533,-18.691201 10.4618945,-25.256856 L 35.71875,5e-7 Z M 35.71875,5e-7 60.975604,26.072311 C 67.33596,32.637966 71.4375,41.465707 71.4375,51.329167 V 5e-7 Z M 71.4375,51.329167 c 0,19.72692 -15.991822,35.71875 -35.71875,35.71875 H 71.4375 Z M 35.71875,87.047917 C 15.99183,87.047917 5e-7,71.056087 5e-7,51.329167 v 35.71875 z" />
                     </g>
                 </svg>
                 <svg id="buyNow" class="relative h-p" viewBox="0 0 120 120" fill="none">
@@ -164,7 +158,7 @@ export default {
         grid-row-gap: 20px;
         .droplet {
             width: 147px;
-            height: 179px;
+            height: 180px;
             #buyNow {
                 width: 70px;
                 height: 70px;
@@ -182,10 +176,11 @@ export default {
         .test {
             #rect31 {
                 transition: 1s;
+                transform: translateY(-4px);
             }
             &:hover {
                 #rect31 {
-                    transform: translateX(-117px);
+                    transform: translate(-117px, -4px);
                 }
             }
         }
