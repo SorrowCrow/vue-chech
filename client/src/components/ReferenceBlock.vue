@@ -1,6 +1,6 @@
 <template>
     <svg class="mx-auto containerWave">
-        <use xlink:href="#containerWave" />
+        <use href="#containerWave" />
     </svg>
     <footer class="contain">
         <div class="content mx-auto">
@@ -18,14 +18,14 @@
                 </div>
                 <div class="buttons">
                     <div class="footer__carousel-nextBtn">
-                        <svg><use xlink:href="#arrowScroll" /></svg>
+                        <svg><use href="#arrowScroll" /></svg>
                     </div>
                     <div class="footer__carousel-prevBtn">
-                        <svg><use xlink:href="#arrowScroll" /></svg>
+                        <svg><use href="#arrowScroll" /></svg>
                     </div>
                 </div>
                 <svg class="mx-auto wave">
-                    <use xlink:href="#wave" />
+                    <use href="#wave" />
                 </svg>
             </div>
             <a class="mx-auto content__number" href="tel:+420 286 851 738">+420 286 851 738</a>
@@ -36,12 +36,12 @@
             <div class="mx-auto content__links">
                 <a href="https://facebook.com" target="_blank">
                     <svg>
-                        <use xlink:href="#facebook" />
+                        <use href="#facebook" />
                     </svg>
                 </a>
                 <a href="https://instagram.com" target="_blank">
                     <svg>
-                        <use xlink:href="#instagram" />
+                        <use href="#instagram" />
                     </svg>
                 </a>
             </div>
@@ -108,6 +108,9 @@ export default {
                         height: 36px;
                         fill: $deepblue;
                     }
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
                 &-prevBtn {
                     transform: rotate(180deg);
@@ -118,6 +121,7 @@ export default {
                     font-size: 25px;
                     line-height: 37.5px;
                     width: 100%;
+                    user-select: none;
                 }
             }
             padding-top: 40px;
@@ -188,20 +192,10 @@ export default {
                         @include wh(60px, 60px);
                         border-radius: 50%;
                         z-index: 1;
-                        svg {
-                            width: 36px;
-                            height: 36px;
-                            fill: $deepblue;
-                        }
                         &:hover {
-                            cursor: pointer;
                             width: 70px;
                             height: 70px;
                             bottom: 49.5%;
-                            svg {
-                                width: 36px;
-                                height: 36px;
-                            }
                         }
                     }
                     &-prevBtn {

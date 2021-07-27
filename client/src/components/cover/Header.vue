@@ -3,32 +3,32 @@
         <div class="header__wrap mx-auto" v-if="!isMenu">
             <div class="header__logo">
                 <svg v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
-                    <use xlink:href="#logo" />
+                    <use href="#logo" />
                 </svg>
                 <div class="header__logo-text" v-if="displayMenu">Sauna Kbely</div>
             </div>
             <div class="header__contacts" v-if="displayMenu">
                 <div class="header__contacts-item">
                     <svg>
-                        <use xlink:href="#clock" />
+                        <use href="#clock" />
                     </svg>
                     <div>08:00—22:00</div>
                 </div>
                 <div class="header__contacts-item">
                     <svg>
-                        <use xlink:href="#location" />
+                        <use href="#location" />
                     </svg>
                     <a href="https://www.google.com/maps/place/Krnská+350,+197+00+Kbely,+Czechia/@50.1286805,14.5498908,19z" target="_blank">Krnska 350/26, Praha 19700</a>
                 </div>
                 <div class="header__contacts-item">
                     <svg>
-                        <use xlink:href="#phone" />
+                        <use href="#phone" />
                     </svg>
                     <a href="tel:+420 286 851 738">+420 286 851 738</a>
                 </div>
             </div>
             <svg v-else class="header__menu" @click="isMenu = true">
-                <use xlink:href="#headerMenu" />
+                <use href="#headerMenu" />
             </svg>
         </div>
         <HeaderMenu v-else-if="!displayMenu" />
@@ -90,7 +90,7 @@ export default {
         justify-content: space-between;
     }
     &__logo {
-        padding-left: 75px;
+        padding-left: 30px;
         display: flex;
         &-icon,
         &-iconBig {
@@ -137,6 +137,13 @@ export default {
         &-item {
             display: flex;
             margin-top: 16px;
+        }
+    }
+}
+@media only screen and (min-width: $md-breakpoint) {
+    .header {
+        &__logo {
+            padding-left: 75px;
         }
     }
 }

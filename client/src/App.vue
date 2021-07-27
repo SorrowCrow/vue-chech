@@ -1,5 +1,7 @@
 <template>
-    <Cover />
+    <svgs />
+    <Header />
+    <Title />
     <AboutBlock />
     <BookBlock />
     <GiftCardsBlock />
@@ -7,7 +9,9 @@
 </template>
 
 <script>
-import Cover from "./components/Cover.vue";
+import svgs from "./components/svgs.vue";
+import Header from "./components/cover/Header.vue";
+import Title from "./components/cover/Title.vue";
 import AboutBlock from "./components/AboutBlock.vue";
 import BookBlock from "./components/BookBlock.vue";
 import GiftCardsBlock from "./components/GiftCardsBlock.vue";
@@ -16,7 +20,9 @@ import ReferenceBlock from "./components/ReferenceBlock.vue";
 export default {
     name: "App",
     components: {
-        Cover,
+        svgs,
+        Header,
+        Title,
         AboutBlock,
         BookBlock,
         GiftCardsBlock,
@@ -47,32 +53,34 @@ body {
 .max-content {
     width: max-content;
 }
-.hiddenForSlide {
+.unHiddenForSlide {
+    .block__slider img {
+        filter: blur(0);
+    }
+    .block__sliderButtons {
+        opacity: 1;
+    }
+}
+.hiddenTitle {
     opacity: 0;
     overflow: hidden;
     transition-timing-function: linear, step-end;
-}
-.unhiddenForSlide {
-    opacity: 1;
-    overflow: hidden;
-    transition-timing-function: linear, step-end;
-    z-index: 10;
 }
 .newhidden {
     position: absolute;
     height: 0;
     transition-timing-function: linear, step-end;
 }
-.hidden {
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    transition-timing-function: linear, step-end;
-}
 .positionRelative {
     position: relative;
 }
-.white {
-    background: white;
+.hidden {
+    opacity: 0;
+    height: 0;
+    // transition-timing-function: linear, step-end;
+}
+.unhidden {
+    opacity: 1 !important;
+    height: 300px !important;
 }
 </style>

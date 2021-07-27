@@ -1,15 +1,11 @@
 <template>
     <div class="contain" id="cover">
-        <Slider v-if="!isMd" />
-        <div class="background">
-            <img id="sliderCover" src="../../assets/background(1).jpg" />
-            <div class="background-bg"></div>
-        </div>
+        <Slider />
         <div id="sliderInit" class="title" @click="titleClick()">
             <div class="title-privatni">Tvůj privátní</div>
             <div class="title-wellness">Wellness</div>
             <svg>
-                <use xlink:href="#rezervace" @click="isMd ? rezervaceClick() : ''" />
+                <use href="#rezervace" @click="isMd ? rezervaceClick() : ''" />
             </svg>
         </div>
         <Menu />
@@ -19,7 +15,6 @@
 <script>
 import Menu from "./Menu.vue";
 import Slider from "./Slider.vue";
-import $ from "jquery";
 
 export default {
     name: "Background",
@@ -27,33 +22,37 @@ export default {
         Menu,
         Slider,
     },
+    created() {
+        window.addEventListener("resize", this.hideUnhide);
+    },
     methods: {
+        hideUnhide() {
+            if (this.isMd) {
+                document.getElementById("sliderInit").classList.remove("hiddenTitle");
+                document.getElementsByClassName("slider__wrap")[0].classList.remove("unHiddenForSlide");
+            }
+        },
         rezervaceClick() {
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $("#book").offset().top,
-                },
-                500
-            );
+            window.scrollTo({
+                top: document.querySelector("#book").offsetTop,
+                behavior: "smooth",
+            });
         },
         titleClick() {
             if (!this.isMd) {
-                if ($("#sliderInit").hasClass("hiddenForSlide")) {
-                    $("#sliderInit").removeClass("hiddenForSlide", 500);
-                    $("#sliderCover").removeClass("hiddenForSlide", 500);
-                    $(".block__slider").addClass("hiddenForSlide", 500);
+                let sliderInit = document.getElementById("sliderInit");
+                if (sliderInit.classList.contains("hiddenTitle")) {
+                    sliderInit.classList.remove("hiddenTitle");
+                    document.getElementsByClassName("slider__wrap")[0].classList.remove("unHiddenForSlide");
                 } else {
-                    $("#sliderInit").addClass("hiddenForSlide", 500);
-                    $("#sliderCover").addClass("hiddenForSlide", 500);
-                    $(".block__slider").removeClass("hiddenForSlide", 500);
+                    sliderInit.classList.add("hiddenTitle");
+                    document.getElementsByClassName("slider__wrap")[0].classList.add("unHiddenForSlide");
                 }
             }
         },
     },
     computed: {
         isMd() {
-            $("#sliderInit").removeClass("hiddenForSlide", 500);
-            $("#sliderCover").removeClass("hiddenForSlide", 500);
             return this.$mq === "md" ? true : this.$mq === "sm" ? true : false;
         },
     },
@@ -66,25 +65,6 @@ export default {
     margin: 0 auto;
     width: 100%;
     overflow: hidden;
-    .background {
-        position: relative;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        img {
-            width: auto;
-            filter: blur(7px);
-            height: 550px;
-        }
-        &-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #472173;
-            opacity: 0.5;
-            mix-blend-mode: multiply;
-        }
-    }
     .title {
         position: absolute;
         margin: 0 auto;
@@ -120,15 +100,6 @@ export default {
             padding-top: 36px;
             padding-left: 83px;
             fill: $orange;
-        }
-    }
-    @media only screen and (min-width: $background-breakpoint) {
-        .background {
-            img {
-                height: auto;
-                max-height: 750px;
-                width: 100%;
-            }
         }
     }
     @media only screen and (min-width: $md-breakpoint) {

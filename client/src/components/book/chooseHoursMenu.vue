@@ -1,15 +1,14 @@
 <template>
-    <div class="hidden choose">
+    <div class="choose" :style="chooseHoursHidden ? $parent.hiddenStyles : chooseHoursStyles" ref="chooseHours">
         <div class="hours">
-            <span class="hoursButton" @click="(indexHour = 1), (halfBool = false), (threeHoursBool = false), (componentRefresh = !componentRefresh), (canBeVisible = true)">1 Hodina</span>
-            <span class="hoursButton" @click="(indexHour = 1.5), (halfBool = true), (threeHoursBool = false), (componentRefresh = !componentRefresh), (canBeVisible = true)">1.5 Hodina</span>
-            <span class="hoursButton" @click="(indexHour = 2), (halfBool = false), (threeHoursBool = false), (componentRefresh = !componentRefresh), (canBeVisible = true)">2 Hodina</span>
-            <span class="hoursButton" @click="(indexHour = 3), (halfBool = false), (threeHoursBool = true), (componentRefresh = !componentRefresh), (canBeVisible = true)">3 Hodina</span>
+            <span class="hoursButton" @click="setter(1, false, false)">1 Hodina</span>
+            <span class="hoursButton" @click="setter(1.5, true, false)">1.5 Hodina</span>
+            <span class="hoursButton" @click="setter(2, false, false)">2 Hodina</span>
+            <span class="hoursButton" @click="setter(3, false, true)">3 Hodina</span>
         </div>
     </div>
-    <SelectMenu :key="componentRefresh" :indexHour="indexHour" :halfBool="halfBool" :numb="14" :threeHoursBool="threeHoursBool" />
+    <SelectMenu :key="componentRefresh" :indexHour="indexHour" :halfBool="halfBool" :workingHours="14" :threeHoursBool="threeHoursBool" />
 </template>
-
 <script>
 import SelectMenu from "./selectMenu.vue";
 
@@ -17,6 +16,9 @@ export default {
     name: "chooseHoursMenu",
     components: {
         SelectMenu,
+    },
+    props: {
+        chooseHoursHidden: Boolean,
     },
     data() {
         return {
@@ -26,21 +28,46 @@ export default {
             componentRefresh: 0,
 
             canBeVisible: false,
+            chooseHoursStyles: {
+                opacity: "1",
+            },
+            height: "",
         };
+    },
+    methods: {
+        setter(indexHour, halfBool, threeHoursBool) {
+            this.indexHour = indexHour;
+            this.halfBool = halfBool;
+            this.threeHoursBool = threeHoursBool;
+            this.componentRefresh = !this.componentRefresh;
+            this.canBeVisible = true;
+        },
+        matchHeight() {
+            this.$refs.chooseHours.style.height = "auto";
+            this.height = this.$refs.chooseHours.clientHeight + "px";
+            this.$refs.chooseHours.style.height = "";
+            this.chooseHoursStyles["height"] = this.height;
+        },
+    },
+    mounted() {
+        this.matchHeight();
     },
 };
 </script>
 
 <style lang="scss" scoped>
 .choose {
-    position: relative;
-    margin: auto;
+    height: 0;
+
     width: 100%;
     background-color: $medium-beige;
     display: grid;
     border-radius: 30px;
-    z-index: 10;
     font-size: 15px;
+    overflow: initial;
+    transition: 250ms;
+
+    overflow: hidden;
     .hours {
         display: grid;
         margin: 25px;

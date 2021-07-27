@@ -3,11 +3,11 @@
         <div class="cat__header">
             <div class="month">
                 <svg class="leftArrow" @click="getMonthDecrease()">
-                    <use xlink:href="#calendarArrow" />
+                    <use href="#calendarArrow" />
                 </svg>
                 <div class="month-name">{{ months[month] }}</div>
                 <svg @click="getMonthIncrease()">
-                    <use xlink:href="#calendarArrow" />
+                    <use href="#calendarArrow" />
                 </svg>
             </div>
             <div class="weekdays">
@@ -20,7 +20,7 @@
                 <div>Sun</div>
             </div>
         </div>
-        <ChooseHoursMenu :key="componentKey" />
+        <ChooseHoursMenu ref="chooseHours" :chooseHoursHidden="chooseHoursHidden" :key="componentKey" />
 
         <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />
     </div>
@@ -32,9 +32,12 @@ import ChooseHoursMenu from "./chooseHoursMenu.vue";
 import CalendarDays from "./calendarDays.vue";
 import Reservation from "../Reservation.vue";
 
-import $ from "jquery";
-import "jqueryui";
 import axios from "axios";
+
+(Element.prototype.appendAfter = function (element) {
+    element.parentNode.insertBefore(this, element.nextSibling);
+}),
+    false;
 
 export default {
     name: "Calendar",
@@ -63,71 +66,54 @@ export default {
 
             response: null,
             reservedArray: [[]],
+
+            chooseHoursHidden: true,
+            openedHidden: true,
+
+            hiddenStyles: {
+                opacity: "0",
+                height: "",
+            },
         };
     },
     methods: {
-        async insertMenu(row) {
+        async insertMenu(row = this.row) {
             this.reservedArray = [];
             this.response = await axios.get("api/reservationItems/" + this.date);
-            // console.log(this.response.data);
-            // this.reservedArray = this.response.data;
             for (let i = 0; i < Object.keys(this.response.data).length; i++) {
                 let time = this.response.data[i].time;
                 this.reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
-                console.log(this.reservedArray[i]);
             }
-            // console.log(this.reservedArray);
-            // for (var item in this.response.data) {
-            //     console.log(item);
-            // }
             this.row = row;
-            var menuId = 0;
-            if (this.secondDate < 37) {
-                for (let i = this.secondDate; i % 7 != 0; i++) {
-                    menuId = i;
-                }
-            } else {
-                for (let i = this.secondDate - 36; i % 7 != 0; i++) {
-                    menuId = i;
-                }
-            }
-            if (menuId == 0) {
-                menuId = this.secondDate;
-            } else {
-                menuId++;
-            }
-            menuId = menuId / 7;
-            $(".choose").insertAfter(`.${row}row`);
-            $(".choose").removeClass("hidden", 250);
+
+            document.getElementsByClassName("choose")[0].appendAfter(document.getElementsByClassName(`${row}row`)[0]);
+            setTimeout(
+                function () {
+                    this.chooseHoursHidden = false;
+                }.bind(this),
+                1
+            );
         },
         insertSelect(txt) {
-            var menuId = 0;
-            if (this.secondDate < 37) {
-                for (let i = this.secondDate; i % 7 != 0; i++) {
-                    menuId = i;
-                }
-            } else {
-                for (let i = this.secondDate - 36; i % 7 != 0; i++) {
-                    menuId = i;
-                }
-            }
-            if (menuId == 0) {
-                menuId = this.secondDate;
-            } else {
-                menuId++;
-            }
-            menuId = menuId / 7;
-            $(".opened").insertAfter(`.${this.row}row`);
-            $(".pa").text(txt + " Hodina");
-            $(".opened").removeClass("hidden", 250);
+            document.getElementsByClassName("opened")[0].appendAfter(document.getElementsByClassName(`${this.row}row`)[0]);
+            document.getElementsByClassName("pa")[0].textContent = txt + " Hodina";
+            setTimeout(
+                function () {
+                    this.openedHidden = false;
+                }.bind(this),
+                1
+            );
         },
         removeSelect() {
-            $(".opened").addClass("hidden", 250);
+            this.openedHidden = true;
         },
         removeMenu() {
-            $(".choose").addClass("hidden", 250);
+            this.chooseHoursHidden = true;
         },
         getMonthDecrease() {
+            this.openedHidden = true;
+            this.chooseHoursHidden = true;
+            this.secondDate = 0;
             if (this.month == this.currentMonth && this.yearLoop == 0) {
                 return;
             } else if (this.month == 0 && this.yearLoop == 1) {
@@ -139,6 +125,9 @@ export default {
             }
         },
         getMonthIncrease() {
+            this.openedHidden = true;
+            this.chooseHoursHidden = true;
+            this.secondDate = 0;
             if (this.month == this.currentMonth && this.yearLoop == 1) {
                 return this.month;
             } else if (this.month == 11 && this.yearLoop == 0) {
@@ -214,13 +203,17 @@ export default {
         grid-template-rows: var(--calendarGrid);
     }
 }
+@media only screen and (min-width: 740px) {
+    .cat {
+        position: absolute;
+    }
+}
 @media only screen and (min-width: $md-breakpoint) {
     .cat {
         border-radius: 30px;
         width: 470px;
         height: fit-content;
         overflow: hidden;
-        position: absolute;
         user-select: none;
         font-size: 20px;
         .cat__header {

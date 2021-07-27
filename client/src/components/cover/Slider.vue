@@ -1,82 +1,122 @@
 <template>
-    <div class="block__slider hiddenForSlide">
-        <img src="../../assets/background(1).jpg" />
-        <img src="../../assets/background(1).jpg" />
+    <div class="slider__wrap">
+        <div class="block__slider">
+            <img src="../../assets/background(1).jpg" />
+            <img src="../../assets/background(1).jpg" />
+        </div>
+        <div class="background"></div>
+        <div class="block__sliderButtons">
+            <div class="block__sliderButtons-nextBtn">
+                <svg><use href="#arrowScroll" /></svg>
+            </div>
+            <div class="block__sliderButtons-prevBtn">
+                <svg><use href="#arrowScroll" /></svg>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.min.js";
-import $ from "jquery";
+import { tns } from "tiny-slider/src/tiny-slider.js";
+import "tiny-slider/dist/tiny-slider.css";
 
 export default {
     name: "Slider",
+    methods: {
+        carousel() {
+            tns({
+                container: ".block__slider",
+                items: 1,
+                slideBy: "page",
+                mouseDrag: true,
+                center: true,
+                speed: 400,
+                nav: false,
+                controlsContainer: ".block__sliderButtons",
+            });
+        },
+    },
     mounted: function () {
-        $(".block__slider").slick({
-            dots: false,
-            arrows: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            prevArrow: '<div class="slideBtn nextBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
-            nextArrow: '<div class="slideBtn prevBtn"><svg>  <use xlink:href="#arrowScroll" /> </svg></div>',
-            responsive: [
-                {
-                    breakpoint: 768,
-                },
-            ],
-        });
+        this.carousel();
+    },
+    computed: {
+        isMd() {
+            return this.$mq === "md" ? true : this.$mq === "sm" ? true : false;
+        },
     },
 };
 </script>
 
-<style lang="scss">
-.block__slider {
+<style lang="scss" scoped>
+.background {
     position: absolute;
     top: 0;
     width: 100%;
+    height: 100%;
+    background: #472173;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+}
+.block__slider {
+    position: relative;
+    width: 100%;
     max-height: 750px;
+    display: flex;
+    justify-content: center;
     img {
-        max-height: 750px;
+        width: auto;
+        filter: blur(7px);
+        height: 550px;
     }
 }
-.slideBtn {
-    display: grid;
-    @include wh(60px, 60px);
+.block__sliderButtons {
+    opacity: 0;
     position: absolute;
-    background: $white;
-    border-radius: 50%;
     bottom: 50%;
-    z-index: 2;
-    transition: 0.2s;
-    svg {
-        margin: auto;
-        width: 36px;
-        height: 36px;
-        fill: $secondary;
-    }
-    &:hover {
-        width: 70px;
-        height: 70px;
-        bottom: 49.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    grid-column-gap: 30px;
+    &-nextBtn,
+    &-prevBtn {
+        position: relative;
+        display: grid;
+        @include wh(60px, 60px);
+        margin-left: 75px;
+        background: $white;
+        border-radius: 50%;
+        transition: 0.2s;
+        z-index: 1;
         svg {
-            fill: $primary;
+            margin: auto;
             width: 36px;
             height: 36px;
+            fill: $secondary;
+        }
+        &:hover {
+            cursor: pointer;
+            width: 70px;
+            height: 70px;
+            svg {
+                fill: $primary;
+            }
         }
     }
+    &-prevBtn {
+        margin-right: 75px;
+        transform: rotate(180deg);
+    }
 }
-.nextBtn:hover,
-.prevBtn:hover {
-    cursor: pointer;
-}
-.nextBtn {
-    left: 50px;
-}
-.prevBtn {
-    transform: rotate(180deg);
-    right: 50px;
+@media only screen and (min-width: $background-breakpoint) {
+    .background {
+        height: calc(100% - 29px);
+    }
+    .block__slider img {
+        height: auto;
+        max-height: 750px;
+        width: 100%;
+    }
 }
 </style>

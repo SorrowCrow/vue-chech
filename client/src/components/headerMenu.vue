@@ -2,12 +2,12 @@
     <div class="headerMenu">
         <div class="headerMenu__header">
             <svg class="headerMenu__header-icon">
-                <use xlink:href="#logo" />
+                <use href="#logo" />
             </svg>
             <div class="headerMenu__header-time">08:00—22:00</div>
             <div class="ReservationExit" @click="($parent.isMenu = false), bodyDisplayAuto()">
                 <svg>
-                    <use xlink:href="#cross" />
+                    <use href="#cross" />
                 </svg>
             </div>
         </div>
@@ -25,12 +25,12 @@
         <div class="mx-auto headerMenu__links">
             <a href="https://facebook.com" target="_blank">
                 <svg>
-                    <use xlink:href="#facebook" />
+                    <use href="#facebook" />
                 </svg>
             </a>
             <a href="https://instagram.com" target="_blank">
                 <svg>
-                    <use xlink:href="#instagram" />
+                    <use href="#instagram" />
                 </svg>
             </a>
         </div>
@@ -38,30 +38,14 @@
 </template>
 
 <script>
-import $ from "jquery";
-
 export default {
     name: "HeaderMenu",
     methods: {
         scroll(id) {
-            this.$parent.isMenu = false;
-            this.bodyDisplayAuto();
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $(id).offset().top,
-                },
-                500
-            );
-        },
-        scrollslow(id) {
-            this.$parent.isMenu = false;
-            this.bodyDisplayAuto();
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $(id).offset().top,
-                },
-                1000
-            );
+            window.scrollTo({
+                top: document.querySelector(id).offsetTop,
+                behavior: "smooth",
+            });
         },
         bodyDisplayAuto() {
             document.getElementsByTagName("body")[0].style.overflow = "auto";
@@ -73,22 +57,23 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// body{
-//     overflow: hidden;
-// }
-</style>
-
 <style lang="scss" scoped>
 .headerMenu {
-    background-color: $backgroundgrey;
-    z-index: 150;
-    position: fixed;
     top: 0;
     left: 0;
+    bottom: 0;
     right: 0;
+    z-index: 150;
     padding: 30px;
+    background-color: $backgroundgrey;
+    position: fixed;
     color: $secondary;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     &__header {
         display: flex;
         justify-content: space-between;
@@ -134,7 +119,7 @@ export default {
         padding-bottom: 81px;
         div {
             text-align: center;
-            &:hover{
+            &:hover {
                 cursor: pointer;
             }
         }

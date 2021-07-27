@@ -22,6 +22,7 @@ mongoose
     .catch((err) => console.log(err));
 
 app.use("/api/reservationItems", reservationItemRoutes);
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/dist"));
     app.get("*", (req, res) => {

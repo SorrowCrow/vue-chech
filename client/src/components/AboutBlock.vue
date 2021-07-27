@@ -1,40 +1,38 @@
 <template>
     <div class="contain mx-auto">
         <div class="title-container">
-            <div>
-                <div class="title" id="about">O nás</div>
-                <div class="sub-title">Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.</div>
-                <div class="background">
-                    <div class="MagnifyingGlass" @click="isMd ? '' : magnifyingGlassClick()">
-                        <svg>
-                            <use xlink:href="#magnifyingGlass" />
-                        </svg>
-                    </div>
+            <div class="title" id="about">O nás</div>
+            <div class="sub-title">Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.</div>
+            <div class="background">
+                <div class="MagnifyingGlass" @click="isMd ? '' : magnifyingGlassClick()">
+                    <svg>
+                        <use href="#magnifyingGlass" />
+                    </svg>
                 </div>
             </div>
         </div>
         <div class="services mx-auto">
             <div class="services__item">
                 <svg class="frame1">
-                    <use xlink:href="#frame1" />
+                    <use href="#frame1" />
                 </svg>
                 Vířivka
             </div>
             <div class="services__item">
                 <svg class="frame2">
-                    <use xlink:href="#frame2" />
+                    <use href="#frame2" />
                 </svg>
                 Sauna
             </div>
             <div class="services__item">
                 <svg class="frame3">
-                    <use xlink:href="#frame3" />
+                    <use href="#frame3" />
                 </svg>
                 Bazén
             </div>
             <div class="services__item">
                 <svg class="frame4">
-                    <use xlink:href="#frame4" />
+                    <use href="#frame4" />
                 </svg>
                 Odpočívárna
             </div>
@@ -43,9 +41,6 @@
 </template>
 
 <script>
-import $ from "jquery";
-$(document).ready(function () {});
-
 export default {
     name: "AboutBlock",
     computed: {
@@ -55,15 +50,12 @@ export default {
     },
     methods: {
         magnifyingGlassClick() {
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $("#cover").offset().top,
-                },
-                500
-            );
-            $("#sliderInit").addClass("hiddenForSlide", 1000);
-            $("#sliderCover").addClass("hiddenForSlide", 1000);
-            $(".block__slider").removeClass("hiddenForSlide", 1000);
+            window.scrollTo({
+                top: document.getElementById("cover").offsetTop,
+                behavior: "smooth",
+            });
+            document.getElementById("sliderInit").classList.add("hiddenTitle");
+            document.getElementsByClassName("slider__wrap")[0].classList.add("unHiddenForSlide");
         },
     },
 };
@@ -73,31 +65,27 @@ export default {
 .contain {
     padding-bottom: 65px;
     color: $deepblue;
-    width: 100%;
+    max-width: 1170px;
+    margin-left: 30px;
+    margin-right: 30px;
     .title-container {
         display: grid;
         grid-template-columns: auto;
-        padding-left: 30px;
         .title {
             width: max-content;
             padding-top: 53px;
             line-height: 107px;
         }
         .sub-title {
-            display: flex;
-            align-items: flex-start;
-            position: relative;
-            padding-left: 69px;
-            padding-right: 100px;
-            padding-top: 50px;
-            padding-bottom: 115px;
-            // max-width: 350px;
+            padding: 46px 100px 115px 30px;
             background: $medium-beige;
             border-radius: 0px 300px 300px 0px;
-            margin-left: -60px;
+            margin-left: -30px;
+            margin-right: -72px;
         }
         .background {
             position: relative;
+            background: url("../assets/pic.png");
             background-image: url("../assets/pic.png");
             background-position: top right;
             background-repeat: no-repeat;
@@ -179,42 +167,39 @@ export default {
         }
     }
 }
-@media only screen and (min-width: 670px) {
+@media only screen and (min-width: 720px) {
     .contain {
+        display: grid;
+        justify-content: center;
+        margin: 0 auto;
         .services {
             display: flex;
         }
-    }
-}
-@media only screen and (min-width: 850px) {
-    .contain {
-        // display: grid;
-        // justify-content: center;
-        // .title-container {
-        //     padding: 0;
-        //     max-width: 970px;
-        //     width: 100%;
-        //     .sub-title {
-        //         align-items: center;
-        //         z-index: 1;
-        //         max-width: 500px;
-        //     }
-        //     .background {
-        //         margin-top: -300px;
-        //         .MagnifyingGlass {
-        //             @include wh(100px, 100px);
-        //             bottom: 70px;
-        //             svg {
-        //                 width: 50px;
-        //                 height: 50px;
-        //             }
-        //             &:hover {
-        //                 width: 110px;
-        //                 height: 110px;
-        //             }
-        //         }
-        //     }
-        // }
+        .title-container {
+            .sub-title {
+                align-items: center;
+                z-index: 1;
+                max-width: 350px;
+                border-radius: 150px 300px 300px 0px;
+                padding-bottom: 46px;
+                padding-right: 50px;
+            }
+            .background {
+                margin-top: -300px;
+                .MagnifyingGlass {
+                    @include wh(100px, 100px);
+                    bottom: 70px;
+                    svg {
+                        width: 50px;
+                        height: 50px;
+                    }
+                    &:hover {
+                        width: 110px;
+                        height: 110px;
+                    }
+                }
+            }
+        }
         .services {
             display: flex;
         }
@@ -224,23 +209,15 @@ export default {
     .contain {
         padding-top: 65px;
         padding-bottom: 36px;
-        color: $deepblue;
-        max-width: 970px;
-        display: grid;
-        justify-content: center;
         .title-container {
-            padding: 0;
-            max-width: 970px;
             .sub-title {
+                display: flex;
                 align-items: center;
                 margin-left: -100px;
-                padding-left: 100px;
-                padding-bottom: 0;
-                padding-top: 0;
+                padding: 0 100px 0 100px;
                 margin-top: 58px;
                 max-width: 570px;
                 height: 350px;
-                border-radius: 150px 300px 300px 0px;
                 z-index: 1;
             }
             .background {
@@ -266,7 +243,6 @@ export default {
             width: 1010px;
             padding-top: 80px;
             padding-bottom: 86px;
-
             font-family: $playfair-font;
             &__item {
                 @include wh(230px, 197px);

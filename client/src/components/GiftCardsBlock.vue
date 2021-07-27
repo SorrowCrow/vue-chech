@@ -176,6 +176,9 @@ export default {
                 left: 80px;
                 opacity: 0;
                 transition: 0.5s;
+                &:hover{
+                    cursor: pointer;
+                }
             }
             &:hover {
                 #buyNow {

@@ -1,62 +1,63 @@
 <template>
-    <svg class="containerWave">
-        <use href="#containerWave" />
-    </svg>
-    <form class="reservationForm" id="form" @submit.prevent="addItem">
-        <div class="container">
-            <div class="grid">
-                <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
-                <div class="reservationForm__select" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
-                    <!-- <select class="reservationForm__select-inner" form="form">
+    <div>
+        <svg class="containerWave">
+            <use href="#containerWave" />
+        </svg>
+        <form class="reservationForm" id="form" @submit.prevent="addItem">
+            <div class="container">
+                <div class="grid">
+                    <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
+                    <div class="reservationForm__select" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
+                        <!-- <select class="reservationForm__select-inner" form="form">
                         <option value="1">
                             1 Osoby
                             <p>(+100,- Kč)</p>
                         </option>
                     </select> -->
-                    <div class="reservationForm__select-inner" @click="osobyClick()">
-                        <div class="pa">
-                            {{ $parent.persons }} Osoby
-                            <p v-if="$parent.persons > 1">(+{{ $parent.persons - 1 }}00,- Kč)</p>
+                        <div class="reservationForm__select-inner" @click="osobyClick()">
+                            <div class="pa">
+                                {{ $parent.persons }} Osoby
+                                <p v-if="$parent.persons > 1">(+{{ $parent.persons - 1 }}00,- Kč)</p>
+                            </div>
+                            <svg><use href="#openedArrow" /></svg>
                         </div>
-                        <svg><use href="#openedArrow" /></svg>
-                    </div>
 
-                    <div class="reservationForm__select-list">
-                        <div @click="($parent.persons = 1), osobyClick()">1 Osoby</div>
-                        <div @click="($parent.persons = 2), osobyClick()">
-                            2 Osoby
-                            <p>(+100,- Kč)</p>
-                        </div>
-                        <div @click="($parent.persons = 3), osobyClick()">
-                            3 Osoby
-                            <p>(+200,- Kč)</p>
-                        </div>
-                        <div @click="($parent.persons = 4), osobyClick()">
-                            4 Osoby
-                            <p>(+300,- Kč)</p>
+                        <div class="reservationForm__select-list">
+                            <div @click="($parent.persons = 1), osobyClick()">1 Osoby</div>
+                            <div @click="($parent.persons = 2), osobyClick()">
+                                2 Osoby
+                                <p>(+100,- Kč)</p>
+                            </div>
+                            <div @click="($parent.persons = 3), osobyClick()">
+                                3 Osoby
+                                <p>(+200,- Kč)</p>
+                            </div>
+                            <div @click="($parent.persons = 4), osobyClick()">
+                                4 Osoby
+                                <p>(+300,- Kč)</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <input required type="tel" name="phone" placeholder="Telefon*" v-model="$parent.formData.phone" v-on:keypress="isNumber(event)" />
-                <input required type="email" name="email" placeholder="E-mail" v-model="$parent.formData.email" />
-                <textarea
-                    v-model="$parent.formData.message"
-                    type="text"
-                    name="message"
-                    placeholder="Dalsi pozadavky
+                    <input required type="tel" name="phone" placeholder="Telefon*" v-model="$parent.formData.phone" v-on:keypress="isNumber(event)" />
+                    <input required type="email" name="email" placeholder="E-mail" v-model="$parent.formData.email" />
+                    <textarea
+                        v-model="$parent.formData.message"
+                        type="text"
+                        name="message"
+                        placeholder="Dalsi pozadavky
 Treba jokou chcete hudbu..."
-                ></textarea>
-            </div>
+                    ></textarea>
+                </div>
 
-            <AdditionalComponent :name="'Ozdoba'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
-            <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
-            <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
-        </div>
-    </form>
+                <AdditionalComponent :name="'Ozdoba'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+                <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+                <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
-// import { db } from "../../firebase";
 import AdditionalComponent from "./AdditionalComponent.vue";
 import axios from "axios";
 
@@ -68,15 +69,9 @@ export default {
     data() {
         return {
             state: "loading",
-            // firebaseData: null,
             collectionPath: "reservations",
         };
     },
-    // firestore() {
-    //     return {
-    //         firebaseData: db.collection(this.collectionPath),
-    //     };
-    // },
     methods: {
         isNumber: function (evt) {
             evt = evt ? evt : window.event;
@@ -99,24 +94,9 @@ export default {
             this.$parent.formData.ozdoba = this.$parent.ozdoba;
             this.$parent.formData.prossecco = this.$parent.prossecco;
             this.$parent.formData.persons = this.$parent.persons;
-            // console.log(this.$parent.formData);
             await axios.post("api/reservationItems/", this.$parent.formData);
             this.$parent.bodyDisplayAuto();
         },
-        // async updateFirebase() {
-        //     try {
-        //         this.$parent.formData.misa = this.$parent.misa;
-        //         this.$parent.formData.ozdoba = this.$parent.ozdoba;
-        //         this.$parent.formData.prossecco = this.$parent.prossecco;
-        //         this.$parent.formData.persons = this.$parent.persons;
-        //         await db.collection(this.collectionPath).add(this.$parent.formData);
-        //         this.state = "synced";
-        //         this.$parent.bodyDisplayAuto();
-        //     } catch (error) {
-        //         this.errorMessage = JSON.stringify(error);
-        //         this.state = "error";
-        //     }
-        // },
     },
 };
 </script>
@@ -218,7 +198,6 @@ export default {
     textarea {
         padding-top: 10px;
         margin-bottom: 30px;
-        // grid-column: 1 / -1;
         resize: none;
         height: 135px;
     }

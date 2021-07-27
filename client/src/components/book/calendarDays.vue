@@ -34,9 +34,6 @@
 </template>
 
 <script>
-import $ from "jquery";
-import "jqueryui";
-
 export default {
     name: "calendarDays",
 
@@ -91,9 +88,9 @@ export default {
             const element = e.target;
             if (element.id == "secondDate") {
                 if (this.$parent.secondDate == this.dd && this.isCurrentMonth() && this.isCurrentYear()) {
-                    $(".secondDateCss").addClass("firstDateCss");
+                    document.getElementsByClassName("secondDateCss")[0].classList.add("firstDateCss");
                 }
-                $(element).removeClass("secondDateCss");
+                element.classList.remove("secondDateCss");
 
                 element.id = this.$parent.secondDate;
                 this.$parent.secondDate = 0;
@@ -101,19 +98,24 @@ export default {
                 this.$parent.removeSelect();
             } else if (!element.classList.contains("daysGone")) {
                 if (this.$parent.secondDate != 0) {
-                    $(".secondDateCss").attr("id", `${this.$parent.secondDate.toString()}`);
+                    document.getElementsByClassName("secondDateCss")[0].id = this.$parent.secondDate;
                     if (this.$parent.secondDate == this.dd) {
-                        $(".secondDateCss").addClass("firstDateCss");
+                        document.getElementsByClassName("secondDateCss")[0].classList.add("firstDateCss");
                     }
-                    $(".secondDateCss").removeClass("secondDateCss");
+                    document.getElementsByClassName("secondDateCss")[0].classList.remove("secondDateCss");
                     this.$parent.secondDate = 0;
                 }
-                $(element).removeClass("firstDateCss");
-                $(element).addClass("secondDateCss");
+                element.classList.remove("firstDateCss");
+                element.classList.add("secondDateCss");
 
                 this.$parent.secondDate = element.id;
-                this.$parent.date = element.id.toString() + " " + this.months[this.month] + " " + (this.year + this.yearLoop).toString();
-                // console.log(this.$parent.date);
+                if (element.id > 36) {
+                    this.$parent.date = (element.id - 36 + 1 + (this.lastMonthDays - this.firstDay)).toString() + " " + this.months[this.month - 1] + " " + (this.year + this.yearLoop).toString();
+                } else if (element.id > 31) {
+                    this.$parent.date = (element.id - 31).toString() + " " + this.months[this.month + 1] + " " + (this.year + this.yearLoop).toString();
+                } else {
+                    this.$parent.date = element.id.toString() + " " + this.months[this.month] + " " + (this.year + this.yearLoop).toString();
+                }
                 element.id = "secondDate";
                 this.$parent.removeSelect();
                 this.$parent.insertMenu(row);
@@ -153,8 +155,8 @@ export default {
         setthisMonthDays() {
             this.thisMonthDays = new Date(new Date().getFullYear(), this.month + 1, 0).getDate();
         },
-        isCurrentMonth() {
-            return this.currentMonth == this.month;
+        isCurrentMonth(month = this.month) {
+            return month == this.currentMonth;
         },
         isCurrentYear() {
             return this.year + this.yearLoop == this.year;
@@ -169,6 +171,8 @@ export default {
         isSmallerThanToday(index) {
             if ((index < this.dd || index > 36) && this.isCurrentMonth() && this.isCurrentYear()) {
                 return "daysGone";
+            } else if (index > 36 && this.isCurrentMonth(this.month - 1) && index - 36 + 1 + (this.lastMonthDays - this.firstDay) < this.dd) {
+                return "daysGone";
             } else {
                 if (this.isToday(index) && this.isCurrentMonth() && this.isCurrentYear()) {
                     return ["days-dates", "firstDateCss"];
@@ -181,6 +185,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.white {
+    background: white;
+}
 .row {
     display: grid;
     grid-template-columns: repeat(7, 45px);

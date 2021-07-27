@@ -3,8 +3,8 @@
         <div class="menu__main">
             <div @click="scroll('#about')">O nás</div>
             <div @click="scroll('#book')">Rezervace</div>
-            <div @click="scrollslow('#giftCards')">Dárkové poukazy</div>
-            <div @click="scrollslow('#reference')">Reference</div>
+            <div @click="scroll('#giftCards')">Dárkové poukazy</div>
+            <div @click="scroll('#reference')">Reference</div>
         </div>
         <div class="menu__social">
             <a href="https://facebook.com" target="_blank">Facebook</a>
@@ -14,26 +14,14 @@
 </template>
 
 <script>
-import $ from "jquery";
-
 export default {
     name: "Menu",
     methods: {
         scroll(id) {
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $(id).offset().top,
-                },
-                500
-            );
-        },
-        scrollslow(id) {
-            $([document.documentElement, document.body]).animate(
-                {
-                    scrollTop: $(id).offset().top,
-                },
-                1000
-            );
+            window.scrollTo({
+                top: document.querySelector(id).offsetTop,
+                behavior: "smooth",
+            });
         },
     },
     computed: {

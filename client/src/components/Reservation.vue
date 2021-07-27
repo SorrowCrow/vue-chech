@@ -63,12 +63,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// body {
-//     overflow: hidden;
-// }
-</style>
-
 <style lang="scss" scoped>
 .Reservation,
 .Reservation__overlay,
@@ -101,7 +95,6 @@ export default {
         z-index: 1;
         width: 100%;
         padding: 48px 0 0 0;
-        // margin-right: 30px;
         background: $backgroundgrey;
         &-wrapper {
             overflow: hidden;
@@ -141,7 +134,6 @@ export default {
             max-width: 1000px;
             margin-top: 100px;
             margin-bottom: 100px;
-            // margin-right: 30px;
             background: $white;
             border-radius: 30px;
             &-exit {

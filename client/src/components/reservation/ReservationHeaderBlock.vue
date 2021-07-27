@@ -1,7 +1,7 @@
 <template>
     <div class="ReservationHeaderBlock">
         <svg v-if="isMd" class="ReservationHeaderBlock-icon">
-            <use xlink:href="#logo" />
+            <use href="#logo" />
         </svg>
         <div class="title">Rezervace</div>
         <div class="ReservationInfo">
