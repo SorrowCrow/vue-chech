@@ -24,78 +24,65 @@ router.get("/:date", async (req, res) => {
     }
 });
 
+function email(source) {
+    const msg = {
+        to: source.email,
+        from: verifiedEmail,
+        subject: "Thank you for your reservation",
+        text: "We have received your reservation",
+        html: `<strong>Your reservation: </strong>
+        <ul>
+        <li>Date: ${source.date}</li>
+        <li>Time: ${source.time}</li>
+        <li>Persons: ${source.persons}</li>
+        <li>Ozdoba: ${source.ozdoba === "true" ? "Included" : "Not Included"}</li>
+        <li>Ovocna Misa: ${source.misa === "true" ? "Included" : "Not Included"}</li>
+        <li>Prossecco: ${source.prossecco === "true" ? "Included" : "Not Included"}</li>
+        </ul>`,
+    };
+    sgMail
+        .send(msg)
+        .then(() => {
+            console.log("Email sent");
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
 router.post("/", async (req, res) => {
     const stripe = require("stripe")(process.env.SECRET_KEY);
-    const { stripeId, email } = req.body;
+    const { stripeId } = req.body;
     let newreservationItem = "";
     let matadata;
     if (stripeId) {
         let paymentIntent = await stripe.paymentIntents.retrieve(stripeId);
         metadata = paymentIntent.metadata;
-        newreservationItem = new reservationItem(metadata);
+        if (metadata.time === req.body.formData.time && metadata.date === req.body.formData.date) {
+            metadata.stripeId = stripeId;
+            newreservationItem = new reservationItem(metadata);
+        } else {
+            res.status(500).json("StripeId doesn't equal order id");
+        }
     } else {
         const { captchaRes } = req.body;
         const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${captcha}&response=${captchaRes}`);
 
         if (response.data.success === true) {
-            newreservationItem = new reservationItem(req.body);
+            newreservationItem = new reservationItem(req.body.formData);
         }
     }
     try {
         const reservationItem = await newreservationItem.save();
         if (!reservationItem) throw new Error("Something went wrong while saving form");
-        res.status(200).json(reservationItem);
+        res.status(200).json();
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
     if (stripeId) {
-        const msg = {
-            to: email,
-            from: verifiedEmail,
-            subject: "Thank you for your reservation",
-            text: "We have received your reservation",
-            html: `<strong>Your reservation: </strong>
-            <ul>
-            <li>Date: ${metadata.date}</li>
-            <li>Time: ${metadata.time}</li>
-            <li>Persons: ${metadata.persons}</li>
-            <li>Ozdoba: ${metadata.ozdoba === "true" ? "Included" : "Not Included"}</li>
-            <li>Ovocna Misa: ${metadata.misa === "true" ? "Included" : "Not Included"}</li>
-            <li>Prossecco: ${metadata.prossecco === "true" ? "Included" : "Not Included"}</li>
-            </ul>`,
-        };
-        sgMail
-            .send(msg)
-            .then(() => {
-                console.log("Email sent");
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        email(metadata);
     } else {
-        const msg = {
-            to: email,
-            from: verifiedEmail,
-            subject: "Thank you for your reservation",
-            text: "We have received your reservation",
-            html: `<strong>Your reservation: </strong>
-            <ul>
-            <li>Date: ${req.body.date}</li>
-            <li>Time: ${req.body.time}</li>
-            <li>Persons: ${req.body.persons}</li>
-            <li>Ozdoba: ${req.body.ozdoba ? "Included" : "Not Included"}</li>
-            <li>Ovocna Misa: ${req.body.misa ? "Included" : "Not Included"}</li>
-            <li>Prossecco: ${req.body.prossecco ? "Included" : "Not Included"}</li>
-            </ul>`,
-        };
-        sgMail
-            .send(msg)
-            .then(() => {
-                console.log("Email sent");
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        email(req.body.formData);
     }
 });
 

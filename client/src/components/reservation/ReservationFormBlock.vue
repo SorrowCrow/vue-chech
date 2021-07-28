@@ -124,7 +124,6 @@ export default {
             document.getElementById("formArrow").style.transform = "";
         });
         document.getElementsByClassName("reservationForm__select")[0].addEventListener("click", (e) => e.stopPropagation());
-        document.getElementsByClassName("captcha__wrap")[0].classList.add("highlight");
     },
     methods: {
         // CheckCard() {
@@ -169,11 +168,13 @@ export default {
         //     }
         // },
         async handleSubmit() {
+            if (this.loading) return;
             if (this.ValidateEmail(this.$parent.formData.email) && this.ValidatePhone(this.$parent.formData.phone)) {
                 //captcha response
                 // eslint-disable-next-line
-                let captchaRes = grecaptcha.getResponse();
+                const captchaRes = grecaptcha.getResponse();
                 if (!captchaRes) {
+                    document.getElementsByClassName("captcha__wrap")[0].classList.add("highlight");
                     return;
                 }
                 document.getElementsByClassName("captcha__wrap")[0].classList.remove("highlight");
@@ -182,22 +183,21 @@ export default {
                 this.$parent.formData.ozdoba = this.$parent.ozdoba;
                 this.$parent.formData.prossecco = this.$parent.prossecco;
                 this.$parent.formData.persons = this.$parent.persons;
-                if (this.loading) return;
                 this.loading = true;
+                const formData = this.$parent.formData;
+                let stripeId;
                 if (this.OnlinePayments) {
-                    const name = this.$parent.formData.name;
-                    const email = this.$parent.formData.email;
+                    const name = formData.name;
+                    const email = formData.email;
 
                     const billingDetails = {
                         name,
                         email,
                     };
-                    let formData = this.$parent.formData;
-                    formData.captchaRes = captchaRes;
 
                     this.cardElement = this.elements.getElement("card");
                     try {
-                        const response = await axios.post("api/stripe/", JSON.stringify(formData), {
+                        const response = await axios.post("api/stripe/", JSON.stringify({ formData, captchaRes: captchaRes }), {
                             headers: {
                                 "Content-Type": "application/json",
                             },
@@ -210,7 +210,7 @@ export default {
                             return;
                         }
 
-                        this.$parent.formData.stripeId = id;
+                        stripeId = id;
                         const paymentMethodReq = await this.stripe.createPaymentMethod({
                             type: "card",
                             card: this.cardElement,
@@ -223,17 +223,12 @@ export default {
                         if (error) return;
 
                         this.loading = false;
-
-                        await axios.post("api/reservationItems/", this.$parent.formData);
-                        this.$parent.bodyDisplayAuto();
                     } catch (error) {
                         // console.log("error: ", error);
                     }
-                } else {
-                    this.$parent.formData.captchaRes = captchaRes;
-                    await axios.post("api/reservationItems/", this.$parent.formData);
-                    this.$parent.bodyDisplayAuto();
                 }
+                await axios.post("api/reservationItems/", { formData, stripeId: stripeId, captchaRes: captchaRes });
+                this.$parent.bodyDisplayAuto();
             }
         },
         closeList() {

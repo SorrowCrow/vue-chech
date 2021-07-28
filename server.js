@@ -62,7 +62,7 @@ app.post("/api/stripe", async (req, res) => {
     const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${captcha}&response=${captchaRes}`);
 
     if (response.data.success === true) {
-        const { time, misa, ozdoba, prossecco, persons } = req.body;
+        const { time, misa, ozdoba, prossecco, persons } = req.body.formData;
         let amount = persons * 100;
         if (ozdoba) amount += 350;
         if (prossecco) amount += 290;
@@ -81,17 +81,17 @@ app.post("/api/stripe", async (req, res) => {
             const paymentIntent = await stripe.paymentIntents.create({
                 amount,
                 currency: "czk",
-                metadata: req.body,
+                metadata: req.body.formData,
             });
 
-            res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id, description: paymentIntent.description });
+            res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id });
         } catch (error) {
             console.log("error: ", error);
             res.status(500).send("error" + error);
         }
     } else {
         console.log("captcha not successful");
-        res.status(200).send({ message: "captcha not successful" });
+        res.status(500).send({ message: "captcha not successful" });
     }
 });
 
