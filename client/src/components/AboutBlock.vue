@@ -68,8 +68,9 @@ export default {
     padding-bottom: 65px;
     color: $deepblue;
     max-width: 1170px;
-    margin-left: 30px;
-    margin-right: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+
     .title-container {
         grid-template-columns: auto;
         .title {
