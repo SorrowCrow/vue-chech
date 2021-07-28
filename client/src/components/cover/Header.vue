@@ -53,18 +53,6 @@ export default {
             isMenu: false,
         };
     },
-    methods: {
-        isDisplayMenu() {
-            if (this.displayMenu) {
-                this.isMenu = false;
-                document.getElementsByTagName("body")[0].style.overflow = "auto";
-            }
-        },
-    },
-    mounted() {
-        // Register an event listener when the Vue component is ready
-        window.addEventListener("resize", this.isDisplayMenu);
-    },
 };
 </script>
 

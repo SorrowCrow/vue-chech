@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="40" height="48" viewBox="0 0 40 48" fill="none" version="1.1" id="svg11" sodipodi:docname="icon.svg" inkscape:version="1.1 (c4e8f9e, 2021-05-24)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-	<defs id="defs15" />
-	<namedview id="namedview13" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" showgrid="false" inkscape:zoom="5.3958333" inkscape:cx="-6.2084942" inkscape:cy="24" inkscape:window-width="1366" inkscape:window-height="703" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg11" inkscape:snap-global="true" inkscape:snap-nodes="true" />
-	<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="48">
-		<path d="M5.8483 14.097C1.98853 17.9419 0 23.0667 0 28.0773C0 33.0878 1.98853 38.3294 5.8483 42.1743C9.70809 46.0192 14.8528 48 20 48C25.1472 48 30.2919 46.0192 34.1517 42.1743C38.0115 38.3294 40 33.0878 40 28.0773C40 23.0667 38.0115 17.9419 34.1517 14.097L20 0L5.8483 14.097Z" fill="white" id="path2" />
+<svg width="360" height="432" viewBox="0 0 360 432" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="360" height="432">
+		<path d="M52.6348 126.873C17.8968 161.477 0 207.601 0 252.695C0 297.79 17.8968 344.965 52.6348 379.569C87.3728 414.172 133.675 432 180 432C226.325 432 272.627 414.172 307.365 379.569C342.103 344.965 360 297.79 360 252.695C360 207.601 342.103 161.477 307.365 126.873L180 0L52.6348 126.873Z" fill="white" />
 	</mask>
-	<g mask="url(#mask0)" id="g9">
-		<rect x="0.000244141" width="40" height="48" fill="white" id="rect5" />
-		<path d="M58.8623 28.5602C63.8132 26.4668 69.4358 24.0926 80.0002 24.0026C80.1862 24.0012 80.3737 24 80.5628 24C91.5199 24 97.2487 26.4145 102.303 28.5448L102.34 28.5603C107.292 30.658 111.562 32.4639 120.593 32.4638C129.641 32.4638 133.91 30.658 138.862 28.5602C143.813 26.4668 149.436 24.0926 160 24.0026V48H0.000244141V24.0021C0.186211 24.0007 0.373711 24 0.562771 24C11.5199 24 17.2487 26.4145 22.3031 28.5448L22.3398 28.5603C27.2922 30.658 31.5617 32.4639 40.5931 32.4638C49.6406 32.4638 53.9097 30.658 58.8623 28.5602Z" fill="#C7B6DA" id="path7" />
+	<g mask="url(#mask0)">
+		<rect x="0.00222778" width="360" height="432" fill="white" />
+		<path d="M529.761 257.042C574.319 238.201 624.922 216.834 720.002 216.024C721.676 216.011 723.363 216 725.065 216C823.679 216 875.238 237.731 920.727 256.903L921.058 257.042C965.629 275.922 1004.05 292.175 1085.34 292.175C1166.77 292.175 1205.19 275.922 1249.76 257.042C1294.32 238.201 1344.92 216.834 1440 216.024V432H0.00219727V216.019C1.6759 216.006 3.3634 216 5.06494 216C103.679 216 155.238 237.731 200.727 256.903L201.058 257.042C245.629 275.922 284.055 292.175 365.338 292.175C446.766 292.175 485.187 275.922 529.761 257.042Z" fill="#C7B6DA" />
 	</g>
 </svg>

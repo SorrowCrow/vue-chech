@@ -2,10 +2,10 @@
 <html lang="">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
         <title>Sauna Kbely</title>
+        <link rel="icon" href="<%= BASE_URL %>icon.png" />
         <script src="https://js.stripe.com/v3"></script>
         <script type="text/javascript">
             var onloadCallback = function() {
@@ -18,10 +18,16 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Playfair+Display&family=Work+Sans&display=swap" rel="stylesheet" />
+        <link rel="manifest" href="manifest.json" />
     </head>
     <body>
         <noscript>
             <strong>We're sorry but Sauna Kbely doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
         </noscript>
+        <script>
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("/service-worker.js");
+            }
+        </script>
     </body>
 </html>

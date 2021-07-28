@@ -32,11 +32,8 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-    overflow-x: hidden;
-}
-
 body {
+    overflow-x: hidden;
     font-family: $default-font;
     margin: 0;
     cursor: default;
