@@ -1,5 +1,5 @@
 <template>
-    <footer class="contain">
+    <footer class="contain x-hidden">
         <svg class="mx-auto containerWave relative">
             <use href="#containerWave" />
         </svg>

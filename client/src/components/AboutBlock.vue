@@ -1,5 +1,5 @@
 <template>
-    <div class="contain">
+    <div class="contain x-hidden">
         <div class="title-container grid">
             <div class="title" id="about">O nás</div>
             <div class="sub-title">Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.</div>

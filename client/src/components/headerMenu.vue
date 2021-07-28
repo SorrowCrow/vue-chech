@@ -50,7 +50,7 @@ export default {
         },
         bodyDisplayAuto() {
             this.$parent.isMenu = false;
-            document.getElementsByTagName("body")[0].style.overflow = "auto";
+            document.getElementsByTagName("body")[0].style.overflow = "";
         },
     },
     mounted: function () {
