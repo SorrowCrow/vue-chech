@@ -10,4 +10,4 @@ const app = createApp(App).use(VueMq, {
         lg: Infinity
     }
 });
-app.mount("#app");
+app.mount("body");

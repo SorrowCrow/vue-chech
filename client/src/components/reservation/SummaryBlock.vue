@@ -65,11 +65,11 @@
                 <div id="payment-request-button">
                     <!-- A Stripe Element will be inserted here. -->
                 </div>
-                <br/>
-                <div class="g-recaptcha" data-sitekey="6Le428QbAAAAAJtzzkOgPTjuGq8xp2uvjN79yGEf"></div>
-                <br/>
 
                 <div id="stripe-card" required class="overflow-hidden" :class="$parent.OnlinePayments ? 'cardShow' : 'cardHide'"></div>
+                <form id="captchaForm">
+                    <div class="min-content mx-auto captcha__wrap" form="form" id="captcha"></div>
+                </form>
             </div>
             <button type="submit" class="SummaryBlock__rezervovat h-p mx-auto align-center" form="form">Rezervovat</button>
         </div>
@@ -96,7 +96,12 @@ export default {
             misaPrice: 350,
         };
     },
-    mounted() {
+    mounted: function () {
+        const script = document.createElement("script");
+        script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
+        script.defer = "";
+        script.async = "";
+        document.head.appendChild(script);
         if (this.hours == 1) {
             this.timePrice = 799;
         } else if (this.hours == 15) {
@@ -111,6 +116,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.highlight {
+    border: solid 2px red;
+    border-radius: 6px;
+}
+.captcha__wrap {
+    margin: 20px auto;
+}
 .cardShow {
     transition: 0.5s;
     height: 26.4px;
@@ -152,7 +164,7 @@ export default {
     &__voucher {
         background-color: $backgroundgrey;
         border-radius: 10px;
-        margin-top: 35px;
+        margin-top: 20px35px;
         &-text {
             font-family: $playfair-font;
             font-size: 20px;
@@ -223,7 +235,7 @@ export default {
         font-size: 25px;
         height: 60px;
         border-radius: 50px;
-        margin-top: 42px;
+        margin-top: 20px42px;
         background-color: $orange;
         color: white;
     }
@@ -246,7 +258,7 @@ export default {
             }
         }
         &__voucher {
-            margin-top: 57px;
+            margin-top: 20px57px;
             &-text {
                 font-size: 25px;
             }
@@ -262,7 +274,7 @@ export default {
             }
         }
         &__rezervovat {
-            margin-top: 90px;
+            margin-top: 20px90px;
         }
     }
 }

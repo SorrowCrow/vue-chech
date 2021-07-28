@@ -40,6 +40,7 @@
 Treba jokou chcete hudbu..."
                 ></textarea>
             </div>
+
             <AdditionalComponent :name="'Ozdoba'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
             <AdditionalComponent :name="'Prossecco'" :price="290" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
             <AdditionalComponent :name="'Ovocna Misa'" :price="350" :infoText="'Sauna is located in noiseless part of Prague, only a 15-minute drive from the historical city centre. It offers free Wi-Fi, free parking and English breakfast. All rooms provide satellite TV, a bathroom and a seating area.'" />
@@ -123,6 +124,7 @@ export default {
             document.getElementById("formArrow").style.transform = "";
         });
         document.getElementsByClassName("reservationForm__select")[0].addEventListener("click", (e) => e.stopPropagation());
+        document.getElementsByClassName("captcha__wrap")[0].classList.add("highlight");
     },
     methods: {
         // CheckCard() {
@@ -168,14 +170,21 @@ export default {
         // },
         async handleSubmit() {
             if (this.ValidateEmail(this.$parent.formData.email) && this.ValidatePhone(this.$parent.formData.phone)) {
+                //captcha response
+                // eslint-disable-next-line
+                let captchaRes = grecaptcha.getResponse();
+                if (!captchaRes) {
+                    return;
+                }
+                document.getElementsByClassName("captcha__wrap")[0].classList.remove("highlight");
+
                 this.$parent.formData.misa = this.$parent.misa;
                 this.$parent.formData.ozdoba = this.$parent.ozdoba;
                 this.$parent.formData.prossecco = this.$parent.prossecco;
                 this.$parent.formData.persons = this.$parent.persons;
+                if (this.loading) return;
+                this.loading = true;
                 if (this.OnlinePayments) {
-                    if (this.loading) return;
-                    this.loading = true;
-
                     const name = this.$parent.formData.name;
                     const email = this.$parent.formData.email;
 
@@ -183,16 +192,24 @@ export default {
                         name,
                         email,
                     };
+                    let formData = this.$parent.formData;
+                    formData.captchaRes = captchaRes;
 
                     this.cardElement = this.elements.getElement("card");
-
                     try {
-                        const response = await axios.post("api/stripe/", JSON.stringify(this.$parent.formData), {
+                        const response = await axios.post("api/stripe/", JSON.stringify(formData), {
                             headers: {
                                 "Content-Type": "application/json",
                             },
                         });
+
                         const { secret, id } = response.data;
+
+                        if (!secret) {
+                            this.loading = false;
+                            return;
+                        }
+
                         this.$parent.formData.stripeId = id;
                         const paymentMethodReq = await this.stripe.createPaymentMethod({
                             type: "card",
@@ -203,15 +220,19 @@ export default {
                         const { error } = await this.stripe.confirmCardPayment(secret, {
                             payment_method: paymentMethodReq.paymentMethod.id,
                         });
-
                         if (error) return;
+
                         this.loading = false;
-                        this.addItem();
+
+                        await axios.post("api/reservationItems/", this.$parent.formData);
+                        this.$parent.bodyDisplayAuto();
                     } catch (error) {
                         // console.log("error: ", error);
                     }
                 } else {
-                    this.addItem();
+                    this.$parent.formData.captchaRes = captchaRes;
+                    await axios.post("api/reservationItems/", this.$parent.formData);
+                    this.$parent.bodyDisplayAuto();
                 }
             }
         },
@@ -228,10 +249,6 @@ export default {
                 document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "10px 10px 0 0";
                 document.getElementById("formArrow").style.transform = "rotate(180deg)";
             }
-        },
-        async addItem() {
-            await axios.post("api/reservationItems/", this.$parent.formData);
-            this.$parent.bodyDisplayAuto();
         },
     },
 };

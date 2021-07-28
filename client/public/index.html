@@ -7,7 +7,13 @@
         <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
         <title>Sauna Kbely</title>
         <script src="https://js.stripe.com/v3"></script>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script type="text/javascript">
+            var onloadCallback = function() {
+                grecaptcha.render("captcha", {
+                    sitekey: "6Le428QbAAAAAJtzzkOgPTjuGq8xp2uvjN79yGEf"
+                });
+            };
+        </script>
         <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,6 +23,5 @@
         <noscript>
             <strong>We're sorry but Sauna Kbely doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
         </noscript>
-        <div id="app"></div>
     </body>
 </html>
