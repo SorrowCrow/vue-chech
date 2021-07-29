@@ -193,7 +193,6 @@ export default {
 }
 @media only screen and (min-width: $md-breakpoint) {
     .contain {
-        padding-top: 4.0625rem;
         padding-bottom: 2.25rem;
         .title-container {
             .sub-title {

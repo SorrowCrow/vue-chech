@@ -13,12 +13,10 @@
     "@vue-stripe/vue-stripe": "^4.2.5",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "postscribe": "^2.0.8",
     "sass": "^1.35.0",
     "sass-loader": "^10.1.0",
     "tiny-slider": "^2.9.3",
-    "vue": "^3.0.0",
-    "vue3-mq": "^2.3.3"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
