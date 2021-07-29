@@ -2,7 +2,7 @@
     <Header />
     <div class="contain relative grid content-center" id="cover">
         <Slider :isSlider="isSlider" />
-        <div class="absolute align-self-center flex content-center w-100">
+        <div class="absolute flex content-center w-100" :class="!isMd ? 'align-self-center' : 'title-wrap'">
             <div id="sliderInit" :class="!isMd ? 'h-p' : ''" class="relative title fit-content user-select-none relative" @click="titleClick()">
                 <div class="title-privatni relative fit-content" :class="isMd ? 'mx-auto' : ''">Tvůj privátní</div>
                 <div class="title-wellness relative mx-auto">Wellness</div>
@@ -73,6 +73,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.title-wrap {
+    bottom: 3.125rem;
+}
 .title {
     color: $white;
     transition: $transition;
