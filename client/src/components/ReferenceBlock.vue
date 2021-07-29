@@ -52,6 +52,7 @@ import "tiny-slider/dist/tiny-slider.css";
 
 export default {
     name: "ReferenceBlock",
+
     methods: {
         carousel() {
             tns({
@@ -63,7 +64,7 @@ export default {
                 speed: 400,
                 nav: false,
                 controlsContainer: ".buttons",
-                gutter: 100,
+                // gutter: 100,
             });
         },
     },
@@ -76,8 +77,8 @@ export default {
 <style lang="scss" scoped>
 .containerWave {
     width: 100%;
-    min-width: 680px;
-    height: 22px;
+    min-width: 42.5rem;
+    height: 1.375rem;
     fill: $medium-beige;
     background: white;
 }
@@ -85,22 +86,22 @@ export default {
     color: $deepblue;
     background: $medium-beige;
     .content {
-        max-width: 970px;
-        padding-right: 30px;
-        padding-left: 30px;
+        max-width: 60.625rem;
+        padding-right: 1.875rem;
+        padding-left: 1.875rem;
         .carouselContainer {
             .footer__carousel {
                 &-nextBtn,
                 &-prevBtn {
-                    top: 80px;
-                    width: 60px;
-                    height: 60px;
+                    top: 5rem;
+                    width: 3.75rem;
+                    height: 3.75rem;
                     background: $white;
                     border-radius: 50%;
-                    transition: 0.2s;
+                    transition: $transition-fast;
                     svg {
-                        width: 36px;
-                        height: 36px;
+                        width: 2.25rem;
+                        height: 2.25rem;
                         fill: $deepblue;
                     }
                 }
@@ -109,21 +110,21 @@ export default {
                 }
                 &-slide {
                     font-weight: 300;
-                    font-size: 25px;
-                    line-height: 37.5px;
+                    font-size: 1.5625rem;
+                    line-height: 2.3438rem;
                     width: 100%;
                 }
             }
-            padding-top: 40px;
+            padding-top: 2.5rem;
             .buttons {
-                padding-top: 30px;
-                grid-column-gap: 30px;
+                padding-top: 1.875rem;
+                grid-column-gap: 1.875rem;
             }
             .wave {
-                padding-top: 50px;
-                padding-bottom: 26px;
+                padding-top: 3.125rem;
+                padding-bottom: 1.625rem;
                 width: 100%;
-                height: 19px;
+                height: 1.1875rem;
                 fill: black;
                 fill-opacity: 0.09;
             }
@@ -133,21 +134,21 @@ export default {
         }
         &__number {
             font-family: $playfair-font;
-            font-size: 45px;
+            font-size: 2.8125rem;
             letter-spacing: -0.03em;
-            padding-bottom: 41px;
+            padding-bottom: 2.5625rem;
         }
 
         &__links {
-            padding-top: 45px;
-            padding-bottom: 60px;
+            padding-top: 2.8125rem;
+            padding-bottom: 3.75rem;
             a {
-                margin-left: 10px;
-                margin-right: 10px;
+                margin-left: 0.625rem;
+                margin-right: 0.625rem;
             }
             svg {
-                width: 50px;
-                height: 50px;
+                width: 3.125rem;
+                height: 3.125rem;
                 fill: $deepblue;
             }
         }
@@ -156,45 +157,45 @@ export default {
 @media only screen and (min-width: $md-breakpoint) {
     .containerWave {
         width: 100%;
-        height: 22px;
+        height: 1.375rem;
     }
     .contain {
         .content {
             .carouselContainer {
-                padding-top: 131px;
+                padding-top: 8.1875rem;
                 .footer__carousel {
                     &-nextBtn,
                     &-prevBtn {
                         z-index: 1;
                         &:hover {
-                            width: 70px;
-                            height: 70px;
+                            width: 4.375rem;
+                            height: 4.375rem;
                             bottom: 49.5%;
                         }
                     }
                     &-slide {
                         font-weight: 300;
-                        font-size: 50px;
+                        font-size: 3.125rem;
                         line-height: 150%;
-                        width: 770px;
+                        width: 48.125rem;
                     }
                 }
                 .buttons {
                     padding-top: 0px;
-                    margin-top: -100px;
-                    height: 70px;
+                    margin-top: -6.25rem;
+                    height: 4.375rem;
                     justify-content: space-between;
                 }
                 .wave {
-                    padding-top: 50px;
-                    padding-bottom: 44px;
+                    padding-top: 3.125rem;
+                    padding-bottom: 2.75rem;
                     width: 100%;
                     height: min-content;
                 }
             }
             &__number {
-                font-size: 100px;
-                line-height: 133px;
+                font-size: 6.25rem;
+                line-height: 8.3125rem;
             }
         }
     }

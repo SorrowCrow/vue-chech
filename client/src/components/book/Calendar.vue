@@ -1,23 +1,23 @@
 <template>
-    <div class="cat">
+    <div class="cat h-fit-content overflow-hidden relative user-select-none">
         <div class="cat__header">
-            <div class="month">
-                <svg class="leftArrow" @click="getMonthDecrease()">
+            <div class="month flex content-center align-center">
+                <svg class="leftArrow h-p" @click="getMonthDecrease()">
                     <use href="#calendarArrow" />
                 </svg>
-                <div class="month-name">{{ months[month] }}</div>
-                <svg @click="getMonthIncrease()">
+                <div class="month-name flex content-center align-center text-center">{{ months[month] }}</div>
+                <svg class="h-p" @click="getMonthIncrease()">
                     <use href="#calendarArrow" />
                 </svg>
             </div>
-            <div class="weekdays">
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
-                <div>Sun</div>
+            <div class="weekdays flex content-between">
+                <div class="flex justify-center align-center text-center">Mon</div>
+                <div class="flex justify-center align-center text-center">Tue</div>
+                <div class="flex justify-center align-center text-center">Wed</div>
+                <div class="flex justify-center align-center text-center">Thu</div>
+                <div class="flex justify-center align-center text-center">Fri</div>
+                <div class="flex justify-center align-center text-center">Sat</div>
+                <div class="flex justify-center align-center text-center">Sun</div>
             </div>
         </div>
         <ChooseHoursMenu ref="chooseHours" :secondDate="String(secondDate)" :chooseHoursHidden="chooseHoursHidden" :key="componentKey" :month="month" :currentMonth="currentMonth" :yearLoop="yearLoop" />
@@ -144,59 +144,37 @@ export default {
 
 <style lang="scss" scoped>
 .cat {
-    border-radius: 30px;
-    width: 315px;
-    height: fit-content;
-    overflow: hidden;
-    position: relative;
-    user-select: none;
-    font-size: 9px;
+    border-radius: 1.875rem;
+    width: 19.6875rem;
+    font-size: 0.5625rem;
     .cat__header {
         background: $darkdarkblue;
         width: 100%;
         .month {
             width: 100%;
-            height: 46px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 2.875rem;
             .leftArrow {
                 padding-top: 0;
                 transform: rotate(180deg);
             }
             svg {
-                width: 36px;
-                height: 36px;
+                width: 2.25rem;
+                height: 2.25rem;
                 stroke: $beige;
-                &:hover {
-                    cursor: pointer;
-                }
             }
             .month-name {
-                width: 180px;
+                width: 11.25rem;
                 font-family: Playfair Display;
-                font-size: 23px;
-                line-height: 47px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                letter-spacing: -0.03em;
-
-                color: #f5f2ef;
+                font-size: 1.4375rem;
+                line-height: 2.9375rem;
+                letter-spacing: -0.03rem;
             }
         }
         .weekdays {
-            display: flex;
-            justify-content: space-between;
             color: $beige;
             div {
-                width: 67px;
-                height: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
+                width: 4.1875rem;
+                height: 1.875rem;
             }
         }
     }
@@ -204,52 +182,52 @@ export default {
         grid-template-rows: var(--calendarGrid);
     }
 }
-@media only screen and (min-width: 740px) {
+@media only screen and (min-width: $sm-breakpoint) {
     .cat {
         position: absolute;
     }
 }
 @media only screen and (min-width: $md-breakpoint) {
     .cat {
-        border-radius: 30px;
-        width: 470px;
         height: fit-content;
         overflow: hidden;
         user-select: none;
-        font-size: 20px;
+        border-radius: 1.875rem;
+        width: 29.375rem;
+        font-size: 1.25rem;
         .cat__header {
             background: $darkdarkblue;
             width: 100%;
-            height: 100px;
+            height: 6.25rem;
             .month {
                 width: 100%;
-                height: 70px;
+                height: 4.375rem;
                 display: flex;
                 justify-content: center;
                 .leftArrow {
                     padding-top: 0;
-                    padding-bottom: 8px;
+                    padding-bottom: 0.5rem;
                     transform: rotate(180deg);
                 }
                 svg {
-                    padding-top: 8px;
-                    width: 54px;
-                    height: 54px;
+                    padding-top: 0.5rem;
+                    width: 3.375rem;
+                    height: 3.375rem;
                     stroke: $beige;
                     &:hover {
                         cursor: pointer;
                     }
                 }
                 .month-name {
-                    width: 270px;
+                    width: 16.875rem;
                     font-family: Playfair Display;
-                    font-size: 35px;
-                    line-height: 47px;
+                    font-size: 2.1875rem;
+                    line-height: 2.9375rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    letter-spacing: -0.03em;
+                    letter-spacing: -0.03rem;
 
                     color: #f5f2ef;
                 }
@@ -259,8 +237,8 @@ export default {
                 justify-content: space-between;
                 color: $beige;
                 div {
-                    width: 67px;
-                    height: 30px;
+                    width: 4.1875rem;
+                    height: 1.875rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;

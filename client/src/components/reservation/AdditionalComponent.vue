@@ -53,18 +53,17 @@ export default {
 <style lang="scss" scoped>
 .reservationForm__additional-info {
     background-color: white;
-    border-radius: 30px;
+    border-radius: 1.875rem;
     &-item {
-        padding-top: 44px;
-        font-size: 20px;
-        line-height: 150%;
+        padding-top: 2.75rem;
+        font-size: 1.25rem;
     }
 }
 .reservationForm__additional {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 28px;
-    padding-bottom: 28px;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
     .wrap {
         width: 100%;
     }
@@ -74,25 +73,25 @@ export default {
         .tux {
             fill: $secondary;
             stroke: $secondary;
-            width: 60px;
-            height: 60px;
+            width: 3.75rem;
+            height: 3.75rem;
         }
         div {
-            padding-left: 26px;
+            padding-left: 1.625rem;
         }
         span {
-            font-size: 30px;
+            font-size: 1.875rem;
             font-family: $playfair-font;
         }
         p {
-            font-size: 18px;
+            font-size: 1.125rem;
         }
         .switch {
             position: relative;
             display: inline-block;
-            width: 86px;
-            height: 46px;
-            margin-left: 86px;
+            width: 5.375rem;
+            height: 2.875rem;
+            margin-left: 5.375rem;
             input {
                 opacity: 0;
                 width: 0;
@@ -102,7 +101,7 @@ export default {
                 }
 
                 &:checked + .slider:before {
-                    transform: translateX(40px);
+                    transform: translateX(2.5rem);
                 }
             }
         }
@@ -114,56 +113,56 @@ export default {
             right: 0;
             bottom: 0;
             background-color: $secondary;
-            transition: 0.4s;
-            border-radius: 34px;
+            transition: $transition;
+            border-radius: 2.125rem;
             &:before {
                 position: absolute;
                 content: "";
-                height: 40px;
-                width: 40px;
-                left: 3px;
-                bottom: 3px;
+                height: 2.5rem;
+                width: 2.5rem;
+                left: 0.1875rem;
+                bottom: 0.1875rem;
                 background-color: white;
-                transition: 0.4s;
+                transition: $transition;
                 border-radius: 50%;
             }
         }
         .info {
-            width: 46px;
-            height: 46px;
-            margin-left: 40px;
+            width: 2.875rem;
+            height: 2.875rem;
+            margin-left: 2.5rem;
             &:hover {
                 cursor: pointer;
             }
         }
     }
 }
-@media only screen and (min-width: 590px) {
+@media only screen and (min-width: $AdditionalComponent-breakpoint) {
     .reservationForm__additional {
         .wrap {
             display: flex;
         }
     }
 }
-@media only screen and (min-width: 1070px) {
+@media only screen and (min-width: $md-breakpoint) {
     .reservationForm__additional {
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
         &-item {
             .tux {
-                width: 70px;
-                height: 70px;
+                width: 4.375rem;
+                height: 4.375rem;
             }
             div {
                 padding: 0;
                 display: flex;
             }
             span {
-                font-size: 35px;
-                padding-left: 40px;
-                padding-right: 30px;
+                font-size: 2.1875rem;
+                padding-left: 2.5rem;
+                padding-right: 1.875rem;
             }
         }
     }

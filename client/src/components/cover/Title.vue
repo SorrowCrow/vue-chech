@@ -1,12 +1,15 @@
 <template>
-    <div class="contain relative" id="cover">
+    <Header />
+    <div class="contain relative grid content-center" id="cover">
         <Slider :isSlider="isSlider" />
-        <div id="sliderInit" class="title absolute fit-content my-auto user-select-none" @click="titleClick()">
-            <div class="title-privatni relative fit-content" :class="isMd ? 'mx-auto' : ''">Tvůj privátní</div>
-            <div class="title-wellness relative mx-auto">Wellness</div>
-            <svg class="relative">
-                <use href="#rezervace" @click="isMd ? rezervaceClick() : ''" />
-            </svg>
+        <div class="absolute align-self-center flex content-center w-100">
+            <div id="sliderInit" :class="!isMd ? 'h-p' : ''" class="relative title fit-content user-select-none relative" @click="titleClick()">
+                <div class="title-privatni relative fit-content" :class="isMd ? 'mx-auto' : ''">Tvůj privátní</div>
+                <div class="title-wellness relative mx-auto">Wellness</div>
+                <svg class="relative" :class="!isMd ? 'absolute' : ''">
+                    <use href="#rezervace" @click="isMd ? rezervaceClick() : ''" />
+                </svg>
+            </div>
         </div>
         <Menu />
     </div>
@@ -15,13 +18,16 @@
 <script>
 import Menu from "./Menu.vue";
 import Slider from "./Slider.vue";
+import Header from "./Header.vue";
 
 export default {
     name: "Background",
     components: {
         Menu,
         Slider,
+        Header,
     },
+    inject: ["windowInfo"],
     data() {
         return {
             isSlider: false,
@@ -60,7 +66,7 @@ export default {
     },
     computed: {
         isMd() {
-            return this.$mq === "md" ? true : this.$mq === "sm" ? true : false;
+            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
         },
     },
 };
@@ -68,56 +74,47 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-    top: calc(50% - 334px / 2);
-    left: calc(50% - 314px / 2);
     color: $white;
     transition: $transition;
     &-privatni {
         font-family: $indieFlower-font;
-        line-height: 58px;
         color: $secondary;
     }
     &-wellness {
         top: 0;
         width: 100%;
-        font-size: 85px;
-        line-height: 100px;
+        font-size: 5.3125rem;
         font-family: $italiana-font;
     }
     svg {
-        width: 140px;
-        height: 140px;
-        right: 0px;
-        padding-top: 36px;
-        padding-left: 83px;
+        width: 8.75rem;
+        height: 8.75rem;
+        right: 0;
+        padding-top: 2.25rem;
+        padding-left: 5.1875rem;
         fill: $orange;
     }
 }
 @media only screen and (min-width: $md-breakpoint) {
     .title {
-        width: 970px;
-        top: calc(50% - 366px / 2);
-        left: calc(50% - 970px / 2);
+        width: 60.625rem;
         &:hover {
-            cursor: pointer;
             color: rgba(255, 255, 255, 0.5);
         }
         &-privatni {
-            font-size: 80px;
-            line-height: 117px;
+            font-size: 5rem;
+            line-height: 7.3125rem;
         }
         &-wellness {
-            top: -46px;
+            margin-top: -2.875rem;
             width: 100%;
-            font-size: 250px;
-            line-height: 294px;
+            font-size: 15.625rem;
         }
         svg {
-            position: absolute;
-            width: 140px;
-            height: 140px;
+            width: 8.75rem;
+            height: 8.75rem;
             right: 0px;
-            top: 79px;
+            top: 4.9375rem;
             padding: 0;
         }
     }

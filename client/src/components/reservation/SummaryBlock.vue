@@ -117,27 +117,26 @@ export default {
 
 <style lang="scss" scoped>
 .highlight {
-    border: solid 2px red;
-    border-radius: 6px;
+    border: solid 0.125rem red;
+    border-radius: 0.375rem;
 }
 .captcha__wrap {
-    margin: 20px auto;
+    margin: 1.25rem auto;
 }
 .cardShow {
-    transition: 0.5s;
-    height: 26.4px;
-    padding: 10px;
-    border-radius: 10px;
+    transition: $transition;
+    padding: 0.625rem;
+    border-radius: 0.625rem;
     background-color: #f2eef5;
 }
 .cardHide {
-    transition: 0.5s;
-    height: 0px;
+    transition: $transition;
+    height: 0rem;
 }
 .containerWave {
     width: 100%;
-    min-width: 680px;
-    height: 22px;
+    min-width: 42.5rem;
+    height: 1.375rem;
     fill: $white;
     background: $backgroundgrey;
 }
@@ -146,50 +145,50 @@ export default {
 }
 .SummaryBlock {
     color: $deepblue;
-    font-size: 18px;
-    max-width: 570px;
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    font-size: 1.125rem;
+    max-width: 35.625rem;
+    padding-right: 1.875rem;
+    padding-left: 1.875rem;
+    padding-top: 6.25rem;
+    padding-bottom: 6.25rem;
     &__costs {
         &-item {
-            padding-bottom: 16px;
+            padding-bottom: 1rem;
         }
         &-total {
             font-family: $playfair-font;
-            font-size: 30px;
+            font-size: 1.875rem;
         }
     }
     &__voucher {
         background-color: $backgroundgrey;
         border-radius: 10px;
-        margin-top: 20px35px;
+        margin-top: 2.1875rem;
         &-text {
             font-family: $playfair-font;
-            font-size: 20px;
-            padding: 13px 0 14px 20px;
+            font-size: 1.25rem;
+            padding: 0.8125rem 0 0.875rem 1.25rem;
         }
         &-button {
             background-color: $secondary;
-            border-radius: 50px;
-            width: 125px;
-            height: 38px;
-            margin-right: 11px;
+            border-radius: 3.125rem;
+            width: 7.8125rem;
+            height: 2.375rem;
+            margin-right: 0.6875rem;
             color: white;
         }
     }
     &__payingMethods {
-        padding-top: 42px;
+        padding-top: 2.625rem;
         &-item {
-            grid-row-gap: 3px;
-            padding-left: 55px;
-            height: 30px;
-            padding-bottom: 25px;
-            font-size: 22px;
+            grid-row-gap: 0.1875rem;
+            padding-left: 3.4375rem;
+            height: 1.875rem;
+            padding-bottom: 1.5625rem;
+            font-size: 1.375rem;
             &-info {
                 color: $secondary;
-                font-size: 16px;
+                font-size: 1rem;
             }
             input {
                 position: absolute;
@@ -200,8 +199,8 @@ export default {
                 position: absolute;
                 top: 0;
                 left: 0;
-                height: 30px;
-                width: 30px;
+                height: 1.875rem;
+                width: 1.875rem;
                 background-color: $secondary;
                 border-radius: 50%;
             }
@@ -220,10 +219,10 @@ export default {
                 display: block;
             }
             .checkmark:after {
-                top: 6px;
-                left: 6px;
-                width: 18px;
-                height: 18px;
+                top: 0.375rem;
+                left: 0.375rem;
+                width: 1.125rem;
+                height: 1.125rem;
                 border-radius: 50%;
                 background: white;
             }
@@ -231,21 +230,21 @@ export default {
     }
     &__rezervovat {
         border: 0;
-        width: 239px;
-        font-size: 25px;
-        height: 60px;
-        border-radius: 50px;
-        margin-top: 20px42px;
+        width: 14.9375rem;
+        font-size: 1.5625rem;
+        height: 3.75rem;
+        border-radius: 3.125rem;
+        margin-top: 2.625rem;
         background-color: $orange;
         color: white;
     }
 }
-@media only screen and (min-width: 1070px) {
+@media only screen and (min-width: $md-breakpoint) {
     .wrap {
-        border-radius: 30px;
+        border-radius: 1.875rem;
     }
     .SummaryBlock {
-        font-size: 20px;
+        font-size: 1.25rem;
         &__costs {
             &-item {
                 div {
@@ -254,27 +253,27 @@ export default {
             }
             &-total {
                 font-family: $playfair-font;
-                font-size: 35px;
+                font-size: 2.1875rem;
             }
         }
         &__voucher {
-            margin-top: 20px57px;
+            margin-top: 3.5625rem;
             &-text {
-                font-size: 25px;
+                font-size: 1.5625rem;
             }
             &-button {
-                width: 92px;
+                width: 5.75rem;
             }
         }
         &__payingMethods {
-            padding-top: 55px;
+            padding-top: 3.4375rem;
             &-item {
                 display: flex;
-                padding-bottom: 18px;
+                padding-bottom: 1.125rem;
             }
         }
         &__rezervovat {
-            margin-top: 20px90px;
+            margin-top: 5.625rem;
         }
     }
 }

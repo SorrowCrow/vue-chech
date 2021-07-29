@@ -15,13 +15,14 @@
 <script>
 export default {
     name: "ReservationHeaderBlock",
+    inject: ["windowInfo"],
     props: {
         time: String,
         date: String,
     },
     computed: {
         isMd() {
-            return this.$mq === "md" ? true : this.$mq === "sm" ? true : false;
+            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
         },
     },
 };
@@ -30,20 +31,20 @@ export default {
 <style lang="scss" scoped>
 .ReservationHeaderBlock {
     color: $deepblue;
-    padding-right: 30px;
-    padding-left: 30px;
-    max-width: 769px;
+    padding-right: 1.875rem;
+    padding-left: 1.875rem;
+    max-width: 48.0625rem;
     &-icon {
-        width: 50px;
-        height: 60px;
-        margin-bottom: 38px;
+        width: 3.125rem;
+        height: 3.75rem;
+        margin-bottom: 2.375rem;
     }
     .ReservationInfo {
-        margin-top: 7px;
-        font-size: 18px;
+        margin-top: 0.4375rem;
+        font-size: 1.125rem;
     }
 }
-@media only screen and (min-width: 1070px) {
+@media only screen and (min-width: $md-breakpoint) {
     .ReservationHeaderBlock {
         color: $deepblue;
         display: flex !important;
@@ -52,13 +53,13 @@ export default {
             margin: 0;
             display: grid;
             &-date {
-                padding-top: 17px;
+                padding-top: 1.0625rem;
                 font-family: $playfair-font;
-                font-size: 35px;
+                font-size: 2.1875rem;
             }
             &-hours {
                 text-align: right;
-                font-size: 20px;
+                font-size: 1.25rem;
             }
         }
     }

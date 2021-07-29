@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
             metadata.stripeId = stripeId;
             newreservationItem = new reservationItem(metadata);
         } else {
-            res.status(500).json("StripeId doesn't equal order id");
+            res.status(500).json("StripeId metadata is different from formdata metadata");
         }
     } else {
         const { captchaRes } = req.body;

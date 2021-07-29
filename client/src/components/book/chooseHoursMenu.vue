@@ -1,10 +1,10 @@
 <template>
-    <div class="choose" :style="chooseHoursHidden ? $parent.hiddenStyles : chooseHoursStyles" ref="chooseHours">
-        <div class="hours">
-            <span class="hoursButton" @click="setter(1, false, false)">1 Hodina</span>
-            <span class="hoursButton" @click="setter(1.5, true, false)">1.5 Hodina</span>
-            <span class="hoursButton" @click="setter(2, false, false)">2 Hodina</span>
-            <span class="hoursButton" @click="setter(3, false, true)">3 Hodina</span>
+    <div class="choose grid overflow-hidden" :style="chooseHoursHidden ? $parent.hiddenStyles : chooseHoursStyles" ref="chooseHours">
+        <div class="hours grid">
+            <span class="flex align-center relative h-p" @click="setter(1, false, false)">1 Hodina</span>
+            <span class="flex align-center relative h-p" @click="setter(1.5, true, false)">1.5 Hodina</span>
+            <span class="flex align-center relative h-p" @click="setter(2, false, false)">2 Hodina</span>
+            <span class="flex align-center relative h-p" @click="setter(3, false, true)">3 Hodina</span>
         </div>
     </div>
     <SelectMenu :key="componentRefresh" :secondDate="secondDate" :indexHour="indexHour" :halfBool="halfBool" :workingHours="14" :threeHoursBool="threeHoursBool" :month="month" :currentMonth="currentMonth" :yearLoop="yearLoop" />
@@ -68,29 +68,20 @@ export default {
 
     width: 100%;
     background-color: $medium-beige;
-    display: grid;
-    border-radius: 30px;
-    font-size: 15px;
-    overflow: initial;
-    transition: 250ms;
-
-    overflow: hidden;
+    border-radius: 1.875rem;
+    font-size: 0.9375rem;
+    transition: $transition;
     .hours {
-        display: grid;
-        margin: 25px;
+        margin: 1.5625rem;
         background: $darkdarkblue;
-        border-radius: 25px;
+        border-radius: 1.5625rem;
         span {
-            display: flex;
-            align-items: center;
             background: $darkdarkblue;
-            height: 50px;
-            border-radius: 30px;
+            height: 3.125rem;
+            border-radius: 1.875rem;
             color: white;
-            position: relative;
             padding-left: 35px;
             &:hover {
-                cursor: pointer;
                 background: rgba(255, 255, 255, 0.03);
             }
         }
@@ -98,7 +89,7 @@ export default {
 }
 @media only screen and (min-width: $md-breakpoint) {
     .choose {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 }
 </style>

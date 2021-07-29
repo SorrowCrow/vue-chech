@@ -83,7 +83,7 @@ export default {
             border-radius: 50%;
             width: 60px;
             height: 60px;
-            transition: transform 0.25s;
+            transition: $transition-fast;
             &:hover {
                 transform: rotate(90deg);
                 svg {

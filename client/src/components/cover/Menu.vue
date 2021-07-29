@@ -16,6 +16,7 @@
 <script>
 export default {
     name: "Menu",
+    inject: ["windowInfo"],
     methods: {
         scroll(id) {
             window.scrollTo({
@@ -26,7 +27,7 @@ export default {
     },
     computed: {
         isMd() {
-            return this.$mq === "md" ? true : this.$mq === "sm" ? true : false;
+            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
         },
     },
 };
@@ -35,14 +36,14 @@ export default {
 <style lang="scss" scoped>
 .menu {
     color: $white;
-    bottom: 65px;
-    width: 970px;
-    font-size: 25px;
+    bottom: 4.0625rem;
+    width: 60.625rem;
+    font-size: 1.5625rem;
     &__main {
-        width: 617px;
+        width: 38.5625rem;
     }
     &__social {
-        width: 269px;
+        width: 16.8125rem;
         a {
             color: $white;
         }

@@ -80,18 +80,17 @@ export default {
     width: 100%;
     height: 100%;
     &__reservationForm {
-        z-index: 1;
         width: 100%;
-        padding: 48px 0 0 0;
+        padding: 3rem 0 0 0;
         background: $backgroundgrey;
         &-exit {
             background-color: $white;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            right: 30px;
-            top: 30px;
-            transition: transform 0.25s;
+            width: 3.75rem;
+            height: 3.75rem;
+            right: 1.875rem;
+            top: 1.875rem;
+            transition: $transition-fast;
             &:hover {
                 transform: rotate(90deg);
                 svg {
@@ -99,29 +98,29 @@ export default {
                 }
             }
             svg {
-                width: 21.1px;
-                height: 21.1px;
+                width: 1.3188rem;
+                height: 1.3188rem;
                 fill: $secondary;
             }
         }
     }
 }
-@media only screen and (min-width: 1070px) {
+@media only screen and (min-width: $md-breakpoint) {
     .Reservation {
         &__reservationForm {
-            max-width: 1000px;
-            margin-top: 100px;
-            margin-bottom: 100px;
+            max-width: 62.5rem;
+            margin-top: 6.25rem;
+            margin-bottom: 6.25rem;
             background: $white;
-            border-radius: 30px;
+            border-radius: 1.875rem;
             &-exit {
-                width: 100px;
-                height: 100px;
+                width: 6.25rem;
+                height: 6.25rem;
                 top: auto;
-                right: -30px;
+                right: -1.875rem;
                 svg {
-                    width: 46.6px;
-                    height: 46.6px;
+                    width: 2.9125rem;
+                    height: 2.9125rem;
                     fill: $deepblue;
                 }
             }

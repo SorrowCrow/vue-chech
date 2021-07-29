@@ -63,98 +63,97 @@ export default {
 <style lang="scss" scoped>
 .containerWave {
     width: 100%;
-    min-width: 680px;
-    height: 22px;
+    min-width: 42.5rem;
+    height: 1.375rem;
     fill: $deepdarkblue;
     background: white;
 }
 .BookBlock__wrapper {
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 1.875rem;
+    margin-left: 1.875rem;
 }
 .contain {
-    padding-bottom: 100px;
+    padding-bottom: 6.25rem;
     background: $deepdarkblue;
     color: $beige;
     .content {
         width: 100%;
-        max-width: 970px;
-        padding-top: 43px;
+        max-width: 60.625rem;
+        padding-top: 2.6875rem;
     }
     .title {
-        letter-spacing: -0.03em;
+        letter-spacing: -0.03rem;
     }
     .sub-title {
         color: white;
-        padding-top: 30px;
-        padding-bottom: 75px;
+        padding-top: 1.875rem;
+        padding-bottom: 4.6875rem;
     }
     .priceAndBook {
-        grid-gap: 24px;
+        grid-gap: 1.5rem;
         grid-template-columns: auto;
         .pricelist {
-            max-width: 315px;
+            max-width: 19.6875rem;
             .sub-title {
-                width: 135px;
+                width: 8.4375rem;
                 padding: 0;
-                padding-top: 16.25px;
-                padding-bottom: 16.25px;
+                padding-top: 1.0156rem;
+                padding-bottom: 1.0156rem;
             }
             .price {
                 color: inherit;
             }
             &__item {
                 svg {
-                    width: 102px;
+                    width: 6.375rem;
                     height: 3px;
                     fill: white;
                     fill-opacity: 0.1;
                 }
             }
             .note {
-                padding-top: 24px;
-                font-size: 12px;
-                line-height: 140%;
+                padding-top: 1.5rem;
+                font-size: 0.75rem;
+
                 color: rgba(255, 255, 255, 0.5);
             }
         }
     }
 }
-@media only screen and (min-width: 740px) {
+@media only screen and (min-width: $sm-breakpoint) {
     .contain .priceAndBook {
         display: grid;
         justify-content: right;
         grid-template-columns: auto auto;
-        width: 700px;
+        width: 43.75rem;
         margin: 0 auto;
     }
 }
 @media only screen and (min-width: $md-breakpoint) {
     .contain {
-        padding-bottom: 121px;
+        padding-bottom: 7.5625rem;
         .content {
-            padding-top: 100px;
+            padding-top: 6.25rem;
         }
         .title {
-            line-height: 107px;
-            letter-spacing: -0.03em;
             width: 100%;
+            letter-spacing: -0.03em;
         }
         .sub-title {
-            max-width: 470px;
+            max-width: 29.375rem;
             margin: 0;
         }
         .priceAndBook {
             width: auto;
             .pricelist {
-                max-width: 370px;
+                max-width: 23.125rem;
                 .sub-title {
-                    padding-top: 16.25px;
-                    padding-bottom: 16.25px;
+                    padding-top: 1.0156rem;
+                    padding-bottom: 1.0156rem;
                 }
                 .note {
-                    padding-top: 30px;
-                    font-size: 15px;
+                    padding-top: 1.875rem;
+                    font-size: 0.9375rem;
                     color: rgba(255, 255, 255, 0.5);
                 }
             }

@@ -1,9 +1,9 @@
 <template>
-    <div class="opened" :style="$parent.$parent.openedHidden ? $parent.$parent.hiddenStyles : openedStyles" ref="openedRef">
+    <div class="opened grid relative overflow-hidden" :style="$parent.$parent.openedHidden ? $parent.$parent.hiddenStyles : openedStyles" ref="openedRef">
         <div class="opened__inner">
-            <div class="opened__inner-select" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
-                <p class="pa">1 Hodina</p>
-                <svg><use href="#openedArrow" /></svg>
+            <div class="opened__inner-select flex content-between align-center h-p" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
+                <p class="pa relative">1 Hodina</p>
+                <svg class="relative"><use href="#openedArrow" /></svg>
             </div>
             <div v-if="halfBool">
                 {{ evenBoolSet() }}
@@ -11,29 +11,29 @@
                     <div v-for="index in evenNumbers" :key="index">
                         <div :class="checktime(index + 7 + (index - 1) * 2, index + 8 + (index - 1) * 2) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event)">
                             {{ index + 7 + (index - 1) * 2 }}:00-{{ index + 8 + (index - 1) * 2 }}:{{ counter * 3 }}0
-                            <div class="rezervaceButton">Rezervace</div>
+                            <div class="rezervaceButton flex content-center align-center">Rezervace</div>
                         </div>
                         <div :class="checktime(index + 6 + index * 2, index + 8 + index * 2) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event)">
                             {{ index + 6 + index * 2 }}:{{ counter * 3 }}0-{{ index + 8 + index * 2 }}:00
-                            <div class="rezervaceButton">Rezervace</div>
+                            <div class="rezervaceButton flex content-center align-center">Rezervace</div>
                         </div>
                     </div>
                     <div :class="checktime(6 + workingHours, 7 + workingHours) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event)" v-if="evenBool">
                         {{ 6 + workingHours }}:00-{{ 7 + workingHours }}:{{ counter * 3 }}0
-                        <div class="rezervaceButton">Rezervace</div>
+                        <div class="rezervaceButton flex content-center align-center">Rezervace</div>
                     </div>
                 </div>
             </div>
             <div class="opened__inner-timeframes" v-else-if="threeHoursBool">
                 <div :class="checktime((index - 1) * 3 + 8, (index - 1) * 3 + 8 + indexHour) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event)" v-for="index in evenNumbers" :key="index">
                     {{ (index - 1) * 3 + 8 }}:00-{{ (index - 1) * 3 + 8 + indexHour }}:00
-                    <div class="rezervaceButton">Rezervace</div>
+                    <div class="rezervaceButton flex content-center align-center">Rezervace</div>
                 </div>
             </div>
             <div class="opened__inner-timeframes" v-else>
                 <div :class="checktime(index + 8, index + 8 + indexHour) ? 'timeframe' : 'timeframeReserved'" @click="timeframeClick($event)" v-for="index in evenNumbers" :key="index">
                     {{ index + 8 }}:00-{{ index + 8 + indexHour }}:00
-                    <div class="rezervaceButton">Rezervace</div>
+                    <div class="rezervaceButton flex content-center align-center">Rezervace</div>
                 </div>
             </div>
         </div>
@@ -152,71 +152,57 @@ export default {
 
 <style lang="scss" scoped>
 .opened {
-    position: relative;
-    margin: auto;
-    overflow: hidden;
     height: 0;
     background-color: $medium-beige;
-    display: grid;
-    border-radius: 30px;
-    font-size: 15px;
-    transition: 250ms;
+    border-radius: 1.875rem;
+    font-size: 0.9375rem;
+    transition: $transition;
     z-index: 1;
     &__inner {
-        margin: 25px;
+        margin: 1.5625rem;
         &-select {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             background: $darkdarkblue;
             width: 100%;
-            height: 50px;
-            border-radius: 30px;
+            height: 3.125rem;
+            border-radius: 1.875rem;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
+            &:hover {
+                background: #2a2746;
+            }
             .pa {
-                position: relative;
-                padding-left: 35px;
+                padding-left: 2.1875rem;
             }
             svg {
-                position: relative;
-                width: 24px;
-                height: 24px;
-                padding-right: 15px;
+                width: 1.5rem;
+                height: 1.5rem;
+                padding-right: 0.9375rem;
                 stroke: $white;
-            }
-            &:hover {
-                cursor: pointer;
-                background: #2a2746;
             }
         }
         &-timeframes {
             .timeframe,
             .timeframeReserved {
-                padding-left: 35px;
-                padding-right: 15px;
+                padding-left: 2.1875rem;
+                padding-right: 0.9375rem;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                height: 38px;
+                height: 2.375rem;
                 color: $deepblue;
-                padding-top: 11px;
-                padding-bottom: 11px;
-                border-radius: 30px;
+                padding-top: 0.6875rem;
+                padding-bottom: 0.6875rem;
+                border-radius: 1.875rem;
                 &:hover {
                     cursor: pointer;
                     background: #eeebe8;
                 }
                 .rezervaceButton {
-                    display: grid;
-                    align-items: center;
-                    text-align: center;
-                    justify-content: center;
                     background: $orange;
                     color: white;
-                    border-radius: 50px;
-                    width: 125px;
-                    height: 38px;
+                    border-radius: 3.125rem;
+                    width: 7.8125rem;
+                    height: 2.375rem;
                     pointer-events: none;
                 }
             }
@@ -236,7 +222,7 @@ export default {
 }
 @media only screen and (min-width: $md-breakpoint) {
     .opened {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 }
 </style>

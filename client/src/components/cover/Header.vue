@@ -1,13 +1,13 @@
 <template>
     <header class="header absolute">
-        <div class="header__wrap flex content-between mx-auto" v-if="!isMenu">
+        <div class="header__wrap flex content-between mx-auto align-center" v-if="!isMenu">
             <div class="header__logo flex">
                 <svg class="relative float-left" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
                     <image href="../../../public/icon.svg" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'" />
                 </svg>
                 <div class="header__logo-text relative" v-if="displayMenu">Sauna Kbely</div>
             </div>
-            <div class="header__contacts flex content-between" v-if="displayMenu">
+            <div class="header__contacts content-between flex" v-if="displayMenu">
                 <div class="header__contacts-item flex">
                     <svg>
                         <use href="#clock" />
@@ -43,15 +43,16 @@ export default {
     components: {
         HeaderMenu,
     },
-    computed: {
-        displayMenu() {
-            return this.$mq === "lg" ? true : false;
-        },
-    },
     data() {
         return {
             isMenu: false,
         };
+    },
+    inject: ["windowInfo"],
+    computed: {
+        displayMenu() {
+            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) > this.$header ? true : false;
+        },
     },
 };
 </script>
@@ -59,51 +60,49 @@ export default {
 <style lang="scss" scoped>
 .header {
     width: 100%;
-    padding-top: 30px;
-    z-index: 100;
+    margin-top: 1.875rem;
+
+    z-index: 1;
     &__menu {
-        width: 60px;
-        height: 60px;
-        padding-right: 30px;
+        width: 3.75rem;
+        height: 3.75rem;
         fill: $secondary;
     }
     &__wrap {
-        max-width: 1440px;
+        max-width: 90rem;
+        // margin-right: 2.1875rem;
+        padding-right: 1.875rem;
+        padding-left: 1.875rem;
         color: $white;
     }
     &__logo {
-        padding-left: 30px;
-        &-icon,
-        &-iconBig {
-            fill: $secondary;
-            padding-right: 20px;
-            width: 40px;
-            height: 48px;
+        fill: $secondary;
+        &-icon {
+            width: 2.5rem;
+            height: 3rem;
         }
         &-iconBig {
-            width: 60px;
-            height: 68px;
+            width: 3.75rem;
+            height: 4.25rem;
         }
         &-text {
-            font-size: 35px;
-            line-height: 41px;
-            top: 7px;
+            font-size: 2.1875rem;
+            margin-top: 0.4375rem;
+            margin-left: 1.25rem;
         }
     }
     &__contacts {
-        width: 884px;
-        padding-right: 35px;
-        margin-top: 16px;
-        font-size: 25px;
-        line-height: 29px;
+        width: 55.25rem;
+        margin-top: 1rem;
+        font-size: 1.5625rem;
         a {
             color: $white;
         }
         svg {
-            padding-top: 2px;
-            padding-right: 5px;
-            width: 25px;
-            height: 25px;
+            padding-top: 0.125rem;
+            padding-right: 0.3125rem;
+            width: 1.5625rem;
+            height: 1.5625rem;
             fill: $secondary;
         }
     }
@@ -111,7 +110,7 @@ export default {
 @media only screen and (min-width: $md-breakpoint) {
     .header {
         &__logo {
-            padding-left: 75px;
+            margin-left: 2.8175rem;
         }
     }
 }

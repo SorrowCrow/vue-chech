@@ -53,16 +53,23 @@
                             <g id="layer5">
                                 <path id="rect31" style="fill: #69498c" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
                             </g>
-                            <g id="layer6">
+                            <g id="layer6" clip-path="url(#layer3)">
                                 <text style="font-size: 5.29167px; line-height: 1.25; fill: white" x="24.208342" y="70.476318" id="text97163"><tspan id="tspan97161" x="24.208342" y="70.476318">1099,- Kč</tspan></text>
                                 <text style="font-family: Playfair Display; font-size: 7.9375px; line-height: 1.25; fill: white" x="21.846729" y="58.947308" id="text97167"><tspan id="tspan97165" x="21.846729" y="58.947308">Hodina</tspan></text>
                                 <text text-anchor="middle" id="text97171" style="font-family: Playfair Display; font-size: 120px; fill: white" transform="matrix(0.26331403,0,0,0.26458333,7.9818053,-5.3741288)"><tspan x="102" y="190" id="tspan97229">1,5</tspan></text>
                             </g>
+
+                            <clipPath id="layer3" style="display: inline; mix-blend-mode: normal">
+                                <path id="path31" style="fill: #f2eef5" d="M 60.619027,25.550914 C 67.470286,32.519726 71,41.808494 71,50.889965 71,59.971628 67.470286,69.47197 60.619027,76.440828 53.768251,83.409687 44.636251,87 35.5,87 26.363701,87 17.231845,83.409687 10.380731,76.440828 3.5296274,69.47197 0,59.971628 0,50.889965 0,41.808494 3.5296274,32.519726 10.380731,25.550914 L 35.5,0 Z" />
+                            </clipPath>
                             <clipPath id="layer71" style="opacity: 0">
                                 <path id="rect31" style="display: inline; mix-blend-mode: normal; fill: #69498c; fill-opacity: 1; stroke: #000000; stroke-width: 0; stroke-opacity: 1" d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" inkscape:original-d="m 5e-7,59.53125 v 5.820833 68.527097 H 188.91251 V 65.352083 c -12.89535,0 -24.88736,-5.820833 -37.78271,-5.820833 -12.89535,0 -24.88686,5.820832 -37.78219,5.820833 -12.89534,0 -24.887375,-5.820833 -37.782705,-5.820833 -12.895361,-10e-7 -24.886852,5.820833 -37.782197,5.820833 -12.895346,0 -24.887361,-5.820834 -37.7827075,-5.820833 z" />
                             </clipPath>
                         </g>
                     </g>
+                    <clipPath id="layer3" style="display: inline; mix-blend-mode: normal">
+                        <path id="path31" style="fill: #f2eef5" d="M 60.619027,25.550914 C 67.470286,32.519726 71,41.808494 71,50.889965 71,59.971628 67.470286,69.47197 60.619027,76.440828 53.768251,83.409687 44.636251,87 35.5,87 26.363701,87 17.231845,83.409687 10.380731,76.440828 3.5296274,69.47197 0,59.971628 0,50.889965 0,41.808494 3.5296274,32.519726 10.380731,25.550914 L 35.5,0 Z" />
+                    </clipPath>
                 </svg>
                 <svg id="buyNow" class="relative h-p" viewBox="0 0 120 120" fill="none">
                     <ellipse cx="60" cy="60" rx="50" ry="50" fill="#FF7A00" />
@@ -148,24 +155,24 @@ export default {
 
 <style lang="scss" scoped>
 .contain {
-    padding-top: 68px;
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-bottom: 68px;
+    padding-top: 4.25rem;
+    padding-right: 1.875rem;
+    padding-left: 1.875rem;
+    padding-bottom: 4.25rem;
     .dropletContainer {
         grid-template-columns: auto auto;
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
+        grid-column-gap: 1.25rem;
+        grid-row-gap: 1.25rem;
         .droplet {
-            width: 147px;
-            height: 180px;
+            width: 9.1875rem;
+            height: 11.25rem;
             #buyNow {
-                width: 70px;
-                height: 70px;
-                top: -172px;
-                left: 80px;
+                width: 4.375rem;
+                height: 4.375rem;
+                top: -10.75rem;
+                left: 5rem;
                 opacity: 0;
-                transition: 0.5s;
+                transition: $transition;
             }
             &:hover {
                 #buyNow {
@@ -175,7 +182,7 @@ export default {
         }
         .test {
             #rect31 {
-                transition: 1s;
+                transition: $transition-slow;
                 transform: translateY(-4px);
             }
             &:hover {
@@ -186,7 +193,7 @@ export default {
         }
         .test1 {
             #rect31 {
-                transition: 1s;
+                transition: $transition-slow;
                 transform: translate(-30px, -13px);
             }
             &:hover {
@@ -197,7 +204,7 @@ export default {
         }
         .test2 {
             #rect31 {
-                transition: 1s;
+                transition: $transition-slow;
                 transform: translate(-30px, -24px);
             }
             &:hover {
@@ -208,7 +215,7 @@ export default {
         }
         .test3 {
             #rect31 {
-                transition: 1s;
+                transition: $transition-slow;
                 transform: translate(-30px, -43px);
             }
             &:hover {
@@ -227,12 +234,12 @@ export default {
     color: $primary;
 }
 .sub-title {
-    padding-top: 30px;
-    padding-bottom: 46px;
-    max-width: 670px;
+    padding-top: 1.875rem;
+    padding-bottom: 2.875rem;
+    max-width: 41.875rem;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: $sm-breakpoint) {
     .contain {
         .dropletContainer {
             grid-template-columns: auto auto auto auto;
@@ -241,36 +248,36 @@ export default {
 }
 @media only screen and (min-width: $md-breakpoint) {
     .contain {
-        padding-top: 100px;
-        padding-bottom: 135px;
-        padding-left: 135px;
-        padding-right: 135px;
-        max-width: 970px;
+        padding-top: 6.25rem;
+        padding-bottom: 8.4375rem;
+        padding-left: 8.4375rem;
+        padding-right: 8.4375rem;
+        max-width: 60.625rem;
         justify-content: left;
         .titleContainer {
             width: fit-content;
         }
         .dropletContainer {
             grid-template-columns: auto auto;
-            grid-column-gap: 20px;
+            grid-column-gap: 1.25rem;
             .droplet {
-                width: 270px;
-                height: 328px;
+                width: 16.875rem;
+                height: 20.5rem;
                 overflow: hidden;
                 #buyNow {
-                    width: 120px;
-                    height: 120px;
-                    top: -310px;
-                    left: 160px;
+                    width: 7.5rem;
+                    height: 7.5rem;
+                    top: -19.375rem;
+                    left: 10rem;
                 }
             }
         }
     }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: $droplet-breakpoint) {
     .contain {
         .dropletContainer {
-            margin-left: -100px;
+            margin-left: -6.25rem;
             grid-template-columns: auto auto auto auto;
         }
     }

@@ -1,6 +1,5 @@
 <template>
     <svgs />
-    <Header />
     <Title />
     <AboutBlock />
     <BookBlock />
@@ -10,18 +9,35 @@
 
 <script>
 import svgs from "./components/svgs.vue";
-import Header from "./components/cover/Header.vue";
 import Title from "./components/cover/Title.vue";
 import AboutBlock from "./components/AboutBlock.vue";
 import BookBlock from "./components/BookBlock.vue";
 import GiftCardsBlock from "./components/GiftCardsBlock.vue";
 import ReferenceBlock from "./components/ReferenceBlock.vue";
 
+// window.getComputedStyle(document.getElementsByTagName("body")[0], null).getPropertyValue("font-size")
 export default {
     name: "App",
+    data() {
+        return {
+            windowInfo: { size: window.innerWidth },
+        };
+    },
+    provide() {
+        return {
+            windowInfo: this.windowInfo,
+        };
+    },
+    created() {
+        window.addEventListener("resize", this.getWindowSize);
+    },
+    methods: {
+        getWindowSize() {
+            this.windowInfo.size = window.innerWidth;
+        },
+    },
     components: {
         svgs,
-        Header,
         Title,
         AboutBlock,
         BookBlock,
@@ -48,8 +64,8 @@ body {
         &-prevBtn {
             &:hover {
                 cursor: pointer;
-                width: 70px;
-                height: 70px;
+                width: 4.375rem;
+                height: 4.375rem;
                 svg {
                     fill: $primary;
                 }

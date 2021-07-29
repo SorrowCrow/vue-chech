@@ -82,7 +82,7 @@ export default {
                     iconColor: "#000",
                     color: "#000",
                     fontFamily: "Work Sans, sans-serif",
-                    fontSize: "20px",
+                    fontSize: "1.25rem",
                     fontSmoothing: "antialiased",
 
                     ":-webkit-autofill": {
@@ -280,26 +280,26 @@ export default {
 
 .containerWave {
     width: 100%;
-    min-width: 680px;
-    height: 22px;
+    min-width: 42.5rem;
+    height: 1.375rem;
     opacity: 0;
     fill: $backgroundgrey;
     background: white;
 }
 .reservationForm {
-    padding-bottom: 60px;
+    padding-bottom: 3.75rem;
     background-color: $backgroundgrey;
     color: $deepblue;
     .container {
-        max-width: 769px;
-        padding-left: 30px;
-        padding-right: 30px;
+        max-width: 48.0625rem;
+        padding-left: 1.875rem;
+        padding-right: 1.875rem;
         .form-grid {
             grid-template-columns: auto;
-            grid-row-gap: 10px;
+            grid-row-gap: 0.625rem;
             p {
                 color: $secondary;
-                padding-left: 20px;
+                padding-left: 1.25rem;
             }
         }
     }
@@ -308,11 +308,11 @@ export default {
     &__select-list div,
     textarea {
         padding: 0;
-        padding-left: 20px;
-        padding-right: 13.5px;
-        height: 60px;
-        font-size: 20px;
-        border-radius: 10px;
+        padding-left: 1.25rem;
+        padding-right: 0.8438rem;
+        height: 3.75rem;
+        font-size: 1.25rem;
+        border-radius: 0.625rem;
         font-family: $playfair-font;
         background-color: $white;
         border: 0;
@@ -324,29 +324,29 @@ export default {
         }
     }
     &__select {
-        max-height: 60px;
+        max-height: 3.75rem;
 
         svg {
-            width: 28px;
-            height: 15px;
+            width: 1.75rem;
+            height: 0.9375rem;
             stroke: $secondary;
         }
         &-inner {
             background-color: $white;
-            height: 60px;
+            height: 3.75rem;
         }
         &-list {
             grid-template-columns: 100%;
             background-color: white;
-            border-radius: 0 0 10px 10px;
+            border-radius: 0 0 0.625rem 0.625rem;
             div {
                 border-radius: 0;
 
                 z-index: 1;
                 width: 100%;
-                height: 60px;
+                height: 3.75rem;
                 p {
-                    padding-left: 20px;
+                    padding-left: 1.25rem;
                 }
                 &:hover {
                     background-color: $backgroundgrey;
@@ -355,37 +355,37 @@ export default {
         }
     }
     textarea {
-        padding-top: 10px;
-        margin-bottom: 30px;
+        padding-top: 0.625rem;
+        margin-bottom: 1.875rem;
         resize: none;
-        height: 135px;
+        height: 8.4375rem;
     }
 }
-@media only screen and (min-width: 1070px) {
+@media only screen and (min-width: $md-breakpoint) {
     .containerWave {
         opacity: 1;
     }
     .reservationForm {
-        padding-bottom: 88px;
-        margin-top: 30px;
+        padding-bottom: 5.5rem;
+        margin-top: 1.875rem;
         .container {
-            padding-top: 100px;
+            padding-top: 6.25rem;
             .form-grid {
                 grid-template-columns: auto auto;
-                grid-column-gap: 30px;
-                grid-row-gap: 30px;
+                grid-column-gap: 1.875rem;
+                grid-row-gap: 1.875rem;
             }
         }
         &__select-inner,
         input,
         &__select-list div,
         textarea {
-            font-size: 25px;
+            font-size: 1.5625rem;
         }
         textarea {
-            margin-bottom: 30px;
+            margin-bottom: 1.875rem;
             grid-column: 1 / -1;
-            height: 170px;
+            height: 10.625rem;
         }
     }
 }

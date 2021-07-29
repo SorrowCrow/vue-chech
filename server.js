@@ -13,6 +13,15 @@ const Stripe = require("stripe");
 const https = require("https");
 const fs = require("fs");
 
+function requireHTTPS(req, res, next) {
+    // The 'x-forwarded-proto' check is for Heroku
+    if (!req.secure && req.get("x-forwarded-proto") !== "https" && process.env.NODE_ENV !== "development") {
+        return res.redirect("https://" + req.get("host") + req.url);
+    }
+    next();
+}
+app.use(requireHTTPS);
+
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());

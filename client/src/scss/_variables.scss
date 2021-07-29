@@ -10,6 +10,7 @@ $deepdarkblue: #2e2b4d;
 $darkdarkblue: #25223e;
 $backgroundgrey: #f2eef5;
 
+
 //fonts
 $default-font: "Work Sans", sans-serif;
 $playfair-font: "Playfair Display", serif;
@@ -17,9 +18,16 @@ $indieFlower-font: "Indie Flower";
 $italiana-font: "Italiana", serif;
 
 //Breakpoints
-$header-breakpoint: 1285px;
-$md-breakpoint: 1070px;
-$background-breakpoint: 1056px;
+// $AdditionalComponent-breakpoint: 590px;
+// $sm-breakpoint: 740px;
+// $md-breakpoint: 1070px;
+// $droplet-breakpoint: 1200px;
+$AdditionalComponent-breakpoint: 36.875em;
+$sm-breakpoint: 46.25em;
+$md-breakpoint: 66.875em;
+$droplet-breakpoint: 75em;
 
 //transitions
-$transition: 0.25s;
+$transition-fast: 0.25s;
+$transition: 0.5s;
+$transition-slow: 1s;
