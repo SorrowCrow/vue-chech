@@ -82,8 +82,7 @@ export default {
     methods: {
         async insertMenu(row = this.row) {
             this.calendarData.reservedArray = [];
-            console.log(encodeURI(this.calendarData.date));
-            const response = await axios.get("api/reservationItems/" + encodeURI(this.calendarData.date));
+            const response = await axios.get("api/reservationItems/" + decodeURI(this.calendarData.date));
             for (let i = 0; i < Object.keys(response.data).length; i++) {
                 let time = response.data[i].time;
                 this.calendarData.reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];

@@ -11,8 +11,7 @@ const verifiedEmail = "forestmccallister@gmail.com";
 sgMail.setApiKey(sendgrid);
 
 router.get("/:date", async (req, res) => {
-    const { date } = req.body;
-    console.log(date);
+    const { date } = req.params;
     try {
         const reservationItems = await reservationItem.find({ date: date }, { time: 1, _id: 0 }).sort({ time: 1 });
         if (!reservationItems) throw new Error("No reservationItems");

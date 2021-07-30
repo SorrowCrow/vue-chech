@@ -28,25 +28,18 @@ function requireHTTPS(req, res, next) {
 }
 app.use(requireHTTPS);
 
-let setCache = function (req, res, next) {
-    // here you can define period in second, this one is 5 minutes
-    const period = 31536000;
+// let setCache = function (req, res, next) {
+//     const period = 31536000;
 
-    // you only want to cache for GET requests
-    if (req.method == "GET") {
-        res.set("Cache-control", `public, max-age=${period}`);
-    } else {
-        // for the other requests set strict no caching parameters
-        res.set("Cache-control", `no-store`);
-    }
+//     if (req.method == "GET") {
+//         res.set("Cache-control", `public, max-age=${period}`);
+//     } else {
+//         res.set("Cache-control", `no-store`);
+//     }
+//     next();
+// };
 
-    // remember to call next() to pass on the request
-    next();
-};
-
-// now call the new middleware function in your app
-
-app.use(setCache);
+// app.use(setCache);
 
 const stripe = new Stripe(process.env.SECRET_KEY);
 
