@@ -7,14 +7,14 @@
             <div class="form-grid grid">
                 <input required type="text" name="firstname" placeholder="Jemno*" v-model="formData.name" />
                 <div class="reservationForm__select user-select-none">
-                    <div class="reservationForm__select-inner flex content-between align-center h-p" @click="osobyClick()">
+                    <div class="reservationForm__select-inner flex content-between align-center h-p" :style="formData.dropdown ? 'border-radius: 10px 10px 0 0;' : ''" @click="osobyClick()">
                         <div class="pa flex align-center">
                             {{ formData.persons }} Osoby
                             <p v-if="formData.persons > 1">(+{{ formData.persons - 1 }}00,- Kč)</p>
                         </div>
-                        <svg id="formArrow"><use href="#openedArrow" /></svg>
+                        <svg id="formArrow" :style="formData.dropdown ? 'transform: rotate(180deg);' : ''"><use href="#openedArrow" /></svg>
                     </div>
-                    <div class="reservationForm__select-list none h-fit-content overflow-hidden">
+                    <div class="reservationForm__select-list h-fit-content overflow-hidden" :class="formData.dropdown ? 'grid' : 'none'">
                         <div class="h-p flex align-center" @click="(formData.persons = 1), osobyClick()">1 Osoby</div>
                         <div class="h-p flex align-center" @click="(formData.persons = 2), osobyClick()">
                             2 Osoby
@@ -65,9 +65,6 @@ export default {
 
     data() {
         return {
-            state: "loading",
-            collectionPath: "reservations",
-
             stripe: "",
             cardElement: null,
             loading: true,
@@ -117,12 +114,7 @@ export default {
         // });
         await element.mount("#stripe-card");
         this.loading = false;
-        document.getElementsByClassName("Reservation__reservationForm")[0].addEventListener("click", (e) => {
-            e.stopPropagation();
-            document.getElementsByClassName("reservationForm__select-list")[0].style.display = "";
-            document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "";
-            document.getElementById("formArrow").style.transform = "";
-        });
+        document.getElementsByClassName("Reservation__reservationForm")[0].addEventListener("click", (e) => e.stopPropagation());
         document.getElementsByClassName("reservationForm__select")[0].addEventListener("click", (e) => e.stopPropagation());
     },
     methods: {
@@ -199,9 +191,12 @@ export default {
                             },
                         });
 
-                        const { secret, id } = response.data;
+                        const { secret, id, message } = response.data;
 
-                        if (!secret) {
+                        if (message) {
+                            console.log(message);
+                            // eslint-disable-next-line
+                            grecaptcha.reset();
                             this.loading = false;
                             return;
                         }
@@ -223,22 +218,23 @@ export default {
                         // console.log("error: ", error);
                     }
                 }
-                await axios.post("api/reservationItems/", { formData, stripeId: stripeId, captchaRes: captchaRes });
+                const response = await axios.post("api/reservationItems/", { formData, stripeId: stripeId, captchaRes: captchaRes });
+                const { message } = response.data;
+                if (message) {
+                    console.log(message);
+                    // eslint-disable-next-line
+                    grecaptcha.reset();
+                    this.loading = false;
+                    return;
+                }
                 this.$parent.bodyDisplayAuto();
             }
         },
-        closeList() {
-            document.getElementsByClassName("reservationForm__select-list")[0].style.display = "";
-            document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "";
-            document.getElementById("formArrow").style.transform = "";
-        },
         osobyClick() {
-            if (document.getElementsByClassName("reservationForm__select-list")[0].style.display == "grid") {
-                this.closeList();
+            if (this.formData.dropdown === true) {
+                this.formData.dropdown = false;
             } else {
-                document.getElementsByClassName("reservationForm__select-list")[0].style.display = "grid";
-                document.getElementsByClassName("reservationForm__select-inner")[0].style.borderRadius = "10px 10px 0 0";
-                document.getElementById("formArrow").style.transform = "rotate(180deg)";
+                this.formData.dropdown = true;
             }
         },
     },

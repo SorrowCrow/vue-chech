@@ -1,7 +1,7 @@
 <template>
     <div class="pre-reserv fixed overflow-hidden">
         <div class="Reservation x-hidden y-scroll scroll-hidden" @click="bodyDisplayAuto">
-            <div class="Reservation__reservationForm mx-auto relative">
+            <div class="Reservation__reservationForm mx-auto relative" @click="formData.dropdown = false">
                 <div class="Reservation__reservationForm-exit h-p absolute flex content-center align-center" @click="bodyDisplayAuto">
                     <svg viewBox="0 0 23 23">
                         <rect x="3.01471" y="0.893433" width="27" height="3" rx="1.5" transform="rotate(45 3.01471 0.893433)" />
@@ -42,6 +42,9 @@ export default {
                 misa: false,
                 prossecco: false,
                 ozdoba: false,
+
+                //form
+                dropdown: false,
             },
         };
     },
@@ -62,7 +65,6 @@ export default {
             this.calendarData.time = "0" + this.calendarData.time;
         }
         this.formData.date = this.calendarData.date;
-        document.getElementsByClassName("Reservation__reservationForm-exit")[0].addEventListener("click", (e) => e.stopPropagation());
     },
 };
 </script>

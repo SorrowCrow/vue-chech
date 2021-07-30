@@ -89,11 +89,11 @@ export default {
         };
     },
     mounted: function () {
-        const script = document.createElement("script");
-        script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
-        script.defer = "";
-        script.async = "";
-        document.head.appendChild(script);
+        const captcha = document.createElement("script");
+        captcha.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
+        captcha.defer = true;
+        captcha.async = true;
+        document.head.appendChild(captcha);
         if (this.formData.hours == 1) {
             this.timePrice = 799;
         } else if (this.formData.hours == 15) {

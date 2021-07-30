@@ -93,7 +93,7 @@ app.post("/api/stripe", async (req, res) => {
             return new Date(a.date).getTime() - new Date(b.date).getTime();
         });
         for (let i = 0; i < Object.keys(sorted).length; i++) {
-            if (time === sorted[i].time) res.status(500).send({ message: "Time taken" });
+            if (time === sorted[i].time) res.status(200).send({ message: "Time taken" });
         }
 
         let amount = persons * 100;
@@ -120,11 +120,11 @@ app.post("/api/stripe", async (req, res) => {
             res.status(200).send({ secret: paymentIntent.client_secret, id: paymentIntent.id });
         } catch (error) {
             console.log("error: ", error);
-            res.status(500).send("error" + error);
+            res.status(200).send({ message: error });
         }
     } else {
         console.log("captcha not successful");
-        res.status(500).send({ message: "captcha not successful" });
+        res.status(200).send({ message: "captcha not successful" });
     }
 });
 

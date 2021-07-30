@@ -59,12 +59,12 @@ router.post("/", async (req, res) => {
     if (stripeId) {
         let paymentIntent = await stripe.paymentIntents.retrieve(stripeId);
         metadata = paymentIntent.metadata;
-        if (metadata.time === req.body.formData.time && metadata.date === req.body.formData.date) {
-            metadata.stripeId = stripeId;
-            newreservationItem = new reservationItem(metadata);
-        } else {
-            res.status(500).json("StripeId metadata is different from formdata metadata");
-        }
+        // if (metadata.time === req.body.formData.time && metadata.date === req.body.formData.date) {
+        metadata.stripeId = stripeId;
+        newreservationItem = new reservationItem(metadata);
+        // } else {
+        //     res.status(200).json({ message: "StripeId metadata is different from formdata metadata" });
+        // }
     } else {
         const { captchaRes } = req.body;
         const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${captcha}&response=${captchaRes}`);
@@ -76,7 +76,7 @@ router.post("/", async (req, res) => {
                 return new Date(a.date).getTime() - new Date(b.date).getTime();
             });
             for (let i = 0; i < Object.keys(sorted).length; i++) {
-                if (time === sorted[i].time) res.status(500).send({ message: "Time taken" });
+                if (time === sorted[i].time) res.status(200).send({ message: "Time taken" });
             }
             newreservationItem = new reservationItem(req.body.formData);
         }
