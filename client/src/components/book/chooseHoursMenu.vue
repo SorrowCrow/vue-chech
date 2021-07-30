@@ -1,5 +1,5 @@
 <template>
-    <div class="choose grid overflow-hidden" :style="chooseHoursHidden ? $parent.hiddenStyles : chooseHoursStyles" ref="chooseHours">
+    <div class="choose grid overflow-hidden" :style="calendarData.chooseHoursHidden ? calendarData.hiddenStyles : chooseHoursStyles" ref="chooseHours">
         <div class="hours grid">
             <span class="flex align-center relative h-p" @click="setter(1, false, false)">1 Hodina</span>
             <span class="flex align-center relative h-p" @click="setter(1.5, true, false)">1.5 Hodina</span>
@@ -7,25 +7,16 @@
             <span class="flex align-center relative h-p" @click="setter(3, false, true)">3 Hodina</span>
         </div>
     </div>
-    <SelectMenu :key="componentRefresh" :secondDate="secondDate" :indexHour="indexHour" :halfBool="halfBool" :workingHours="14" :threeHoursBool="threeHoursBool" :month="month" :currentMonth="currentMonth" :yearLoop="yearLoop" />
+    <SelectMenu :key="componentRefresh" :indexHour="indexHour" :halfBool="halfBool" :workingHours="14" :threeHoursBool="threeHoursBool" />
 </template>
 <script>
 import SelectMenu from "./selectMenu.vue";
 
 export default {
     name: "chooseHoursMenu",
+    inject: ["calendarData"],
     components: {
         SelectMenu,
-    },
-    props: {
-        chooseHoursHidden: Boolean,
-
-        month: Number,
-        currentMonth: Number,
-
-        yearLoop: Number,
-
-        secondDate: String,
     },
     data() {
         return {
@@ -69,7 +60,7 @@ export default {
     width: 100%;
     background-color: $medium-beige;
     border-radius: 1.875rem;
-    font-size: 0.9375rem;
+    font-size: $font-15;
     transition: $transition;
     .hours {
         margin: 1.5625rem;
@@ -89,7 +80,7 @@ export default {
 }
 @media only screen and (min-width: $md-breakpoint) {
     .choose {
-        font-size: 1.25rem;
+        font-size: $font-20;
     }
 }
 </style>

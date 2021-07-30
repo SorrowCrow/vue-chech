@@ -1,5 +1,5 @@
 <template>
-    <div class="opened grid relative overflow-hidden" :style="$parent.$parent.openedHidden ? $parent.$parent.hiddenStyles : openedStyles" ref="openedRef">
+    <div class="opened grid relative overflow-hidden" :style="calendarData.openedHidden ? calendarData.hiddenStyles : openedStyles" ref="openedRef">
         <div class="opened__inner">
             <div class="opened__inner-select flex content-between align-center h-p" @click="$parent.$parent.removeSelect(), $parent.$parent.insertMenu()">
                 <p class="pa relative">1 Hodina</p>
@@ -43,18 +43,12 @@
 <script>
 export default {
     name: "SelectMenu",
+    inject: ["calendarData"],
     props: {
         indexHour: Number,
         halfBool: Boolean,
         workingHours: Number,
         threeHoursBool: Boolean,
-
-        month: Number,
-        currentMonth: Number,
-
-        yearLoop: Number,
-
-        secondDate: String,
     },
     mounted() {
         if (this.$parent.canBeVisible) {
@@ -62,11 +56,11 @@ export default {
             this.$parent.$parent.insertSelect(this.indexHour);
         }
         if (this.halfBool) {
-            this.$parent.$parent.hours = 15;
+            this.calendarData.hours = 15;
         } else if (this.threeHoursBool) {
-            this.$parent.$parent.hours = 3;
+            this.calendarData.hours = 3;
         } else {
-            this.$parent.$parent.hours = this.indexHour;
+            this.calendarData.hours = this.indexHour;
         }
         this.matchHeight();
     },
@@ -91,20 +85,20 @@ export default {
         checktime(hoursStart, hoursEnd) {
             let n = new Date().getHours();
             let dd = String(new Date().getDate()).padStart(2, "0");
-            if (hoursStart <= n && dd === this.secondDate && this.month === this.currentMonth && this.yearLoop != 1) {
+            if (hoursStart <= n && dd === this.calendarData.secondDate && this.calendarData.month === this.calendarData.currentMonth && this.calendarData.yearLoop != 1) {
                 if (this.halfBool && hoursStart % 3 === 0) {
                     let n = new Date().getMinutes();
                     if (n < 30) return true;
                 }
                 return false;
             }
-            for (let i = 0; i < this.$parent.$parent.reservedArray.length; i++) {
-                if (hoursStart == this.$parent.$parent.reservedArray[i][0]) return false;
-                else if (hoursStart > Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2])) return false;
-                else if (hoursStart > Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2])) return false;
-                else if (hoursStart < Number(this.$parent.$parent.reservedArray[i][0]) && hoursEnd <= Number(this.$parent.$parent.reservedArray[i][2]) && hoursEnd > Number(this.$parent.$parent.reservedArray[i][0])) return false;
-                else if (hoursStart < Number(this.$parent.$parent.reservedArray[i][2]) && hoursEnd > Number(this.$parent.$parent.reservedArray[i][2])) return false;
-                else if (this.$parent.$parent.reservedArray[i][3] == "30" && hoursStart == Number(this.$parent.$parent.reservedArray[i][2]) && !this.halfBool) return false;
+            for (let i = 0; i < this.calendarData.reservedArray.length; i++) {
+                if (hoursStart == this.calendarData.reservedArray[i][0]) return false;
+                else if (hoursStart > Number(this.calendarData.reservedArray[i][0]) && hoursEnd <= Number(this.calendarData.reservedArray[i][2])) return false;
+                else if (hoursStart > Number(this.calendarData.reservedArray[i][0]) && hoursEnd <= Number(this.calendarData.reservedArray[i][2])) return false;
+                else if (hoursStart < Number(this.calendarData.reservedArray[i][0]) && hoursEnd <= Number(this.calendarData.reservedArray[i][2]) && hoursEnd > Number(this.calendarData.reservedArray[i][0])) return false;
+                else if (hoursStart < Number(this.calendarData.reservedArray[i][2]) && hoursEnd > Number(this.calendarData.reservedArray[i][2])) return false;
+                else if (this.calendarData.reservedArray[i][3] == "30" && hoursStart == Number(this.calendarData.reservedArray[i][2]) && !this.halfBool) return false;
             }
             return true;
         },
@@ -112,8 +106,8 @@ export default {
             const element = e.target;
             if (element.classList.contains("timeframe")) {
                 const bloat = element.textContent.toString().split(" ");
-                this.$parent.$parent.time = bloat[0];
-                this.$parent.$parent.isReservation = true;
+                this.calendarData.time = bloat[0];
+                this.calendarData.isReservation = true;
                 this.$parent.$parent.removeSelect();
             }
         },
@@ -155,7 +149,7 @@ export default {
     height: 0;
     background-color: $medium-beige;
     border-radius: 1.875rem;
-    font-size: 0.9375rem;
+    font-size: $font-15;
     transition: $transition;
     z-index: 1;
     &__inner {
@@ -222,7 +216,7 @@ export default {
 }
 @media only screen and (min-width: $md-breakpoint) {
     .opened {
-        font-size: 1.25rem;
+        font-size: $font-20;
     }
 }
 </style>

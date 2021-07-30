@@ -36,23 +36,16 @@
 <script>
 export default {
     name: "calendarDays",
-
-    props: {
-        month: Number,
-        currentMonth: Number,
-
-        year: Number,
-        yearLoop: Number,
-    },
+    inject: ["calendarData"],
     data() {
         return {
-            firstDay: new Date(),
-            lastDay: new Date(),
-            lastMonthDays: new Date(),
-            thisMonthDays: new Date(),
+            firstDay: 1,
+            lastDay: 1,
+            lastMonthDays: 1,
+            thisMonthDays: 1,
             secondDate: 0,
             dd: Number(String(new Date().getDate()).padStart(2, "0")),
-            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            monthList: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         };
     },
     created: function () {
@@ -87,34 +80,34 @@ export default {
         dataMonthClick: function (e, row) {
             const element = e.target;
             if (element.id == "secondDate") {
-                if (this.$parent.secondDate == this.dd && this.isCurrentMonth() && this.isCurrentYear()) {
+                if (this.calendarData.secondDate == this.dd && this.isCurrentMonth() && this.isCurrentYear()) {
                     document.getElementsByClassName("secondDateCss")[0].classList.add("firstDateCss");
                 }
                 element.classList.remove("secondDateCss");
 
-                element.id = this.$parent.secondDate;
-                this.$parent.secondDate = 0;
+                element.id = this.calendarData.secondDate;
+                this.calendarData.secondDate = 0;
                 this.$parent.removeMenu();
                 this.$parent.removeSelect();
             } else if (!element.classList.contains("daysGone")) {
-                if (this.$parent.secondDate != 0) {
-                    document.getElementsByClassName("secondDateCss")[0].id = this.$parent.secondDate;
-                    if (this.$parent.secondDate == this.dd) {
+                if (this.calendarData.secondDate != 0) {
+                    document.getElementsByClassName("secondDateCss")[0].id = this.calendarData.secondDate;
+                    if (this.calendarData.secondDate == this.dd) {
                         document.getElementsByClassName("secondDateCss")[0].classList.add("firstDateCss");
                     }
                     document.getElementsByClassName("secondDateCss")[0].classList.remove("secondDateCss");
-                    this.$parent.secondDate = 0;
+                    this.calendarData.secondDate = 0;
                 }
                 element.classList.remove("firstDateCss");
                 element.classList.add("secondDateCss");
 
-                this.$parent.secondDate = element.id;
+                this.calendarData.secondDate = element.id;
                 if (element.id > 36) {
-                    this.$parent.date = (element.id - 36 + 1 + (this.lastMonthDays - this.firstDay)).toString() + " " + this.months[this.month - 1] + " " + (this.year + this.yearLoop).toString();
+                    this.calendarData.date = (element.id - 36 + 1 + (this.lastMonthDays - this.firstDay)).toString() + " " + this.monthList[this.calendarData.month - 1] + " " + (this.calendarData.year + this.calendarData.yearLoop).toString();
                 } else if (element.id > 31) {
-                    this.$parent.date = (element.id - 31).toString() + " " + this.months[this.month + 1] + " " + (this.year + this.yearLoop).toString();
+                    this.calendarData.date = (element.id - 31).toString() + " " + this.monthList[this.calendarData.month + 1] + " " + (this.calendarData.year + this.calendarData.yearLoop).toString();
                 } else {
-                    this.$parent.date = element.id.toString() + " " + this.months[this.month] + " " + (this.year + this.yearLoop).toString();
+                    this.calendarData.date = element.id.toString() + " " + this.monthList[this.calendarData.month] + " " + (this.calendarData.year + this.calendarData.yearLoop).toString();
                 }
                 element.id = "secondDate";
                 this.$parent.removeSelect();
@@ -125,10 +118,10 @@ export default {
             return day == this.dd;
         },
         setSecondDate(date) {
-            this.$parent.secondDate = date;
+            this.calendarData.secondDate = date;
         },
         getSecondDate() {
-            return this.$parent.secondDate;
+            return this.calendarData.secondDate;
         },
         fullweeks() {
             if (this.firstDay > 4) {
@@ -138,31 +131,31 @@ export default {
             }
         },
         setFirstDay() {
-            this.firstDay = new Date(new Date().getFullYear(), this.month, 1).getDay();
+            this.firstDay = new Date(new Date().getFullYear(), this.calendarData.month, 1).getDay();
             if (this.firstDay == 0) {
                 this.firstDay = 7;
             }
         },
         setLastDay() {
-            this.lastDay = new Date(new Date().getFullYear(), this.month + 1, 0).getDay();
+            this.lastDay = new Date(new Date().getFullYear(), this.calendarData.month + 1, 0).getDay();
             if (this.lastDay == 0) {
                 this.lastDay = 7;
             }
         },
         setlastMonthDays() {
-            this.lastMonthDays = new Date(new Date().getFullYear(), this.month, 0).getDate();
+            this.lastMonthDays = new Date(new Date().getFullYear(), this.calendarData.month, 0).getDate();
         },
         setthisMonthDays() {
-            this.thisMonthDays = new Date(new Date().getFullYear(), this.month + 1, 0).getDate();
+            this.thisMonthDays = new Date(new Date().getFullYear(), this.calendarData.month + 1, 0).getDate();
         },
-        isCurrentMonth(month = this.month) {
-            return month == this.currentMonth;
+        isCurrentMonth(month = this.calendarData.month) {
+            return month == this.calendarData.currentMonth;
         },
         isCurrentYear() {
-            return this.year + this.yearLoop == this.year;
+            return this.calendarData.year + this.calendarData.yearLoop == this.calendarData.year;
         },
         getYear() {
-            if ((this.year + this.yearLoop) % 4 == 0) {
+            if ((this.calendarData.year + this.calendarData.yearLoop) % 4 == 0) {
                 return 1;
             } else {
                 return 0;
@@ -171,7 +164,7 @@ export default {
         isSmallerThanToday(index) {
             if ((index < this.dd || index > 36) && this.isCurrentMonth() && this.isCurrentYear()) {
                 return "daysGone";
-            } else if (index > 36 && this.isCurrentMonth(this.month - 1) && index - 36 + 1 + (this.lastMonthDays - this.firstDay) < this.dd) {
+            } else if (index > 36 && this.isCurrentMonth(this.calendarData.month - 1) && index - 36 + 1 + (this.lastMonthDays - this.firstDay) < this.dd) {
                 return "daysGone";
             } else {
                 if (this.isToday(index) && this.isCurrentMonth() && this.isCurrentYear()) {
@@ -261,7 +254,7 @@ export default {
         .daysGone {
             width: 3.8125rem;
             height: 3.8125rem;
-            font-size: 1.25rem;
+            font-size: $font-20;
         }
         .days-dates:hover {
             width: 3.5rem;

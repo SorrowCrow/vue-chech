@@ -8,6 +8,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const reservationItemRoutes = require("./routes/api/reservationItems");
+const reservationItem = require("./models/reservationItem");
+
 const path = require("path");
 const Stripe = require("stripe");
 const https = require("https");
@@ -91,7 +93,16 @@ app.post("/api/stripe", async (req, res) => {
     const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${captcha}&response=${captchaRes}`);
 
     if (response.data.success === true) {
-        const { time, misa, ozdoba, prossecco, persons } = req.body.formData;
+        const { time, misa, ozdoba, prossecco, persons, date } = req.body.formData;
+        const reservationItems = await reservationItem.find({ date: date }, { time: 1, _id: 0 }).sort({ time: 1 });
+        if (!reservationItems) throw new Error("No reservationItems");
+        const sorted = reservationItems.sort((a, b) => {
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+        for (let i = 0; i < Object.keys(sorted).length; i++) {
+            if (time === sorted[i].time) res.status(500).send({ message: "Time taken" });
+        }
+
         let amount = persons * 100;
         if (ozdoba) amount += 350;
         if (prossecco) amount += 290;

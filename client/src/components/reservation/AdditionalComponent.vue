@@ -14,7 +14,7 @@
             </div>
             <div class="reservationForm__additional-item flex">
                 <label class="switch">
-                    <input type="checkbox" @change="name == 'Ozdoba' ? ($parent.$parent.ozdoba = !$parent.$parent.ozdoba) : '', name == 'Prossecco' ? ($parent.$parent.prossecco = !$parent.$parent.prossecco) : '', name == 'Ovocna Misa' ? ($parent.$parent.misa = !$parent.$parent.misa) : ''" />
+                    <input type="checkbox" @change="name == 'Ozdoba' ? (formData.ozdoba = !formData.ozdoba) : '', name == 'Prossecco' ? (formData.prossecco = !formData.prossecco) : '', name == 'Ovocna Misa' ? (formData.misa = !formData.misa) : ''" />
                     <span class="slider round"></span>
                 </label>
                 <svg class="info" viewBox="0 0 46 46" fill="none" @click="info = !info">
@@ -36,6 +36,7 @@
 <script>
 export default {
     name: "AdditionalComponent",
+    inject: ["formData"],
     props: {
         name: String,
         price: Number,
@@ -56,7 +57,7 @@ export default {
     border-radius: 1.875rem;
     &-item {
         padding-top: 2.75rem;
-        font-size: 1.25rem;
+        font-size: $font-20;
     }
 }
 .reservationForm__additional {
@@ -80,11 +81,11 @@ export default {
             padding-left: 1.625rem;
         }
         span {
-            font-size: 1.875rem;
+            font-size: $font-30;
             font-family: $playfair-font;
         }
         p {
-            font-size: 1.125rem;
+            font-size: $font-18;
         }
         .switch {
             position: relative;
@@ -160,7 +161,7 @@ export default {
                 display: flex;
             }
             span {
-                font-size: 2.1875rem;
+                font-size: $font-35;
                 padding-left: 2.5rem;
                 padding-right: 1.875rem;
             }

@@ -86,7 +86,7 @@ export default {
             height: 4.25rem;
         }
         &-text {
-            font-size: 2.1875rem;
+            font-size: $font-35;
             margin-top: 0.4375rem;
             margin-left: 1.25rem;
         }

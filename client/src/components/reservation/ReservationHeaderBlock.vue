@@ -5,9 +5,9 @@
         </svg>
         <div class="title min-content">Rezervace</div>
         <div class="ReservationInfo flex h-fit-content">
-            <div class="ReservationInfo-date">{{ date }}</div>
+            <div class="ReservationInfo-date">{{ formData.date }}</div>
             <div v-if="isMd">,&nbsp;</div>
-            <div class="ReservationInfo-hours">{{ time }}</div>
+            <div class="ReservationInfo-hours">{{ formData.time }}</div>
         </div>
     </div>
 </template>
@@ -15,11 +15,7 @@
 <script>
 export default {
     name: "ReservationHeaderBlock",
-    inject: ["windowInfo"],
-    props: {
-        time: String,
-        date: String,
-    },
+    inject: ["windowInfo", "formData"],
     computed: {
         isMd() {
             return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
@@ -41,7 +37,7 @@ export default {
     }
     .ReservationInfo {
         margin-top: 0.4375rem;
-        font-size: 1.125rem;
+        font-size: $font-18;
     }
 }
 @media only screen and (min-width: $md-breakpoint) {
@@ -55,11 +51,11 @@ export default {
             &-date {
                 padding-top: 1.0625rem;
                 font-family: $playfair-font;
-                font-size: 2.1875rem;
+                font-size: $font-35;
             }
             &-hours {
                 text-align: right;
-                font-size: 1.25rem;
+                font-size: $font-20;
             }
         }
     }

@@ -5,35 +5,35 @@
         </svg>
         <div class="container mx-auto">
             <div class="form-grid grid">
-                <input required type="text" name="firstname" placeholder="Jemno*" v-model="$parent.formData.name" />
+                <input required type="text" name="firstname" placeholder="Jemno*" v-model="formData.name" />
                 <div class="reservationForm__select user-select-none">
                     <div class="reservationForm__select-inner flex content-between align-center h-p" @click="osobyClick()">
                         <div class="pa flex align-center">
-                            {{ $parent.persons }} Osoby
-                            <p v-if="$parent.persons > 1">(+{{ $parent.persons - 1 }}00,- Kč)</p>
+                            {{ formData.persons }} Osoby
+                            <p v-if="formData.persons > 1">(+{{ formData.persons - 1 }}00,- Kč)</p>
                         </div>
                         <svg id="formArrow"><use href="#openedArrow" /></svg>
                     </div>
                     <div class="reservationForm__select-list none h-fit-content overflow-hidden">
-                        <div class="h-p flex align-center" @click="($parent.persons = 1), osobyClick()">1 Osoby</div>
-                        <div class="h-p flex align-center" @click="($parent.persons = 2), osobyClick()">
+                        <div class="h-p flex align-center" @click="(formData.persons = 1), osobyClick()">1 Osoby</div>
+                        <div class="h-p flex align-center" @click="(formData.persons = 2), osobyClick()">
                             2 Osoby
                             <p>(+100,- Kč)</p>
                         </div>
-                        <div class="h-p flex align-center" @click="($parent.persons = 3), osobyClick()">
+                        <div class="h-p flex align-center" @click="(formData.persons = 3), osobyClick()">
                             3 Osoby
                             <p>(+200,- Kč)</p>
                         </div>
-                        <div class="h-p flex align-center" @click="($parent.persons = 4), osobyClick()">
+                        <div class="h-p flex align-center" @click="(formData.persons = 4), osobyClick()">
                             4 Osoby
                             <p>(+300,- Kč)</p>
                         </div>
                     </div>
                 </div>
-                <input required type="tel" name="phone" id="telephone" placeholder="Telefon*" v-model="$parent.formData.phone" />
-                <input required type="email" name="email" id="email" placeholder="E-mail" v-model="$parent.formData.email" />
+                <input required type="tel" name="phone" id="telephone" placeholder="Telefon*" v-model="formData.phone" />
+                <input required type="email" name="email" id="email" placeholder="E-mail" v-model="formData.email" />
                 <textarea
-                    v-model="$parent.formData.message"
+                    v-model="formData.message"
                     type="text"
                     name="message"
                     placeholder="Dalsi pozadavky
@@ -57,9 +57,12 @@ import axios from "axios";
 
 export default {
     name: "ReservationFormBlock",
+    inject: ["formData"],
+
     components: {
         AdditionalComponent,
     },
+
     data() {
         return {
             state: "loading",
@@ -71,9 +74,6 @@ export default {
             elements: null,
             stripe_pubKey: "pk_test_51JC9K9BJ2QoFP7mPuFYpU6P3MSU7T2ytOURjiAAu9ZuG2JeRuKUi9tU8HV9Eh4BGuCSxsDnpxrQ02fvADiY1dDpD00i37yMksj",
         };
-    },
-    props: {
-        OnlinePayments: Boolean,
     },
     async mounted() {
         const style = {
@@ -169,7 +169,7 @@ export default {
         // },
         async handleSubmit() {
             if (this.loading) return;
-            if (this.ValidateEmail(this.$parent.formData.email) && this.ValidatePhone(this.$parent.formData.phone)) {
+            if (this.ValidateEmail(this.formData.email) && this.ValidatePhone(this.formData.phone)) {
                 //captcha response
                 // eslint-disable-next-line
                 const captchaRes = grecaptcha.getResponse();
@@ -179,14 +179,10 @@ export default {
                 }
                 document.getElementsByClassName("captcha__wrap")[0].classList.remove("highlight");
 
-                this.$parent.formData.misa = this.$parent.misa;
-                this.$parent.formData.ozdoba = this.$parent.ozdoba;
-                this.$parent.formData.prossecco = this.$parent.prossecco;
-                this.$parent.formData.persons = this.$parent.persons;
                 this.loading = true;
-                const formData = this.$parent.formData;
+                const formData = this.formData;
                 let stripeId;
-                if (this.OnlinePayments) {
+                if (this.$parent.OnlinePayments) {
                     const name = formData.name;
                     const email = formData.email;
 
@@ -311,7 +307,7 @@ export default {
         padding-left: 1.25rem;
         padding-right: 0.8438rem;
         height: 3.75rem;
-        font-size: 1.25rem;
+        font-size: $font-20;
         border-radius: 0.625rem;
         font-family: $playfair-font;
         background-color: $white;

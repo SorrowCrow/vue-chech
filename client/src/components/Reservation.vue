@@ -8,10 +8,10 @@
                         <rect x="22.1066" y="3.01477" width="27" height="3" rx="1.5" transform="rotate(135 22.1066 3.01477)" />
                     </svg>
                 </div>
-                <ReservationHeaderBlock :time="time" :date="date" />
+                <ReservationHeaderBlock />
                 <div class="Reservation__reservationForm-wrapper">
-                    <ReservationFormBlock :OnlinePayments="OnlinePayments" />
-                    <SummaryBlock :time="time" :date="date" :persons="persons" :ozdoba="ozdoba" :prossecco="prossecco" :misa="misa" :hours="hours" />
+                    <ReservationFormBlock />
+                    <SummaryBlock />
                 </div>
             </div>
         </div>
@@ -25,20 +25,24 @@ import SummaryBlock from "./reservation/SummaryBlock.vue";
 
 export default {
     name: "Reservation",
-    props: {
-        time: String,
-        date: String,
-        hours: Number,
+    inject: ["calendarData"],
+    provide() {
+        return {
+            formData: this.formData,
+        };
     },
     data() {
         return {
-            persons: 1,
-            misa: false,
-            prossecco: false,
-            ozdoba: false,
-            formData: {},
-
             OnlinePayments: true,
+            formData: {
+                date: this.calendarData.date,
+                time: this.calendarData.time,
+                hours: this.calendarData.hours,
+                persons: 1,
+                misa: false,
+                prossecco: false,
+                ozdoba: false,
+            },
         };
     },
     components: {
@@ -48,18 +52,16 @@ export default {
     },
     methods: {
         bodyDisplayAuto() {
-            this.$parent.isReservation = false;
+            this.calendarData.isReservation = false;
             document.getElementsByTagName("body")[0].style.overflow = "";
         },
     },
     mounted: function () {
         document.getElementsByTagName("body")[0].style.overflow = "hidden";
-        if (this.time.length == 10) {
-            this.formData.time = "0" + this.time;
-        } else {
-            this.formData.time = this.time;
+        if (this.calendarData.time.length == 10) {
+            this.calendarData.time = "0" + this.calendarData.time;
         }
-        this.formData.date = this.date;
+        this.formData.date = this.calendarData.date;
         document.getElementsByClassName("Reservation__reservationForm-exit")[0].addEventListener("click", (e) => e.stopPropagation());
     },
 };

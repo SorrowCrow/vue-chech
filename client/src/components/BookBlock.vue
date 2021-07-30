@@ -153,7 +153,7 @@ export default {
                 }
                 .note {
                     padding-top: 1.875rem;
-                    font-size: 0.9375rem;
+                    font-size: $font-15;
                     color: rgba(255, 255, 255, 0.5);
                 }
             }

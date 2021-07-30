@@ -7,30 +7,30 @@
             <div class="SummaryBlock__costs">
                 <div class="SummaryBlock__costs-item flex content-between">
                     <div class="grid">
-                        <span>{{ date }},&nbsp;</span>
-                        <span>od {{ time }}</span>
+                        <span>{{ formData.date }},&nbsp;</span>
+                        <span>od {{ formData.time }}</span>
                     </div>
                     <div>{{ timePrice }},– Kč</div>
                 </div>
                 <div class="SummaryBlock__costs-item flex content-between">
-                    <div>{{ persons }} osoby</div>
-                    <div>{{ persons * 100 }},– Kč</div>
+                    <div>{{ formData.persons }} osoby</div>
+                    <div>{{ formData.persons * 100 }},– Kč</div>
                 </div>
-                <div v-if="ozdoba" class="SummaryBlock__costs-item flex content-between">
+                <div v-if="formData.ozdoba" class="SummaryBlock__costs-item flex content-between">
                     <div>Ozdoba</div>
                     <div>{{ ozdobaPrice }},– Kč</div>
                 </div>
-                <div v-if="prossecco" class="SummaryBlock__costs-item flex content-between">
+                <div v-if="formData.prossecco" class="SummaryBlock__costs-item flex content-between">
                     <div>Prossecco</div>
                     <div>{{ prosseccoPrice }},– Kč</div>
                 </div>
-                <div v-if="misa" class="SummaryBlock__costs-item flex content-between">
+                <div v-if="formData.misa" class="SummaryBlock__costs-item flex content-between">
                     <div>Misa</div>
                     <div>{{ misaPrice }},– Kč</div>
                 </div>
                 <div class="SummaryBlock__costs-total SummaryBlock__costs-item flex content-between">
                     <div>Total:</div>
-                    <div>{{ persons * 100 + timePrice + (ozdoba ? ozdobaPrice : 0) + (prossecco ? prosseccoPrice : 0) + (misa ? misaPrice : 0) }},– Kč</div>
+                    <div>{{ formData.persons * 100 + timePrice + (formData.ozdoba ? ozdobaPrice : 0) + (formData.prossecco ? prosseccoPrice : 0) + (formData.misa ? misaPrice : 0) }},– Kč</div>
                 </div>
             </div>
             <div class="SummaryBlock__voucher flex content-between align-center">
@@ -79,15 +79,7 @@
 <script>
 export default {
     name: "SummaryBlock",
-    props: {
-        time: String,
-        date: String,
-        persons: Number,
-        ozdoba: Boolean,
-        prossecco: Boolean,
-        misa: Boolean,
-        hours: Number,
-    },
+    inject: ["formData"],
     data() {
         return {
             timePrice: 0,
@@ -102,13 +94,13 @@ export default {
         script.defer = "";
         script.async = "";
         document.head.appendChild(script);
-        if (this.hours == 1) {
+        if (this.formData.hours == 1) {
             this.timePrice = 799;
-        } else if (this.hours == 15) {
+        } else if (this.formData.hours == 15) {
             this.timePrice = 1099;
-        } else if (this.hours == 2) {
+        } else if (this.formData.hours == 2) {
             this.timePrice = 1399;
-        } else if (this.hours == 3) {
+        } else if (this.formData.hours == 3) {
             this.timePrice = 1899;
         }
     },
@@ -145,7 +137,7 @@ export default {
 }
 .SummaryBlock {
     color: $deepblue;
-    font-size: 1.125rem;
+    font-size: $font-18;
     max-width: 35.625rem;
     padding-right: 1.875rem;
     padding-left: 1.875rem;
@@ -157,7 +149,7 @@ export default {
         }
         &-total {
             font-family: $playfair-font;
-            font-size: 1.875rem;
+            font-size: $font-30;
         }
     }
     &__voucher {
@@ -166,7 +158,7 @@ export default {
         margin-top: 2.1875rem;
         &-text {
             font-family: $playfair-font;
-            font-size: 1.25rem;
+            font-size: $font-20;
             padding: 0.8125rem 0 0.875rem 1.25rem;
         }
         &-button {
@@ -244,7 +236,7 @@ export default {
         border-radius: 1.875rem;
     }
     .SummaryBlock {
-        font-size: 1.25rem;
+        font-size: $font-20;
         &__costs {
             &-item {
                 div {
@@ -253,7 +245,7 @@ export default {
             }
             &-total {
                 font-family: $playfair-font;
-                font-size: 2.1875rem;
+                font-size: $font-35;
             }
         }
         &__voucher {

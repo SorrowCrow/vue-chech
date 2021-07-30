@@ -11,7 +11,8 @@ const verifiedEmail = "forestmccallister@gmail.com";
 sgMail.setApiKey(sendgrid);
 
 router.get("/:date", async (req, res) => {
-    const { date } = req.params;
+    const { date } = req.body;
+    console.log(date);
     try {
         const reservationItems = await reservationItem.find({ date: date }, { time: 1, _id: 0 }).sort({ time: 1 });
         if (!reservationItems) throw new Error("No reservationItems");
@@ -55,6 +56,7 @@ router.post("/", async (req, res) => {
     const { stripeId } = req.body;
     let newreservationItem = "";
     let matadata;
+
     if (stripeId) {
         let paymentIntent = await stripe.paymentIntents.retrieve(stripeId);
         metadata = paymentIntent.metadata;
@@ -67,8 +69,16 @@ router.post("/", async (req, res) => {
     } else {
         const { captchaRes } = req.body;
         const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${captcha}&response=${captchaRes}`);
-
+        const { time, date } = req.body;
         if (response.data.success === true) {
+            const reservationItems = await reservationItem.find({ date: date }, { time: 1, _id: 0 }).sort({ time: 1 });
+            if (!reservationItems) throw new Error("No reservationItems");
+            const sorted = reservationItems.sort((a, b) => {
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+            });
+            for (let i = 0; i < Object.keys(sorted).length; i++) {
+                if (time === sorted[i].time) res.status(500).send({ message: "Time taken" });
+            }
             newreservationItem = new reservationItem(req.body.formData);
         }
     }

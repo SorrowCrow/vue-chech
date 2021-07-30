@@ -66,23 +66,23 @@ export default {
     bottom: 0;
     right: 0;
     z-index: 150;
-    padding: 30px;
-    background-color: $backgroundgrey;
+    padding: 1.875rem;
+    background: $backgroundgrey;
     color: $deepblue;
     &__header {
         &-icon {
-            width: 50px;
-            height: 60px;
+            width: 3.125rem;
+            height: 3.75rem;
         }
         &-time {
             color: $secondary;
-            font-size: 18px;
+            font-size: $font-18;
         }
         .ReservationExit {
             background-color: $white;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 3.75rem;
+            height: 3.75rem;
             transition: $transition-fast;
             &:hover {
                 transform: rotate(90deg);
@@ -91,37 +91,37 @@ export default {
                 }
             }
             svg {
-                width: 21px;
-                height: 21px;
+                width: 1.3125rem;
+                height: 1.3125rem;
                 fill: $secondary;
             }
         }
     }
     &__scrolls {
-        font-size: 30px;
-        grid-row-gap: 20px;
-        padding-top: 34px;
-        padding-bottom: 81px;
+        font-size: 1.875rem;
+        grid-row-gap: 1.25rem;
+        padding-top: 2.125rem;
+        padding-bottom: 5.0625rem;
     }
     a {
         color: $deepblue;
     }
     &__number {
         font-family: $playfair-font;
-        font-size: 45px;
+        font-size: 2.8125rem;
         letter-spacing: -0.03em;
-        padding-bottom: 41px;
+        padding-bottom: 2.5625rem;
     }
     &__links {
-        padding-top: 45px;
-        padding-bottom: 60px;
+        padding-top: 2.8125rem;
+        padding-bottom: 3.75rem;
         a {
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-left: 0.625rem;
+            margin-right: 0.625rem;
         }
         svg {
-            width: 50px;
-            height: 50px;
+            width: 3.125rem;
+            height: 3.125rem;
             fill: $deepblue;
         }
     }

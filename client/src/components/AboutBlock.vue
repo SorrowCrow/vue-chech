@@ -123,7 +123,7 @@ export default {
         &__item {
             width: 9.25rem;
             height: 9.375rem;
-            font-size: 1.25rem;
+            font-size: $font-20;
             svg {
                 padding-bottom: 1.25rem;
                 stroke: $beige;
@@ -218,7 +218,7 @@ export default {
             &__item {
                 width: 14.375rem;
                 height: 12.3125rem;
-                font-size: 1.875rem;
+                font-size: $font-30;
                 line-height: 2.5rem;
                 svg {
                     padding-bottom: 2.1875rem;

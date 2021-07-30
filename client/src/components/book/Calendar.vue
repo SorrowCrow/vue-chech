@@ -5,26 +5,26 @@
                 <svg class="leftArrow h-p" @click="getMonthDecrease()">
                     <use href="#calendarArrow" />
                 </svg>
-                <div class="month-name flex content-center align-center text-center">{{ months[month] }}</div>
+                <div class="month-name flex content-center align-center text-center">{{ months[calendarData.month] }}</div>
                 <svg class="h-p" @click="getMonthIncrease()">
                     <use href="#calendarArrow" />
                 </svg>
             </div>
-            <div class="weekdays flex content-between">
-                <div class="flex justify-center align-center text-center">Mon</div>
-                <div class="flex justify-center align-center text-center">Tue</div>
-                <div class="flex justify-center align-center text-center">Wed</div>
-                <div class="flex justify-center align-center text-center">Thu</div>
-                <div class="flex justify-center align-center text-center">Fri</div>
-                <div class="flex justify-center align-center text-center">Sat</div>
-                <div class="flex justify-center align-center text-center">Sun</div>
+            <div class="weekdays flex align-center">
+                <div class="align-center text-center">Mon</div>
+                <div class="align-center text-center">Tue</div>
+                <div class="align-center text-center">Wed</div>
+                <div class="align-center text-center">Thu</div>
+                <div class="align-center text-center">Fri</div>
+                <div class="align-center text-center">Sat</div>
+                <div class="align-center text-center">Sun</div>
             </div>
         </div>
-        <ChooseHoursMenu ref="chooseHours" :secondDate="String(secondDate)" :chooseHoursHidden="chooseHoursHidden" :key="componentKey" :month="month" :currentMonth="currentMonth" :yearLoop="yearLoop" />
+        <ChooseHoursMenu ref="chooseHours" :key="componentKey" />
 
-        <CalendarDays :key="componentKey" :month="month" :currentMonth="currentMonth" :year="year" :yearLoop="yearLoop" />
+        <CalendarDays :key="componentKey" />
     </div>
-    <Reservation v-if="isReservation" :time="time" :date="date" :hours="hours" />
+    <Reservation v-if="calendarData.isReservation" />
 </template>
 
 <script>
@@ -49,47 +49,51 @@ export default {
     data() {
         return {
             months: ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"],
-            month: new Date().getMonth(),
-            currentMonth: new Date().getMonth(),
-            year: new Date().getFullYear(),
-            yearLoop: 0,
             componentKey: 0,
 
-            secondDate: "0",
+            calendarData: {
+                month: new Date().getMonth(),
+                currentMonth: new Date().getMonth(),
+                year: new Date().getFullYear(),
+                yearLoop: 0,
+                time: String,
+                date: "1",
+                secondDate: 0,
+                hours: Number,
 
-            row: 1,
+                reservedArray: [],
 
-            isReservation: false,
-            time: String,
-            date: "1",
-            hours: Number,
-
-            response: null,
-            reservedArray: [[]],
-
-            chooseHoursHidden: true,
-            openedHidden: true,
-
-            hiddenStyles: {
-                opacity: "0",
-                height: "",
+                isReservation: false,
+                openedHidden: true,
+                chooseHoursHidden: true,
+                row: 1,
+                hiddenStyles: {
+                    opacity: "0",
+                    height: "",
+                },
             },
+        };
+    },
+    provide() {
+        return {
+            calendarData: this.calendarData,
         };
     },
     methods: {
         async insertMenu(row = this.row) {
-            this.reservedArray = [];
-            this.response = await axios.get("api/reservationItems/" + this.date);
-            for (let i = 0; i < Object.keys(this.response.data).length; i++) {
-                let time = this.response.data[i].time;
-                this.reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
+            this.calendarData.reservedArray = [];
+            console.log(encodeURI(this.calendarData.date));
+            const response = await axios.get("api/reservationItems/" + encodeURI(this.calendarData.date));
+            for (let i = 0; i < Object.keys(response.data).length; i++) {
+                let time = response.data[i].time;
+                this.calendarData.reservedArray[i] = [time.slice("", time.indexOf(":")), time.slice(time.indexOf(":") + 1, time.indexOf("-")), time.slice(time.indexOf("-") + 1).slice("", time.indexOf(":")), time.slice(time.indexOf("-") + 1).slice(time.indexOf(":") + 1)];
             }
             this.row = row;
 
             document.getElementsByClassName("choose")[0].appendAfter(document.getElementsByClassName(`${row}row`)[0]);
             setTimeout(
                 function () {
-                    this.chooseHoursHidden = false;
+                    this.calendarData.chooseHoursHidden = false;
                 }.bind(this),
                 1
             );
@@ -99,43 +103,43 @@ export default {
             document.getElementsByClassName("pa")[0].textContent = txt + " Hodina";
             setTimeout(
                 function () {
-                    this.openedHidden = false;
+                    this.calendarData.openedHidden = false;
                 }.bind(this),
                 1
             );
         },
         removeSelect() {
-            this.openedHidden = true;
+            this.calendarData.openedHidden = true;
         },
         removeMenu() {
-            this.chooseHoursHidden = true;
+            this.calendarData.chooseHoursHidden = true;
         },
         getMonthDecrease() {
-            this.openedHidden = true;
-            this.chooseHoursHidden = true;
-            this.secondDate = 0;
-            if (this.month == this.currentMonth && this.yearLoop == 0) {
+            this.calendarData.openedHidden = true;
+            this.calendarData.chooseHoursHidden = true;
+            this.calendarData.secondDate = 0;
+            if (this.calendarData.month == this.calendarData.currentMonth && this.calendarData.yearLoop == 0) {
                 return;
-            } else if (this.month == 0 && this.yearLoop == 1) {
-                this.month = 11;
-                this.yearLoop = 0;
-                return this.month, (this.componentKey = !this.componentKey);
+            } else if (this.calendarData.month == 0 && this.calendarData.yearLoop == 1) {
+                this.calendarData.month = 11;
+                this.calendarData.yearLoop = 0;
+                return this.calendarData.month, (this.componentKey = !this.componentKey);
             } else {
-                return this.month--, (this.componentKey = !this.componentKey);
+                return this.calendarData.month--, (this.componentKey = !this.componentKey);
             }
         },
         getMonthIncrease() {
-            this.openedHidden = true;
-            this.chooseHoursHidden = true;
-            this.secondDate = 0;
-            if (this.month == this.currentMonth && this.yearLoop == 1) {
-                return this.month;
-            } else if (this.month == 11 && this.yearLoop == 0) {
-                this.month = 0;
-                this.yearLoop = 1;
-                return this.month, (this.componentKey = !this.componentKey);
+            this.calendarData.openedHidden = true;
+            this.calendarData.chooseHoursHidden = true;
+            this.calendarData.secondDate = 0;
+            if (this.calendarData.month == this.calendarData.currentMonth && this.calendarData.yearLoop == 1) {
+                return this.calendarData.month;
+            } else if (this.calendarData.month == 11 && this.calendarData.yearLoop == 0) {
+                this.calendarData.month = 0;
+                this.calendarData.yearLoop = 1;
+                return this.calendarData.month, (this.componentKey = !this.componentKey);
             } else {
-                return this.month++, (this.componentKey = !this.componentKey);
+                return this.calendarData.month++, (this.componentKey = !this.componentKey);
             }
         },
     },
@@ -172,9 +176,9 @@ export default {
         }
         .weekdays {
             color: $beige;
+            height: 1.875rem;
             div {
                 width: 4.1875rem;
-                height: 1.875rem;
             }
         }
     }
@@ -194,7 +198,7 @@ export default {
         user-select: none;
         border-radius: 1.875rem;
         width: 29.375rem;
-        font-size: 1.25rem;
+        font-size: $font-20;
         .cat__header {
             background: $darkdarkblue;
             width: 100%;
@@ -221,7 +225,7 @@ export default {
                 .month-name {
                     width: 16.875rem;
                     font-family: Playfair Display;
-                    font-size: 2.1875rem;
+                    font-size: $font-35;
                     line-height: 2.9375rem;
                     display: flex;
                     justify-content: center;
