@@ -9,7 +9,7 @@
         "client": "npm run serve --prefix client",
         "dev": "concurrently \"npm run server\" \"npm run client\"",
         "start": "node server.js",
-        "build": "npm install --prefix client && npm run build --prefix client"
+        "buildvue": "npm install --prefix client && npm run build --prefix client"
     },
     "dependencies": {
         "@sendgrid/mail": "^7.4.5",
