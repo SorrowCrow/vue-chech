@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <title>Sauna Kbely</title>
         <link rel="icon" href="<%= BASE_URL %>icon.png" />
-        <script src="https://js.stripe.com/v3"></script>
+        <script src="https://js.stripe.com/v3" defer async></script>
         <script type="text/javascript">
             var onloadCallback = function() {
                 grecaptcha.render("captcha", {
@@ -14,10 +14,10 @@
                 });
             };
         </script>
-        <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
+        <link rel="stylesheet" type="text/css" href="./stylesheet.css" defer />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Playfair+Display&family=Work+Sans&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Playfair+Display&family=Work+Sans&display=swap" rel="stylesheet" defer />
         <link rel="manifest" href="manifest.json" />
     </head>
     <body>

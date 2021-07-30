@@ -1,49 +1,50 @@
 {
-  "name": "vue-chech-client",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "build-report": "vue-cli-service build --report"
-  },
-  "dependencies": {
-    "@stripe/stripe-js": "^1.16.0",
-    "@vue-stripe/vue-stripe": "^4.2.5",
-    "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "sass": "^1.35.0",
-    "sass-loader": "^10.1.0",
-    "tiny-slider": "^2.9.3",
-    "vue": "^3.0.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "^3.1.1",
-    "@vue/cli-service": "^4.5.13",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "vue-chech-client",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "build-report": "vue-cli-service build --report"
     },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
+    "dependencies": {
+        "@stripe/stripe-js": "^1.16.0",
+        "@vue-stripe/vue-stripe": "^4.2.5",
+        "axios": "^0.21.1",
+        "core-js": "^3.6.5",
+        "sass": "^1.35.0",
+        "sass-loader": "^10.1.0",
+        "tiny-slider": "^2.9.3",
+        "vue": "^3.0.0"
     },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "^3.1.1",
+        "@vue/cli-service": "^4.5.13",
+        "@vue/compiler-sfc": "^3.0.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^7.0.0",
+        "html-critical-webpack-plugin": "^2.1.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/vue3-essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
 }

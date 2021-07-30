@@ -1,13 +1,25 @@
 const fs = require("fs");
+const path = require("path");
+const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
 
 module.exports = {
     configureWebpack: {
-        optimization: {
-            splitChunks: {
-                // include all types of chunks
-                chunks: "all"
-            }
-        },
+        plugins: [
+            new HtmlCriticalWebpackPlugin({
+                base: path.join(path.resolve(__dirname), "dist/"),
+                src: "index.html",
+                inline: true,
+                extract: true,
+                dest: "index.html",
+                width: 1625,
+                height: 773,
+
+                /* Ensure that bundled JS file is called */
+                penthouse: {
+                    blockJSRequests: false
+                }
+            })
+        ],
         devServer: {
             https: {
                 key: fs.readFileSync("../server.key"),
@@ -24,9 +36,7 @@ module.exports = {
         sourceMap: true,
         loaderOptions: {
             sass: {
-                additionalData: `
-            @import "@/scss/main.scss";
-          `
+                additionalData: `@import "@/scss/main.scss";`
             }
         }
     }
