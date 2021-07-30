@@ -5,20 +5,20 @@ const HtmlCriticalWebpackPlugin = require("html-critical-webpack-plugin");
 module.exports = {
     configureWebpack: {
         plugins: [
-            new HtmlCriticalWebpackPlugin({
-                base: path.join(path.resolve(__dirname), "dist/"),
-                src: "index.html",
-                inline: true,
-                extract: true,
-                dest: "index.html",
-                width: 1625,
-                height: 773,
+            // new HtmlCriticalWebpackPlugin({
+            //     base: path.join(path.resolve(__dirname), "dist/"),
+            //     src: "index.html",
+            //     inline: true,
+            //     extract: true,
+            //     dest: "index.html",
+            //     width: 1625,
+            //     height: 773,
 
-                /* Ensure that bundled JS file is called */
-                penthouse: {
-                    blockJSRequests: false
-                }
-            })
+            //     /* Ensure that bundled JS file is called */
+            //     penthouse: {
+            //         blockJSRequests: false
+            //     }
+            // })
         ],
         devServer: {
             https: {
