@@ -2,12 +2,12 @@
     <header class="header absolute">
         <div class="header__wrap flex content-between mx-auto align-center" v-if="!isMenu">
             <div class="header__logo flex">
-                <svg class="relative float-left" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
-                    <image href="../../../public/icon.svg" v-bind:class="displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'" />
+                <svg class="relative float-left" v-bind:class="windowInfo.displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'">
+                    <image href="../../../public/icon.svg" v-bind:class="windowInfo.displayMenu ? 'header__logo-icon' : 'header__logo-iconBig'" />
                 </svg>
-                <div class="header__logo-text relative" v-if="displayMenu">Sauna Kbely</div>
+                <div class="header__logo-text relative" v-if="windowInfo.displayMenu">Sauna Kbely</div>
             </div>
-            <div class="header__contacts content-between flex" v-if="displayMenu">
+            <div class="header__contacts content-between flex" v-if="windowInfo.displayMenu">
                 <div class="header__contacts-item flex">
                     <svg>
                         <use href="#clock" />
@@ -31,7 +31,7 @@
                 <use href="#headerMenu" />
             </svg>
         </div>
-        <HeaderMenu v-else-if="!displayMenu" />
+        <HeaderMenu v-else-if="!windowInfo.displayMenu" />
     </header>
 </template>
 
@@ -40,6 +40,7 @@ import HeaderMenu from "../headerMenu.vue";
 
 export default {
     name: "Header",
+    inject: ["windowInfo"],
     components: {
         HeaderMenu,
     },
@@ -47,12 +48,6 @@ export default {
         return {
             isMenu: false,
         };
-    },
-    inject: ["windowInfo"],
-    computed: {
-        displayMenu() {
-            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) > this.$header ? true : false;
-        },
     },
 };
 </script>

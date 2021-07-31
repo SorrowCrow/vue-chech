@@ -14,7 +14,8 @@
         "sass": "^1.35.0",
         "sass-loader": "^10.1.0",
         "tiny-slider": "^2.9.3",
-        "vue": "^3.0.0"
+        "vue": "^3.0.0",
+        "vue-chech-server": "file:.."
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "~4.5.0",

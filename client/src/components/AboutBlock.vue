@@ -43,8 +43,6 @@
 <script>
 export default {
     name: "AboutBlock",
-    inject: ["windowInfo"],
-
     methods: {
         magnifyingGlassClick() {
             window.scrollTo({
@@ -52,11 +50,6 @@ export default {
                 behavior: "smooth",
             });
             document.getElementById("sliderInit").click();
-        },
-    },
-    computed: {
-        isMd() {
-            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
         },
     },
 };

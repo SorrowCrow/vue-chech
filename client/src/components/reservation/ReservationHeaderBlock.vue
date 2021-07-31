@@ -1,12 +1,12 @@
 <template>
     <div class="grid mx-auto ReservationHeaderBlock">
-        <svg v-if="isMd" class="ReservationHeaderBlock-icon">
+        <svg v-if="windowInfo.isMd" class="ReservationHeaderBlock-icon">
             <image href="../../../public/icon.svg" class="ReservationHeaderBlock-icon" />
         </svg>
         <div class="title min-content">Rezervace</div>
         <div class="ReservationInfo flex h-fit-content">
             <div class="ReservationInfo-date">{{ formData.date }}</div>
-            <div v-if="isMd">,&nbsp;</div>
+            <div v-if="windowInfo.isMd">,&nbsp;</div>
             <div class="ReservationInfo-hours">{{ formData.time }}</div>
         </div>
     </div>
@@ -16,11 +16,6 @@
 export default {
     name: "ReservationHeaderBlock",
     inject: ["windowInfo", "formData"],
-    computed: {
-        isMd() {
-            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
-        },
-    },
 };
 </script>
 

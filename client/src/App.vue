@@ -20,7 +20,7 @@ export default {
     name: "App",
     data() {
         return {
-            windowInfo: { size: window.innerWidth },
+            windowInfo: { size: window.innerWidth, isMd: this.isMd, displayMenu: this.displayMenu },
         };
     },
     provide() {
@@ -34,6 +34,20 @@ export default {
     methods: {
         getWindowSize() {
             this.windowInfo.size = window.innerWidth;
+            this.windowInfo.isMd = this.isMd;
+            this.windowInfo.displayMenu = this.displayMenu;
+        },
+    },
+    mounted() {
+        this.windowInfo.isMd = this.isMd;
+        this.windowInfo.displayMenu = this.displayMenu;
+    },
+    computed: {
+        isMd() {
+            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
+        },
+        displayMenu() {
+            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) > this.$header ? true : false;
         },
     },
     components: {

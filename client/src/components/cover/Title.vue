@@ -2,12 +2,12 @@
     <Header />
     <div class="contain relative grid content-center" id="cover">
         <Slider :isSlider="isSlider" />
-        <div class="absolute flex content-center w-100" :class="!isMd ? 'align-self-center' : 'title-wrap'">
-            <div id="sliderInit" :class="!isMd ? 'h-p' : ''" class="relative title fit-content user-select-none relative" @click="titleClick()">
-                <div class="title-privatni relative fit-content" :class="isMd ? 'mx-auto' : ''">Tvůj privátní</div>
+        <div class="absolute flex content-center w-100" :class="!windowInfo.isMd ? 'align-self-center' : 'title-wrap'">
+            <div id="sliderInit" :class="!windowInfo.isMd ? 'h-p' : ''" class="relative title fit-content user-select-none relative" @click="titleClick()">
+                <div class="title-privatni relative fit-content" :class="windowInfo.isMd ? 'mx-auto' : ''">Tvůj privátní</div>
                 <div class="title-wellness relative mx-auto">Wellness</div>
-                <svg class="relative" :class="!isMd ? 'absolute' : ''">
-                    <use href="#rezervace" @click="isMd ? rezervaceClick() : ''" />
+                <svg class="relative" :class="!windowInfo.isMd ? 'absolute' : ''">
+                    <use href="#rezervace" @click="windowInfo.isMd ? rezervaceClick() : ''" />
                 </svg>
             </div>
         </div>
@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         hideUnhide() {
-            if (this.isMd) {
+            if (this.windowInfo.isMd) {
                 document.getElementById("sliderInit").classList.remove("hiddenTitle");
                 document.getElementsByClassName("slider__wrap")[0].classList.remove("unHiddenForSlide");
             }
@@ -50,7 +50,7 @@ export default {
             });
         },
         titleClick() {
-            if (!this.isMd) {
+            if (!this.windowInfo.isMd) {
                 let sliderInit = document.getElementById("sliderInit");
                 if (sliderInit.classList.contains("hiddenTitle")) {
                     sliderInit.classList.remove("hiddenTitle");
@@ -62,11 +62,6 @@ export default {
                     this.isSlider = true;
                 }
             }
-        },
-    },
-    computed: {
-        isMd() {
-            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
         },
     },
 };

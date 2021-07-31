@@ -1,6 +1,6 @@
 <template>
     <div class="menu-wrap absolute w-100">
-        <div class="menu mx-auto flex content-between" v-if="!isMd">
+        <div class="menu mx-auto flex content-between" v-if="!windowInfo.isMd">
             <div class="menu__main flex content-between">
                 <div class="h-p" @click="scroll('#about')">O nás</div>
                 <div class="h-p" @click="scroll('#book')">Rezervace</div>
@@ -25,11 +25,6 @@ export default {
                 top: document.querySelector(id).offsetTop,
                 behavior: "smooth",
             });
-        },
-    },
-    computed: {
-        isMd() {
-            return this.windowInfo.size * (this.$rem / parseFloat(getComputedStyle(document.documentElement).fontSize)) < this.$md ? true : false;
         },
     },
 };
