@@ -54,6 +54,9 @@ Treba jokou chcete hudbu..."
 <script>
 import AdditionalComponent from "./AdditionalComponent.vue";
 import axios from "axios";
+import isEmail from "validator/lib/isEmail";
+import isMobilePhone from "validator/lib/isMobilePhone";
+import DOMPurify from "dompurify";
 
 export default {
     name: "ReservationFormBlock",
@@ -100,68 +103,15 @@ export default {
 
         this.elements = this.stripe.elements();
         const element = this.elements.create("card", style);
-        // const prButton = this.elements.create("paymentRequestButton", {
-        //     paymentRequest: paymentRequest,
-        // });
-
-        // Check the availability of the Payment Request API first.
-        // paymentRequest.canMakePayment().then(function (result) {
-        //     if (result) {
-        //         prButton.mount("#payment-request-button");
-        //     } else {
-        //         document.getElementById("payment-request-button").style.display = "none";
-        //     }
-        // });
         await element.mount("#stripe-card");
         this.loading = false;
         document.getElementsByClassName("Reservation__reservationForm")[0].addEventListener("click", (e) => e.stopPropagation());
         document.getElementsByClassName("reservationForm__select")[0].addEventListener("click", (e) => e.stopPropagation());
     },
     methods: {
-        // CheckCard() {
-        //     this.cardElement = this.elements.getElement("card");
-        //     this.cardElement((event) => {
-        //         if (event.complete) {
-        //             // enable payment button
-        //         return true;
-        //         }
-        //     });
-        //     if (this.cardElement == undefined) {
-        //         document.getElementsByClassName("InputElement")[0].focus();
-        //         document.getElementsByClassName("InputElement")[0].classList.add("is-invalid");
-        //     }
-        //     return true;
-        // },
-        ValidateEmail(inputText) {
-            // eslint-disable-next-line
-            const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (re.test(inputText)) {
-                return true;
-            }
-            document.getElementById("email").focus();
-            return false;
-        },
-        ValidatePhone(inputText) {
-            // eslint-disable-next-line
-            const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-            if (re.test(inputText)) {
-                return true;
-            }
-            document.getElementById("telephone").focus();
-            return false;
-        },
-        // isNumber: function (evt) {
-        //     evt = evt ? evt : window.event;
-        //     var charCode = evt.which ? evt.which : evt.keyCode;
-        //     if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
-        //         evt.preventDefault();
-        //     } else {
-        //         return true;
-        //     }
-        // },
         async handleSubmit() {
             if (this.loading) return;
-            if (this.ValidateEmail(this.formData.email) && this.ValidatePhone(this.formData.phone)) {
+            if (isEmail(this.formData.email) && isMobilePhone(this.formData.phone)) {
                 //captcha response
                 // eslint-disable-next-line
                 const captchaRes = grecaptcha.getResponse();
@@ -172,6 +122,12 @@ export default {
                 document.getElementsByClassName("captcha__wrap")[0].classList.remove("highlight");
 
                 this.loading = true;
+                this.formData.email = DOMPurify.sanitize(this.formData.email);
+                this.formData.date = DOMPurify.sanitize(this.formData.date);
+                this.formData.phone = DOMPurify.sanitize(this.formData.phone);
+                this.formData.name = DOMPurify.sanitize(this.formData.name);
+                this.formData.message = DOMPurify.sanitize(this.formData.message);
+
                 const formData = this.formData;
                 let stripeId;
                 if (this.$parent.OnlinePayments) {
@@ -228,6 +184,12 @@ export default {
                     return;
                 }
                 this.$parent.bodyDisplayAuto();
+            } else {
+                if (!isEmail(this.formData.email)) {
+                    document.getElementById("email").focus();
+                } else {
+                    document.getElementById("telephone").focus();
+                }
             }
         },
         osobyClick() {

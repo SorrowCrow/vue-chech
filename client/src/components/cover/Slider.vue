@@ -1,8 +1,8 @@
 <template>
     <div class="slider__wrap relative">
         <div class="block__slider relative flex content-center">
-            <img class="w-100" :class="[windowInfo.isMd ? '' : 'h-auto']" src="../../assets/background.webp" />
-            <img class="w-100" :class="[windowInfo.isMd ? '' : 'h-auto']" src="../../assets/background.webp" />
+            <img class="w-100" src="../../assets/background.webp" />
+            <img class="w-100" src="../../assets/background.webp" />
         </div>
         <div class="background absolute w-100 h-100"></div>
         <div class="absolute t-0 w-100 h-100 align-center flex">
@@ -91,6 +91,7 @@ export default {
 @media only screen and (min-width: $md-breakpoint) {
     .block__slider img {
         max-height: 46.875rem;
+        height: auto;
     }
 }
 </style>
