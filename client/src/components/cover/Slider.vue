@@ -1,8 +1,8 @@
 <template>
     <div class="slider__wrap relative">
         <div class="block__slider relative flex content-center">
-            <img class="w-100" src="../../assets/background.webp" />
-            <img class="w-100" src="../../assets/background.webp" />
+            <img class="w-100" src="../../assets/background.webp" alt="" />
+            <img class="w-100" src="../../assets/background.webp" alt="" />
         </div>
         <div class="background absolute w-100 h-100"></div>
         <div class="absolute t-0 w-100 h-100 align-center flex">
