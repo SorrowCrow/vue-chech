@@ -84,8 +84,8 @@ export default {
         },
         checktime(hoursStart, hoursEnd, id = 0) {
             let n = new Date().getHours();
-            let dd = String(new Date().getDate()).padStart(2, "0");
-            if (hoursStart <= n && dd === this.calendarData.secondDate && (this.calendarData.month === this.calendarData.currentMonth || id != 0) && this.calendarData.yearLoop != 1) {
+            let dd = Number(String(new Date().getDate()).padStart(2, "0"));
+            if (hoursStart <= n && dd == this.calendarData.secondDate && (this.calendarData.month === this.calendarData.currentMonth || id != 0) && this.calendarData.yearLoop != 1) {
                 if (this.halfBool && hoursStart % 3 === 0) {
                     let n = new Date().getMinutes();
                     if (n < 30) return true;
