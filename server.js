@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 
 function requireHTTPS(req, res, next) {
     // The 'x-forwarded-proto' check is for Heroku
-    if (!req.secure && req.get("x-forwarded-proto") !== "https" && process.env.NODE_ENV !== "development") {
-        return res.redirect("https://" + req.get("host") + req.url);
-    }
+    // if (!req.secure && req.get("x-forwarded-proto") !== "https" && process.env.NODE_ENV !== "development") {
+    //     return res.redirect("https://" + req.get("host") + req.url);
+    // }
     next();
 }
 app.use(requireHTTPS);
@@ -130,7 +130,7 @@ app.post("/api/stripe", async (req, res) => {
 
 app.use("/api/reservationItems", reservationItemRoutes);
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV !== "development") {
     app.use(express.static("client/dist"));
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
